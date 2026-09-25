@@ -12,9 +12,13 @@ A trace looks like this (one root call, children indented under it):
         └─ ← [Stop]
 
 Depth is taken from the column where the branch marker (├─ or └─) sits.
-Counting the "│" characters instead (as FaultSeeker's parser does) gives the
-wrong depth for anything nested under a parent's *last* child, because those
-lines are indented with spaces rather than "│".
+Counting the "│" characters instead would also work on every trace in this
+corpus: cast closes each frame with its own return line, so a *call* is never
+drawn as a parent's last child and its subtree is never indented with spaces
+in place of "│". Measured over the 28 traces in data/traces: 0 of 1307
+non-root calls carry the last-child marker, and the column depth exceeds the
+"│" count by exactly 1 for all 1307. The column rule is kept because it does
+not depend on that property holding.
 
 Run `python pipeline/trace_parser.py --selftest` to check the parser.
 """
@@ -269,7 +273,7 @@ def _selftest() -> None:
         (8, 1, 1, "CALL", "925d400c"),
         (9, 1, 1, "CREATE", "new Helper"),
         (10, 1, 1, "CALL", "swap"),
-        (11, 2, 10, "CALL", "deposit"),   # nested under a LAST child: FaultSeeker's parser gets depth 1
+        (11, 2, 10, "CALL", "deposit"),   # last-child call: synthetic, cast does not emit this
     ]
     assert got == expected, f"\nexpected {expected}\n     got {got}"
     assert fr[2]["outcome"] == "Return" and fr[2]["return_data"] == "1000"

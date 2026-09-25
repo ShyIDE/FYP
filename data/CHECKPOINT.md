@@ -79,9 +79,39 @@ creation-rooted. The fix lets a CREATE node open the trace, and
 `python pipeline/trace_parser.py --selftest` now covers it with a
 creation-rooted fixture alongside the original one.
 
-This is worth reporting in Chapter 3 next to the existing depth-attribution
-point: both are cases where a trace parser silently produces nothing, or the
-wrong structure, rather than failing loudly.
+This was a bug in *this* project's parser, now fixed. It is not a claim about
+FaultSeeker's parser: no copy of FaultSeeker's parser exists in this repo, so
+nothing here can be compared against it. See "What cannot be claimed" below.
+
+### Correction: the depth-attribution claim was wrong
+
+An earlier version of this file and of the parser docstring claimed that
+counting "|" characters misplaces any call nested under a parent's last child.
+That failure does not occur in real cast output. Because cast closes every
+frame with its own return line, the last child of a frame is always a return
+line, never a call, so a call is never drawn with the last-child marker.
+
+Measured over all 28 traces: 0 of 1307 non-root calls carry the last-child
+marker, and the column depth exceeds the "|" count by exactly 1 for all 1307.
+The two rules are therefore equivalent up to a constant offset on this corpus.
+The column rule is kept because it does not depend on that property, not
+because "|" counting is wrong. Do not write the old claim into the report.
+
+### What cannot be claimed
+
+`faultseeker/faultseeker.py`, present in this repo's history at commit
+`fd912b4`, is an early prototype of this project, not FaultSeeker's
+implementation. It does not parse call traces at all: `flatten_calls()` builds
+a two-level structure from the transaction receipt, a root call followed by
+one pseudo-frame per receipt log, all at depth 1, and never sees internal
+calls. Any comparison against "FaultSeeker's parser", in either direction,
+is unsupported by anything in this repo. To make such a comparison, clone
+github.com/kairanskrr/FaultSeeker and run it on these traces.
+
+For the record, this parser does capture the four calls whose target cast
+prints as a name rather than an address: `PRECOMPILES::ecrecover` twice in
+C18, and `console::log` once each in C08 and C22. They appear as frames with
+`target_address` set to null.
 
 ### API keys were being printed on error
 

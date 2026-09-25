@@ -9,7 +9,7 @@ write it into the report.
 
 | Step | State |
 |------|-------|
-| 1. Rotate keys, clean old folders | done for the repo; see the security note below |
+| 1. Rotate keys, clean old folders | **incomplete**: the Alchemy key in `.env` is still the one exposed in git history |
 | 2. Install Foundry | done: `cast 1.8.3`, attestation-verified |
 | 3. Checkpoint C01 + C16 against real `cast` output | done, passed |
 | 4. Overleaf citation fixes (`latex/CHAPTER_FIXES.md`) | still open, done in Overleaf |
@@ -28,7 +28,7 @@ All 28 cases replay and parse. Full per-case table in `data/CHECKPOINT.md`.
 
 - **1,335 call frames** across 28 transactions.
 - Frames per transaction: min 3, median 35, max 151 (C16 Euler).
-- Max depth per transaction: min 2, median 4, max 82 (C24 Game).
+- Max depth per transaction: min 2, median 4.5, max 82 (C24 Game).
 - Composition: 511 staticcalls, 219 delegatecalls, 1,140 emitted events,
   68 frames where `cast` knew only the 4-byte selector.
 - The ground-truth vulnerable function is located in the trace for **28/28**
@@ -75,17 +75,34 @@ in the test split. Few-shot prompting from dev cases is therefore unaffected.
    price_oracle_manipulation 186, token_specific 161, access_control 65,
    arbitrary_external_call 59.
 
-3. **The parser contribution in Chapter 3 now has two findings, not one.**
-   The existing point stands: FaultSeeker's parser attributes depth by
-   counting `|` characters, which misplaces any call nested under a parent's
-   last child. The new one: their approach also cannot parse
-   **contract-creation transactions**. C03 and C26 have `tx.to = null`, so the
-   attack runs inside the deployed contract's constructor and the trace root
-   is a CREATE node rather than a call. A parser that only accepts a call as
-   the root produces *zero frames* and silently yields nothing. Exactly 2 of
-   the 28 cases are creation-rooted, verified against the chain. Both findings
-   share a theme worth stating: a trace parser that fails silently is worse
-   than one that fails loudly.
+3. **Withdraw the parser comparison. Do not claim anything about
+   FaultSeeker's parser.** Two earlier claims were wrong and must come out of
+   the notes and the report:
+
+   - *"FaultSeeker's parser attributes depth by counting `|` characters and
+     misplaces calls under a parent's last child."* The failure does not occur
+     in real cast output: cast closes every frame with its own return line, so
+     a call is never drawn as a last child. Measured over all 28 traces, 0 of
+     1307 non-root calls carry the last-child marker, and column depth exceeds
+     the `|` count by exactly 1 for all 1307. The two rules are equivalent up
+     to a constant offset on this corpus.
+   - *"FaultSeeker's approach cannot parse contract-creation transactions."*
+     That was a bug in **this** project's parser, now fixed, not a property of
+     theirs.
+
+   The reason neither can be asserted: no copy of FaultSeeker's parser exists
+   in this repo. `faultseeker/faultseeker.py` in git history is an early
+   prototype of this project and does not parse call traces at all; it builds
+   a two-level structure from the receipt and never sees internal calls. A
+   real comparison needs github.com/kairanskrr/FaultSeeker run on these
+   traces, which has not been done.
+
+   What survives, and is measured: C03 and C26 are contract-creation
+   transactions (`tx.to = null`, the attack runs in the constructor, the trace
+   root is a CREATE node), exactly 2 of 28, verified against the chain. A
+   parser that accepts only a call as the root yields zero frames on them and
+   fails silently. Write that as a parser-design observation about handling
+   creation-rooted traces, attributed to nobody.
 
 4. **Frame counts do not match the benchmark's `benchmark_calls`, and this is
    a real measured difference, not an error to explain away.** The benchmark
@@ -106,11 +123,21 @@ in the test split. Few-shot prompting from dev cases is therefore unaffected.
 
 ## Security note
 
-An RPC provider returned 429 during the batch fetch and the error message
-contained the full Alchemy URL, so the API key was printed to the terminal.
-The code now redacts URLs from every error message and retries 429/5xx with
-backoff. The key was never committed. Brandon has been told to rotate it.
-Nothing in this repo contains a key; `.env` is gitignored.
+**The Alchemy key currently in `.env` is already public.** It is committed in
+this repo's own history at `fd912b4`, in `faultseeker/faultseeker.py`, as a
+commented-out URL. Deleting that file did not remove it: the blob is still
+reachable on GitHub. The key is byte-identical to the one in `.env` today,
+confirmed by hashing both. It must be rotated at Alchemy, not just removed
+from the file. The Groq key in that same commit is also public, but the
+current `.env` Groq key is different, so that one was already rotated.
+
+Separately, an RPC provider returned 429 during the batch fetch and the error
+message contained the full Alchemy URL, printing the key to the terminal. The
+code now redacts URLs from every error message and retries 429/5xx with
+backoff.
+
+`.env` itself is gitignored and no key has been committed by the current
+pipeline. The exposure is entirely historical, and rotation is the only fix.
 
 ## Where to read the detail
 
