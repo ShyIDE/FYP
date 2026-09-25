@@ -25,9 +25,11 @@ import argparse
 import csv
 import json
 import os
+import re
 import shutil
 import subprocess
 import sys
+import time
 from datetime import datetime, timezone
 
 import requests
@@ -38,13 +40,45 @@ from trace_parser import parse_trace
 GAS_TOLERANCE = 0.001  # replayed gas may differ from the receipt by at most 0.1%
 
 
-def rpc_call(url: str, method: str, params: list):
-    resp = requests.post(url, json={"jsonrpc": "2.0", "id": 1, "method": method, "params": params}, timeout=60)
-    resp.raise_for_status()
-    body = resp.json()
-    if "error" in body:
-        raise RuntimeError(f"{method} failed: {body['error']}")
-    return body.get("result")
+def redact(text: str) -> str:
+    """Strip API keys out of anything that may be printed or logged.
+
+    RPC URLs carry the key in the path, and requests puts the full URL in its
+    exception messages, so an unredacted error prints the key to the terminal.
+    """
+    return re.sub(r"(https?://[^/\s]+/)[^\s'\"]*", r"\1<redacted>", text)
+
+
+def rpc_call(url: str, method: str, params: list, attempts: int = 5):
+    """POST a JSON-RPC call, retrying throttling and transient server errors.
+
+    Every error is re-raised with the URL redacted so the key never reaches
+    the terminal or a log file.
+    """
+    for attempt in range(1, attempts + 1):
+        try:
+            resp = requests.post(url, json={"jsonrpc": "2.0", "id": 1, "method": method,
+                                            "params": params}, timeout=60)
+            if resp.status_code in (429, 500, 502, 503, 504) and attempt < attempts:
+                wait = 2 ** attempt
+                print(f"  RPC {resp.status_code} from the provider; retrying in {wait}s "
+                      f"({attempt}/{attempts - 1})")
+                time.sleep(wait)
+                continue
+            resp.raise_for_status()
+            body = resp.json()
+            if "error" in body:
+                raise RuntimeError(f"{method} failed: {redact(str(body['error']))}")
+            return body.get("result")
+        except requests.RequestException as exc:
+            if attempt < attempts:
+                wait = 2 ** attempt
+                print(f"  RPC call failed ({type(exc).__name__}); retrying in {wait}s "
+                      f"({attempt}/{attempts - 1})")
+                time.sleep(wait)
+                continue
+            raise RuntimeError(f"{method} failed: {redact(str(exc))}") from None
+    raise RuntimeError(f"{method} failed after {attempts} attempts")
 
 
 def onchain_facts(url: str, tx_hash: str) -> dict:
@@ -76,7 +110,8 @@ def run_cast(cast: str, tx_hash: str, url: str, quick: bool) -> str:
     proc = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8",
                           errors="replace", env=env, timeout=3600)
     if proc.returncode != 0 or "Traces:" not in proc.stdout:
-        raise RuntimeError(f"cast run failed (exit {proc.returncode}):\n{(proc.stderr or proc.stdout)[-1500:]}")
+        detail = redact((proc.stderr or proc.stdout)[-1500:])
+        raise RuntimeError(f"cast run failed (exit {proc.returncode}):\n{detail}")
     return proc.stdout
 
 
@@ -195,8 +230,19 @@ def main() -> None:
             w.writeheader()
             w.writerows(sorted(existing.values(), key=lambda r: r["case_id"]))
         print(f"\nSummary table: {path}")
-    print(f"Done: {len(summaries)} ok, {len(failed)} failed {failed if failed else ''}")
-    if failed:
+    unfaithful = [s["case_id"] for s in summaries if not s["replay_faithful"]]
+    faithful = len(summaries) - len(unfaithful)
+    print(f"Done: {faithful} verified, {len(unfaithful)} replay-mismatch, "
+          f"{len(failed)} failed {failed if failed else ''}")
+    if unfaithful:
+        # A mismatched replay is not a usable result: the trace was produced,
+        # but it does not provably reproduce the on-chain execution, so it
+        # must not be treated as verified data.
+        print(f"\nWARNING: the replay did not match the on-chain receipt for "
+              f"{', '.join(unfaithful)}.")
+        print("These are written with replay_faithful=false in summary.csv and must "
+              "not be used as verified traces until the mismatch is explained.")
+    if failed or unfaithful:
         sys.exit(1)
 
 

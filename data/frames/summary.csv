@@ -1,3 +1,29 @@
 case_id,name,category,split,chain,tx_hash,frames,max_depth,staticcalls,delegatecalls,undecoded,events,replay_mode,replay_faithful,fidelity_note,gt_functions,gt_frame_hits
 C01,Templedao,access_control,dev,eth,0x8c3f442fc6d640a6ff3ea0b12be64f1d4609ea94edd2966f42c01cd9bdcf04b5,7,2,2,0,1,3,quick,True,gas matches chain (173509),migrateStake,3
+C02,Paraswap,access_control,test,eth,0x35a73969f582872c25c96c48d8bb31c23eab8a49c19282c67509b96186734e60,12,4,3,0,1,5,quick,True,gas matches chain (205473),transferfrom,7
+C03,Melo,access_control,test,bsc,0x3f1973fe56de5ecd59a815d3b14741cf48385903b0ccfe248f7f10c2765061f7,15,3,8,0,0,8,full,False,gas differs: replay 897010 vs chain 913452,mint,3
+C04,Uerii Token,access_control,test,eth,0xf4a3d0e01bbca6c114954d4a49503fc94dfdbc864bded5530b51a207640d86b5,31,5,7,6,1,12,quick,True,gas matches chain (2608023),mint,2;3
+C05,CowSwap,arbitrary_external_call,dev,eth,0x90b468608fbcc7faef46502b198471311baca3baab49242a4a85b73d4924379b,7,2,4,0,0,1,quick,True,gas matches chain (58349),envelope,4
+C06,Seneca,arbitrary_external_call,test,eth,0x23fcf9d4517f7cc39815b09b0a80c023ab2c8196c826c93b4100f2e26b701286,3,2,0,1,0,1,quick,True,gas matches chain (68921),performOperations,2
+C07,ChaingeFinance,arbitrary_external_call,test,bsc,0x21d8b164f0cb8beb1ed27d164ed986c3fc26b33655ce18226b05b9cfcf6cd93c,11,2,6,0,1,3,quick,True,gas matches chain (101327),swap,4
+C08,Dexible,arbitrary_external_call,test,eth,0x138daa4cbeaa3db42eefcec26e234fc2c89a4aa17d6b1870fc460b2856fd11a6,38,6,11,13,1,10,quick,True,gas matches chain (298633),fill;selfSwap,8;9;10;11
+C09,Umbrella Network,arithmetic,dev,eth,0x33479bcfbc792aa0f8103ab0d7a3784788b5b0e1467c81ffbed1b7682660b4fa,4,3,0,0,2,2,quick,True,gas matches chain (140841),withdraw,3
+C10,Pandora,arithmetic,test,eth,0x7c5a909b45014e35ddb89697f6be38d08eff30e7c3d3d553033a6efc3b444fdd,18,2,8,0,0,747,quick,True,gas matches chain (21312850),transferFrom,3;8
+C11,MetaLend,arithmetic,test,eth,0x4c684fb2618c29743531dec9253ede1b757bda0b323dc2f305e3b50ab1773da7,128,13,66,21,2,29,quick,True,gas matches chain (1106358),redeemUnderlying,75
+C12,Balancer,arithmetic,test,eth,0x2a027c8b915c3737942f512fc5d26fd15752d0332353b3059de771a35a606c2d,140,10,47,36,2,49,quick,True,gas matches chain (1813682),onSwap,22;33;39;46;49;67;70;89
+C13,HedgeyFinance,business_logic,dev,eth,0x2606d459a50ca4920722a111745c2eeced1d8a01ff25ee762e22d5d4b1595739,5,2,1,2,0,1,quick,True,gas matches chain (76113),transferFrom,4;5
+C14,WIFCOIN_ETH,business_logic,test,eth,0xda8f6a4bed7e5689a343d111632d37480c0316f1d20b732803c4bd482823e284,19,3,10,0,0,8,quick,True,gas matches chain (316348),stake,15
+C15,DAppSocial,business_logic,test,eth,0xbd72bccec6dd824f8cac5d9a3a2364794c9272d7f7348d074b580e3c6e44312e,46,4,8,10,4,20,quick,True,gas matches chain (831620),LockTokens,8;25
 C16,EulerFinance,business_logic,test,eth,0xc310a0affe2169d1f6feec1c63dbc7f7c62a887fa48795d327d4d2da2d6b111d,151,11,59,36,31,56,quick,True,gas matches chain (1949994),donateToReserves,64
+C17,Formation.Fi,price_oracle_manipulation,dev,eth,0xa992b28ecf2eed778d20d5200946ea341b950be0c3d78b1f2237a4d8d795de95,21,4,7,0,1,12,quick,True,gas matches chain (238750),swapIn,12
+C18,MorphoBlue,price_oracle_manipulation,test,eth,0x256979ae169abb7fbbbbc14188742f4b9debf48b48ad5b5207cadcc99ccb493b,32,6,9,12,1,12,quick,True,gas matches chain (365349),borrow,22
+C19,VINU,price_oracle_manipulation,test,eth,0xaf46a42fe1ed7193b25c523723dc047c7500e50a00ecb7bbb822d665adb3e1f3,53,4,23,0,5,18,quick,True,gas matches chain (769208),addLiquidityETH,13;19;25;31
+C20,Kashi,price_oracle_manipulation,test,eth,0x3d163bfbec5686d428a6d43e45e2626a220cc4fcfac7620c620b82c1f2537c78,80,8,37,5,0,36,quick,True,gas matches chain (616504),withdraw,52;54
+C21,JAY,reentrancy,dev,eth,0xd4fafa1261f6e4f9c8543228a67caf9d02811e4ad3058a2714323964a8db61f6,38,6,7,0,1,21,quick,True,gas matches chain (368666),buyJay,9;11;22;24
+C22,Orion Protocol,reentrancy,test,eth,0xa6f63fcb6bec8818864d96a5b1bb19e8bd85ee37b2cc916412e720988440b2aa,94,12,44,20,1,26,full,True,gas matches chain (897331),doSwapThroughOrionPool,33
+C23,DFXFinance,reentrancy,test,eth,0x6bfd9e286e37061ed279e4f139fbc03c8bd707a2cdd15f7260549052cbba79b7,94,7,42,39,4,11,quick,True,gas matches chain (375210),flash;deposit,24;38
+C24,Game,reentrancy,test,eth,0x0eb8f8d148508e752d9643ccf49ac4cb0c21cbad346b5bbcf2d06974d31bd5c4,127,82,41,0,1,0,quick,True,gas matches chain (794646),makeBid,2;5;8;11;14;17;20;23;26;29;32;35;38;41;44;47;50;53;56;59;62;65;68;71;74;77;80;83;86;89;92;95;98;101;104;107;110;113;116;119;122;125
+C25,TINU,token_specific,dev,eth,0x6200bf5c43c214caa1177c3676293442059b4f39eb5dbae6cfd4e6ad16305668,39,5,19,0,1,14,quick,True,gas matches chain (426803),deliver,21;28
+C26,BUNN,token_specific,test,bsc,0x24a68d2a4bbb02f398d3601acfd87b09f543d935fc24862c314aaf64c295acdb,26,4,7,0,0,9,full,False,gas differs: replay 838904 vs chain 1012928,deliver,10;18
+C27,FDP,token_specific,test,bsc,0x09925028ce5d6a54801d04ff8f39e79af6c24289e84b301ddcdb6adfa51e901b,38,5,20,0,4,13,full,False,gas differs: replay 403528 vs chain 582128,deliver,21
+C28,NUM,token_specific,test,eth,0x8a8145ab28b5d2a2e61d74c02c12350731f479b3175893de2014124f998bff32,58,7,15,18,3,13,quick,True,gas matches chain (315534),anySwapOutUnderlyingWithPermit,8

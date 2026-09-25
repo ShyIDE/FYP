@@ -87,12 +87,17 @@ def parse_trace(text: str) -> dict:
         prefix, marker, content = m.group("prefix"), m.group("marker"), m.group("content").strip()
 
         if marker is None:
-            # A root call (no branch marker), or a continuation line of an
-            # undecoded event ("topic 1: ...", "data: ..."), or cast chatter.
+            # A root call or root contract creation (no branch marker), or a
+            # continuation line of an undecoded event ("topic 1: ...",
+            # "data: ..."), or cast chatter.
             call = CALL.match(content)
-            if call and root_col is None and (in_traces or not frames):
+            create = CREATE.match(content) if not call else None
+            if (call or create) and root_col is None and (in_traces or not frames):
                 root_col = len(prefix)
-                f = _make_call(call, len(frames) + 1, 0, None, line_no)
+                # A contract-creation transaction (tx.to is null) puts a
+                # "new X@0x..." node at the root: the attacker deploys the
+                # attack contract and its constructor runs the exploit.
+                f = _make_root(call, create, line_no)
                 frames.append(f)
                 open_at = {0: f}
                 continue
@@ -115,8 +120,7 @@ def parse_trace(text: str) -> dict:
             if call:
                 f = _make_call(call, idx, depth, owner.index, line_no)
             else:
-                f = Frame(idx, depth, owner.index, "CREATE", create["name"], create["addr"],
-                          f"new {create['name']}", True, "", None, int(create["gas"]), line_no=line_no)
+                f = _make_create(create, idx, depth, owner.index, line_no)
             owner.n_children += 1
             frames.append(f)
             open_at = {d: fr for d, fr in open_at.items() if d < depth}
@@ -147,6 +151,17 @@ def parse_trace(text: str) -> dict:
         "cast_gas_used": int(gas[-1]) if gas else None,
         "cast_status": status,
     }
+
+
+def _make_create(m: re.Match, idx: int, depth: int, parent: int | None, line_no: int) -> Frame:
+    return Frame(idx, depth, parent, "CREATE", m["name"], m["addr"],
+                 f"new {m['name']}", True, "", None, int(m["gas"]), line_no=line_no)
+
+
+def _make_root(call: re.Match | None, create: re.Match | None, line_no: int) -> Frame:
+    if call:
+        return _make_call(call, 1, 0, None, line_no)
+    return _make_create(create, 1, 0, None, line_no)
 
 
 def _make_call(m: re.Match, idx: int, depth: int, parent: int | None, line_no: int) -> Frame:
@@ -204,6 +219,41 @@ Gas used: 312480
 """
 
 
+# A contract-creation transaction (tx.to is null): the root node is a CREATE,
+# not a call. Cases C03 (Melo) and C26 (BUNN) in the benchmark look like this.
+_FIXTURE_CREATE_ROOT = """Traces:
+  [823108] → new <unknown>@0x4985DB6Fa42F6a30Ea7D20CB19591A0552C67238
+    ├─ [2496] 0x9A1aEF8C9ADA4224aD774aFdaC07C24955C92a54::balanceOf(0x6a8C4448763C08aDEb80ADEbF7A29b9477Fa0628) [staticcall]
+    │   └─ ← [Return] 2939318004043799027926976
+    ├─ [32440] 0x9A1aEF8C9ADA4224aD774aFdaC07C24955C92a54::mint(0x4985DB6Fa42F6a30Ea7D20CB19591A0552C67238, 146965900202189951396348800, "")
+    │   ├─ emit Transfer(from: 0x0000000000000000000000000000000000000000, to: 0x4985DB6Fa42F6a30Ea7D20CB19591A0552C67238, amount: 1)
+    │   └─ ← [Return] 0x01
+    └─ ← [Return] 1337 bytes of code
+
+
+Transaction successfully executed.
+Gas used: 913452
+"""
+
+
+def _selftest_create_root() -> None:
+    out = parse_trace(_FIXTURE_CREATE_ROOT)
+    frames = out["frames"]
+    got = [(f["index"], f["depth"], f["parent"], f["kind"], f["function"]) for f in frames]
+    expected = [
+        (1, 0, None, "CREATE", "new <unknown>"),
+        (2, 1, 1, "STATICCALL", "balanceOf"),
+        (3, 1, 1, "CALL", "mint"),
+    ]
+    assert got == expected, f"\nexpected {expected}\n     got {got}"
+    root = frames[0]
+    assert root["target_address"] == "0x4985DB6Fa42F6a30Ea7D20CB19591A0552C67238"
+    assert root["n_children"] == 2
+    assert frames[2]["events"] and frames[2]["events"][0].startswith("Transfer(")
+    assert out["cast_gas_used"] == 913452 and out["cast_status"] == "success"
+    print("trace_parser create-root self-test passed: 3 frames, CREATE root parsed.")
+
+
 def _selftest() -> None:
     out = parse_trace(_FIXTURE)
     fr = {f["index"]: f for f in out["frames"]}
@@ -235,6 +285,7 @@ def _selftest() -> None:
 if __name__ == "__main__":
     if "--selftest" in sys.argv:
         _selftest()
+        _selftest_create_root()
     elif len(sys.argv) == 2:
         with open(sys.argv[1], encoding="utf-8", errors="replace") as fh:
             print(json.dumps(parse_trace(fh.read()), indent=2, ensure_ascii=False))
