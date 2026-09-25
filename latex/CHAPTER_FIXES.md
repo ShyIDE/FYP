@@ -51,3 +51,73 @@ separately, as a yes/no flag alongside its role.
   is an existing ASE 2025 paper; this project extends it. Rewritten in Step 7.
 - Chapter 3 Figure 3.2 (category percentages) was estimated, not measured.
   It is replaced by the real category counts of the 28 cases.
+
+## D. Added 2026-09-25, after the traces were fetched and the parser audited
+
+These come from real runs. Details and evidence in `data/CHECKPOINT.md` and
+`STATUS.md`.
+
+### D1. Withdraw both parser claims (Chapter 3)
+
+Two claims about FaultSeeker's parser were wrong and must not appear:
+
+- that it attributes depth by counting `|` characters and so misplaces calls
+  nested under a parent's last child
+- that it cannot parse contract-creation transactions
+
+The first does not happen in real `cast` output: every frame ends with its own
+return line, so a call is never drawn as a last child. Measured over all 28
+traces, 0 of 1307 non-root calls carry the last-child marker. The second was a
+bug in *this* project's parser, now fixed, not a property of FaultSeeker's.
+
+Neither can be asserted at all, because **no copy of FaultSeeker's parser is in
+this repo**. Search Chapter 3 for any sentence comparing the two parsers and
+delete it.
+
+What may be said instead, because it was measured: C03 and C26 are
+contract-creation transactions (`tx.to` is null, the attack runs in the
+constructor, the trace root is a CREATE node), exactly 2 of 28. A parser that
+accepts only a call as its root yields zero frames on them and fails silently.
+Write that as a parser-design observation, attributed to nobody.
+
+### D2. Figure 3.2, real numbers
+
+The dataset is exactly balanced: 7 categories, 4 cases each, 14.3% each. A
+varying-percentage chart is wrong in shape, not only in value.
+
+Frames per category, measured: reentrancy 353, arithmetic 290, business_logic
+221, price_oracle_manipulation 186, token_specific 161, access_control 65,
+arbitrary_external_call 59.
+
+### D3. Corpus figures for Chapter 3
+
+28 transactions, 1,335 call frames. Frames per transaction: min 3, median 35,
+max 151 (C16 Euler). Max depth: min 2, median 4.5, max 82 (C24 Game).
+Composition: 511 staticcalls, 219 delegatecalls, 1,140 emitted events, 68
+frames where `cast` knew only the 4-byte selector.
+
+**25 of 28 replays are verified faithful.** C03, C26 and C27 (all BSC) replay
+cleanly but their gas does not match the receipt; cause undetermined. Report 28
+fetched and 25 verified, and name the three exclusions. Do not present 28 as
+all verified.
+
+### D4. The Euler hash, again
+
+`0xc310a0affe2169d1f6feec1c63dbc7f7c62a887fa48795d327d4d2da2d6b111d`, block
+16,817,996, gas 1,949,994, 151 frames, max depth 11, `donateToReserves` at
+frame 64.
+
+### D5. Methodology points that must be stated in Chapter 4
+
+- The victim contract's identity comes from the ground truth, so it is withheld
+  from the model until condition C5. C3 reveals only the attacker's account and
+  the attack contract, both readable from the transaction itself.
+- C4's few-shot examples come from dev cases only; test cases never enter a
+  prompt.
+- Long transactions are split into windows of at most 40 calls, forced by the
+  provider's 1,000 output-tokens-per-minute limit. Every case goes through the
+  same windowing code. State the limitation: in a windowed case the model sees
+  a slice of the call list, not the whole transaction at once.
+- `hit@k` means: predicted TRIGGER calls ranked by execution order, and hit@k
+  asks whether any of the first k is a call to the benchmark's function.
+  Execution order is used because the model returns labels, not scores.
