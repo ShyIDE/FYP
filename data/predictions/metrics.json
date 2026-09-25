@@ -1,0 +1,30 @@
+{
+ "conditions": {
+  "C0": {
+   "coverage": {
+    "calls": 1335,
+    "labelled": 1335,
+    "coverage_pct": 100.0,
+    "blank_role": 0,
+    "cases_with_problems": 0
+   },
+   "trigger": {
+    "cases": 28,
+    "hit@1": 0,
+    "hit@3": 13,
+    "hit@any": 14
+   },
+   "usage": {
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0,
+    "requests": 28,
+    "seconds": 0.0
+   },
+   "run_agreement": {},
+   "scored": null
+  }
+ },
+ "gold_labels_available": 0,
+ "annotator_agreement": null
+}
