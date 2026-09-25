@@ -17,3 +17,6 @@ Thumbs.db
 # Foundry cache (cast run creates this)
 cache/
 out/
+
+# run logs
+data/predictions/run.log
