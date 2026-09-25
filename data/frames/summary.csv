@@ -1,0 +1,3 @@
+case_id,name,category,split,chain,tx_hash,frames,max_depth,staticcalls,delegatecalls,undecoded,events,replay_mode,replay_faithful,fidelity_note,gt_functions,gt_frame_hits
+C01,Templedao,access_control,dev,eth,0x8c3f442fc6d640a6ff3ea0b12be64f1d4609ea94edd2966f42c01cd9bdcf04b5,7,2,2,0,1,3,quick,True,gas matches chain (173509),migrateStake,3
+C16,EulerFinance,business_logic,test,eth,0xc310a0affe2169d1f6feec1c63dbc7f7c62a887fa48795d327d4d2da2d6b111d,151,11,59,36,31,56,quick,True,gas matches chain (1949994),donateToReserves,64
