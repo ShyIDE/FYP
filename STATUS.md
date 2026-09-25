@@ -14,13 +14,72 @@ write it into the report.
 | 3. Checkpoint C01 + C16 against real `cast` output | done, passed |
 | 4. Overleaf citation fixes (`latex/CHAPTER_FIXES.md`) | still open, done in Overleaf |
 | 5. Fetch all 28 traces | done |
-| 6. Annotation sheet (role + essential) | not started, next |
-| 7. Classifier and `evaluate.py`, conditions C0-C5 | not started |
+| 6. Annotation sheet (role + essential) | **sheet built, labels not filled in** |
+| 7. Classifier and `evaluate.py`, conditions C0-C5 | built; C0 done, C1-C3 running, C4/C5 blocked |
 | 8. Chapters 5 and 6 from results | blocked on 6 and 7 |
 
-No LLM has been run yet. There are no classification results, no accuracy
-numbers, no confusion matrices and no cost figures. Chapters 5 and 6 cannot be
-written yet.
+The experiment now runs, but **no role accuracy figure exists yet and none can
+exist until the annotation sheet is filled in by hand**. See "What is blocked".
+
+## Step 6: the annotation sheet exists, the labels do not
+
+`data/annotation/sheet.csv` has one row per call frame, 1,335 rows across 28
+cases, with `role` and `essential` deliberately empty. `GUIDELINES.md` beside
+it holds the written scheme, including the boundary rules that annotators
+disagree on, and is the appendix material.
+
+`second_annotator.csv` is the Cohen's kappa subset: one whole transaction per
+category chosen with a fixed seed, 7 cases and 390 rows, 29.2% of all rows.
+Whole transactions rather than scattered calls, because a call's purpose can
+only be judged against the rest of the attack.
+
+## Step 7: conditions, and what each may see
+
+`pipeline/classify.py` implements C0 to C5, each adding exactly one thing.
+Two design choices that belong in the methodology section:
+
+- The victim's identity comes from the benchmark ground truth, so it is
+  **withheld until C5**. C3 reveals only the attacker's account and the attack
+  contract, both readable from the transaction itself. Revealing the victim
+  earlier would leak the answer.
+- C4's few-shot examples come from **dev cases only**; test cases never appear
+  in a prompt.
+
+Provider limits, measured rather than assumed: 7,000 input tokens per minute,
+1,000 output tokens per minute, 1,000 requests per day. Two consequences that
+must be reported as method, not hidden:
+
+- **Long transactions are split into windows of at most 40 calls.** Every case
+  goes through the same windowing code, so a small case simply produces one
+  window and the procedure does not differ between cases. A condition-run is
+  50 requests. The limitation to state: in a windowed case the model sees a
+  slice of the call list, not the whole transaction at once.
+- Argument and event text is clipped to the same width for every case, so a
+  large transaction is not described more thinly than a small one.
+
+### First measured result
+
+The C0 rule baseline, over all 28 cases: **trigger hit@1 = 0/28, hit@3 =
+13/28, hit@any = 14/28**. Its first TRIGGER guess is never the benchmark's
+vulnerable function. This is the floor the prompting conditions must beat.
+
+`hit@k` is defined as: predicted TRIGGER calls ranked by execution order, and
+hit@k asks whether any of the first k is a call to the benchmark's function.
+Execution order is used because the model returns labels, not scores. **State
+this definition in the report**; it is not the same as a ranked retrieval.
+
+## What is blocked, and on what
+
+| Blocked | Needs |
+|---------|-------|
+| Accuracy, macro-F1, per-role P/R, confusion matrix, essential P/R | the annotation sheet filled in |
+| Cohen's kappa | a second annotator to label `second_annotator.csv` |
+| Condition C4 | the dev split annotated, to build few-shot examples |
+| Condition C5 | `ETHERSCAN_API_KEY` in `.env`, for verified victim source |
+
+`evaluate.py` reports each of these as unavailable rather than estimating it.
+Chapter 6 cannot present role accuracy until the annotation exists. Chapter 5
+case studies can be written now from the traces and the predictions.
 
 ## The trace corpus: what you may cite
 
