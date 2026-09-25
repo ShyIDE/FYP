@@ -1,0 +1,19 @@
+# Secrets: never commit these
+.env
+*.env
+!.env.example
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Editor / OS
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Foundry cache (cast run creates this)
+cache/
+out/

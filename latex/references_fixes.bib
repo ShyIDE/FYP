@@ -1,0 +1,83 @@
+% ============================================================
+% references_fixes.bib  (checked against publisher / author pages, Sep 2026)
+%
+% PART A - REPLACE these three existing entries in references.bib.
+%          The keys stay the same, so no \cite{} in your chapters breaks.
+% PART B - ADD these new entries to the end of references.bib.
+% ============================================================
+
+% ---------------- PART A: replace existing entries ----------------
+
+% Was a "FAULTSEEKER tech report (NTU 2024)". It is the ASE 2025 paper.
+% Source of the 16.7 analyst-hours figure.
+@inproceedings{sun2024,
+  author    = {Sun, Kairan and Xu, Zhengzi and Li, Kaixuan and Zhang, Lyuye and Sun, Yuqiang and Tan, Liwei and Liu, Yang},
+  title     = {{FaultSeeker}: {LLM}-Empowered Framework for Blockchain Transaction Fault Localization},
+  booktitle = {Proceedings of the 40th IEEE/ACM International Conference on Automated Software Engineering (ASE)},
+  year      = {2025},
+  doi       = {10.1109/ASE63991.2025.00017}
+}
+
+% DeepTx: ASE 2025 Tool Demonstration Track (NTU).
+@inproceedings{liu2026,
+  author    = {Liu, Yixuan and Li, Xinlei and Li, Yi},
+  title     = {{DeepTx}: Real-Time Transaction Risk Analysis via Multi-Modal Features and {LLM} Reasoning},
+  booktitle = {Proceedings of the 40th IEEE/ACM International Conference on Automated Software Engineering (ASE), Tool Demonstration Track},
+  year      = {2025},
+  note      = {arXiv:2510.18438}
+}
+
+% DAppFL is ISSTA 2024 (not ISSRE 2023).
+@inproceedings{sun2023,
+  author    = {Wu, Zhiying and Wu, Jiajing and Zhang, Hui and Li, Ziwei and Chen, Jiachi and Zheng, Zibin and Xia, Qing and Fan, Gang and Zhen, Yi},
+  title     = {{DAppFL}: Just-in-Time Fault Localization for Decentralized Applications in {Web3}},
+  booktitle = {Proceedings of the 33rd ACM SIGSOFT International Symposium on Software Testing and Analysis (ISSTA)},
+  year      = {2024},
+  doi       = {10.1145/3650212.3652116}
+}
+
+% ---------------- PART B: add new entries ----------------
+
+% Oyente. Chapter 2 currently cites it as \cite{chen2026}, which is wrong.
+@inproceedings{luu2016oyente,
+  author    = {Luu, Loi and Chu, Duc-Hiep and Olickel, Hrishi and Saxena, Prateek and Hobor, Aquinas},
+  title     = {Making Smart Contracts Smarter},
+  booktitle = {Proceedings of the 2016 ACM SIGSAC Conference on Computer and Communications Security (CCS)},
+  pages     = {254--269},
+  year      = {2016},
+  doi       = {10.1145/2976749.2978309}
+}
+
+% Established DeFi attack taxonomy: use it to ground your vulnerability categories.
+@inproceedings{zhou2023sok,
+  author    = {Zhou, Liyi and Xiong, Xihan and Ernstberger, Jens and Chaliasos, Stefanos and Wang, Zhipeng and Wang, Ye and Qin, Kaihua and Wattenhofer, Roger and Song, Dawn and Gervais, Arthur},
+  title     = {{SoK}: Decentralized Finance ({DeFi}) Attacks},
+  booktitle = {2023 IEEE Symposium on Security and Privacy (SP)},
+  pages     = {2444--2461},
+  year      = {2023}
+}
+
+% Closest prior work on analysing attacks FROM TRANSACTIONS (not contracts).
+@inproceedings{zhang2020txspector,
+  author    = {Zhang, Mengya and Zhang, Xiaokuan and Zhang, Yinqian and Lin, Zhiqiang},
+  title     = {{TXSPECTOR}: Uncovering Attacks in {Ethereum} from Transactions},
+  booktitle = {29th USENIX Security Symposium (USENIX Security 20)},
+  year      = {2020}
+}
+
+% Recovers DeFi semantics (trades, liquidity ops) from transaction traces.
+@misc{wu2021defiranger,
+  author        = {Wu, Siwei and Wang, Dabao and He, Jianting and Zhou, Yajin and Wu, Lei and Yuan, Xingliang and He, Qinming and Ren, Kui},
+  title         = {{DeFiRanger}: Detecting Price Manipulation Attacks on {DeFi} Applications},
+  year          = {2021},
+  note          = {arXiv:2104.15068}
+}
+
+% LLM + program analysis for smart-contract logic bugs (same NTU group as FaultSeeker).
+@inproceedings{sun2024gptscan,
+  author    = {Sun, Yuqiang and Wu, Daoyuan and Xue, Yue and Liu, Han and Wang, Haijun and Xu, Zhengzi and Xie, Xiaofei and Liu, Yang},
+  title     = {{GPTScan}: Detecting Logic Vulnerabilities in Smart Contracts by Combining {GPT} with Program Analysis},
+  booktitle = {Proceedings of the IEEE/ACM 46th International Conference on Software Engineering (ICSE)},
+  year      = {2024},
+  doi       = {10.1145/3597503.3639117}
+}
