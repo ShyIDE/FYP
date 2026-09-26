@@ -22,7 +22,178 @@
     "seconds": 0.0
    },
    "run_agreement": {},
-   "scored": null
+   "scored": null,
+   "provisional_vs_draft": {
+    "scored_calls": 1335,
+    "accuracy": 0.666,
+    "macro_f1": 0.585,
+    "per_role": {
+     "PREPARATORY": {
+      "support": 831,
+      "precision": 0.873,
+      "recall": 0.747,
+      "f1": 0.805
+     },
+     "TRIGGER": {
+      "support": 262,
+      "precision": 0.469,
+      "recall": 0.557,
+      "f1": 0.51
+     },
+     "EXTRACTION": {
+      "support": 242,
+      "precision": 0.39,
+      "recall": 0.504,
+      "f1": 0.44
+     }
+    },
+    "confusion": {
+     "EXTRACTION->EXTRACTION": 122,
+     "EXTRACTION->PREPARATORY": 51,
+     "EXTRACTION->TRIGGER": 69,
+     "PREPARATORY->EXTRACTION": 114,
+     "PREPARATORY->PREPARATORY": 621,
+     "PREPARATORY->TRIGGER": 96,
+     "TRIGGER->EXTRACTION": 77,
+     "TRIGGER->PREPARATORY": 39,
+     "TRIGGER->TRIGGER": 146
+    },
+    "essential": {
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0
+    }
+   }
+  },
+  "C1": {
+   "coverage": {
+    "calls": 1335,
+    "labelled": 1335,
+    "coverage_pct": 100.0,
+    "blank_role": 0,
+    "cases_with_problems": 0
+   },
+   "trigger": {
+    "cases": 28,
+    "hit@1": 8,
+    "hit@3": 11,
+    "hit@any": 21
+   },
+   "usage": {
+    "prompt_tokens": 41842,
+    "completion_tokens": 30805,
+    "total_tokens": 72647,
+    "requests": 48,
+    "seconds": 1812.6
+   },
+   "run_agreement": {},
+   "scored": null,
+   "provisional_vs_draft": {
+    "scored_calls": 1335,
+    "accuracy": 0.578,
+    "macro_f1": 0.535,
+    "per_role": {
+     "PREPARATORY": {
+      "support": 831,
+      "precision": 0.818,
+      "recall": 0.584,
+      "f1": 0.681
+     },
+     "TRIGGER": {
+      "support": 262,
+      "precision": 0.339,
+      "recall": 0.702,
+      "f1": 0.457
+     },
+     "EXTRACTION": {
+      "support": 242,
+      "precision": 0.518,
+      "recall": 0.426,
+      "f1": 0.467
+     }
+    },
+    "confusion": {
+     "EXTRACTION->EXTRACTION": 103,
+     "EXTRACTION->PREPARATORY": 66,
+     "EXTRACTION->TRIGGER": 73,
+     "PREPARATORY->EXTRACTION": 60,
+     "PREPARATORY->PREPARATORY": 485,
+     "PREPARATORY->TRIGGER": 286,
+     "TRIGGER->EXTRACTION": 36,
+     "TRIGGER->PREPARATORY": 42,
+     "TRIGGER->TRIGGER": 184
+    },
+    "essential": {
+     "precision": 0.831,
+     "recall": 0.828,
+     "f1": 0.829
+    }
+   }
+  },
+  "C2": {
+   "coverage": {
+    "calls": 979,
+    "labelled": 979,
+    "coverage_pct": 100.0,
+    "blank_role": 0,
+    "cases_with_problems": 0
+   },
+   "trigger": {
+    "cases": 23,
+    "hit@1": 6,
+    "hit@3": 12,
+    "hit@any": 15
+   },
+   "usage": {
+    "prompt_tokens": 88606,
+    "completion_tokens": 23820,
+    "total_tokens": 112426,
+    "requests": 38,
+    "seconds": 1396.7
+   },
+   "run_agreement": {},
+   "scored": null,
+   "provisional_vs_draft": {
+    "scored_calls": 979,
+    "accuracy": 0.651,
+    "macro_f1": 0.555,
+    "per_role": {
+     "PREPARATORY": {
+      "support": 655,
+      "precision": 0.833,
+      "recall": 0.725,
+      "f1": 0.776
+     },
+     "TRIGGER": {
+      "support": 136,
+      "precision": 0.271,
+      "recall": 0.478,
+      "f1": 0.346
+     },
+     "EXTRACTION": {
+      "support": 188,
+      "precision": 0.574,
+      "recall": 0.516,
+      "f1": 0.543
+     }
+    },
+    "confusion": {
+     "EXTRACTION->EXTRACTION": 97,
+     "EXTRACTION->PREPARATORY": 50,
+     "EXTRACTION->TRIGGER": 41,
+     "PREPARATORY->EXTRACTION": 46,
+     "PREPARATORY->PREPARATORY": 475,
+     "PREPARATORY->TRIGGER": 134,
+     "TRIGGER->EXTRACTION": 26,
+     "TRIGGER->PREPARATORY": 45,
+     "TRIGGER->TRIGGER": 65
+    },
+    "essential": {
+     "precision": 0.912,
+     "recall": 0.808,
+     "f1": 0.857
+    }
+   }
   }
  },
  "gold_labels_available": 0,

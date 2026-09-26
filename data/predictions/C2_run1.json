@@ -1,0 +1,4424 @@
+[
+ {
+  "case_id": "C01",
+  "category": "access_control",
+  "split": "dev",
+  "condition": "C2",
+  "run": 1,
+  "model": "qwen/qwen3.8-27b",
+  "temperature": 0.0,
+  "n_calls": 7,
+  "windows": 1,
+  "labels": {
+   "1": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "2": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "3": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "4": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "5": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "6": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "7": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   }
+  },
+  "problems": [],
+  "usage": {
+   "prompt_tokens": 931,
+   "completion_tokens": 101,
+   "total_tokens": 1032
+  },
+  "seconds": 24.58,
+  "raw_reply": "{\"labels\":[{\"index\":1,\"role\":\"PREPARATORY\",\"essential\":\"no\"},{\"index\":2,\"role\":\"PREPARATORY\",\"essential\":\"no\"},{\"index\":3,\"role\":\"TRIGGER\",\"essential\":\"yes\"},{\"index\":4,\"role\":\"TRIGGER\",\"essential\":\"yes\"},{\"index\":5,\"role\":\"EXTRACTION\",\"essential\":\"yes\"},{\"index\":6,\"role\":\"EXTRACTION\",\"essential\":\"yes\"},{\"index\":7,\"role\":\"PREPARATORY\",\"essential\":\"no\"}]}",
+  "at": "2026-09-25T08:35:08+00:00"
+ },
+ {
+  "case_id": "C02",
+  "category": "access_control",
+  "split": "test",
+  "condition": "C2",
+  "run": 1,
+  "model": "qwen/qwen3.8-27b",
+  "temperature": 0.0,
+  "n_calls": 12,
+  "windows": 1,
+  "labels": {
+   "1": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "2": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "3": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "4": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "5": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "6": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "7": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "8": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "9": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "10": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "11": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "12": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   }
+  },
+  "problems": [],
+  "usage": {
+   "prompt_tokens": 1357,
+   "completion_tokens": 398,
+   "total_tokens": 1755
+  },
+  "seconds": 6.21,
+  "raw_reply": "{\n  \"labels\": [\n    {\n      \"index\": 1,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 2,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 3,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 4,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 5,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"no\"\n    },\n    {\n      \"index\": 6,\n      \"role\": \"TRIGGER\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 7,\n      \"role\": \"TRIGGER\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 8,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"no\"\n    },\n    {\n      \"index\": 9,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"no\"\n    },\n    {\n      \"index\": 10,\n      \"role\": \"EXTRACTION\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 11,\n      \"role\": \"EXTRACTION\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 12,\n      \"role\": \"EXTRACTION\",\n      \"essential\": \"yes\"\n    }\n  ]\n}",
+  "at": "2026-09-25T08:35:14+00:00"
+ },
+ {
+  "case_id": "C03",
+  "category": "access_control",
+  "split": "test",
+  "condition": "C2",
+  "run": 1,
+  "model": "qwen/qwen3.8-27b",
+  "temperature": 0.0,
+  "n_calls": 15,
+  "windows": 1,
+  "labels": {
+   "1": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "2": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "3": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "4": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "5": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "6": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "7": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "8": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "9": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "10": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "11": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "12": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "13": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "14": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "15": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   }
+  },
+  "problems": [],
+  "usage": {
+   "prompt_tokens": 1585,
+   "completion_tokens": 498,
+   "total_tokens": 2083
+  },
+  "seconds": 24.45,
+  "raw_reply": "{\n  \"labels\": [\n    {\n      \"index\": 1,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 2,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"no\"\n    },\n    {\n      \"index\": 3,\n      \"role\": \"TRIGGER\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 4,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"no\"\n    },\n    {\n      \"index\": 5,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 6,\n      \"role\": \"EXTRACTION\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 7,\n      \"role\": \"EXTRACTION\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 8,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"no\"\n    },\n    {\n      \"index\": 9,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"no\"\n    },\n    {\n      \"index\": 10,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"no\"\n    },\n    {\n      \"index\": 11,\n      \"role\": \"EXTRACTION\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 12,\n      \"role\": \"EXTRACTION\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 13,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"no\"\n    },\n    {\n      \"index\": 14,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"no\"\n    },\n    {\n      \"index\": 15,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"no\"\n    }\n  ]\n}",
+  "at": "2026-09-25T08:35:39+00:00"
+ },
+ {
+  "case_id": "C04",
+  "category": "access_control",
+  "split": "test",
+  "condition": "C2",
+  "run": 1,
+  "model": "qwen/qwen3.8-27b",
+  "temperature": 0.0,
+  "n_calls": 31,
+  "windows": 1,
+  "labels": {
+   "1": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "2": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "3": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "4": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "5": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "6": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "7": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "8": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "9": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "10": {
+    "role": "TRIGGER",
+    "essential": "no"
+   },
+   "11": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "12": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "13": {
+    "role": "TRIGGER",
+    "essential": "no"
+   },
+   "14": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "15": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "16": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "17": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "18": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "19": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "20": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "21": {
+    "role": "EXTRACTION",
+    "essential": "no"
+   },
+   "22": {
+    "role": "EXTRACTION",
+    "essential": "no"
+   },
+   "23": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "24": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "25": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "26": {
+    "role": "EXTRACTION",
+    "essential": "no"
+   },
+   "27": {
+    "role": "EXTRACTION",
+    "essential": "no"
+   },
+   "28": {
+    "role": "EXTRACTION",
+    "essential": "no"
+   },
+   "29": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "30": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "31": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   }
+  },
+  "problems": [],
+  "usage": {
+   "prompt_tokens": 2850,
+   "completion_tokens": 709,
+   "total_tokens": 3559
+  },
+  "seconds": 28.85,
+  "raw_reply": "{\n  \"labels\": [\n    {\"index\": 1, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 2, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 3, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 4, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 5, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 6, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 7, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 8, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 9, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 10, \"role\": \"TRIGGER\", \"essential\": \"no\"},\n    {\"index\": 11, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 12, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 13, \"role\": \"TRIGGER\", \"essential\": \"no\"},\n    {\"index\": 14, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 15, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 16, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 17, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 18, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 19, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 20, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 21, \"role\": \"EXTRACTION\", \"essential\": \"no\"},\n    {\"index\": 22, \"role\": \"EXTRACTION\", \"essential\": \"no\"},\n    {\"index\": 23, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 24, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 25, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 26, \"role\": \"EXTRACTION\", \"essential\": \"no\"},\n    {\"index\": 27, \"role\": \"EXTRACTION\", \"essential\": \"no\"},\n    {\"index\": 28, \"role\": \"EXTRACTION\", \"essential\": \"no\"},\n    {\"index\": 29, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 30, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 31, \"role\": \"EXTRACTION\", \"essential\": \"yes\"}\n  ]\n}",
+  "at": "2026-09-25T08:36:08+00:00"
+ },
+ {
+  "case_id": "C05",
+  "category": "arbitrary_external_call",
+  "split": "dev",
+  "condition": "C2",
+  "run": 1,
+  "model": "qwen/qwen3.8-27b",
+  "temperature": 0.0,
+  "n_calls": 7,
+  "windows": 1,
+  "labels": {
+   "1": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "2": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "3": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "4": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "5": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "6": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "7": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   }
+  },
+  "problems": [],
+  "usage": {
+   "prompt_tokens": 878,
+   "completion_tokens": 101,
+   "total_tokens": 979
+  },
+  "seconds": 42.55,
+  "raw_reply": "{\"labels\":[{\"index\":1,\"role\":\"TRIGGER\",\"essential\":\"yes\"},{\"index\":2,\"role\":\"PREPARATORY\",\"essential\":\"no\"},{\"index\":3,\"role\":\"PREPARATORY\",\"essential\":\"no\"},{\"index\":4,\"role\":\"TRIGGER\",\"essential\":\"yes\"},{\"index\":5,\"role\":\"PREPARATORY\",\"essential\":\"no\"},{\"index\":6,\"role\":\"EXTRACTION\",\"essential\":\"yes\"},{\"index\":7,\"role\":\"PREPARATORY\",\"essential\":\"no\"}]}",
+  "at": "2026-09-25T08:36:50+00:00"
+ },
+ {
+  "case_id": "C06",
+  "category": "arbitrary_external_call",
+  "split": "test",
+  "condition": "C2",
+  "run": 1,
+  "model": "qwen/qwen3.8-27b",
+  "temperature": 0.0,
+  "n_calls": 3,
+  "windows": 1,
+  "labels": {
+   "1": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "2": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "3": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   }
+  },
+  "problems": [],
+  "usage": {
+   "prompt_tokens": 617,
+   "completion_tokens": 46,
+   "total_tokens": 663
+  },
+  "seconds": 6.5,
+  "raw_reply": "{\"labels\":[{\"index\":1,\"role\":\"PREPARATORY\",\"essential\":\"yes\"},{\"index\":2,\"role\":\"TRIGGER\",\"essential\":\"yes\"},{\"index\":3,\"role\":\"EXTRACTION\",\"essential\":\"yes\"}]}",
+  "at": "2026-09-25T08:36:57+00:00"
+ },
+ {
+  "case_id": "C07",
+  "category": "arbitrary_external_call",
+  "split": "test",
+  "condition": "C2",
+  "run": 1,
+  "model": "qwen/qwen3.8-27b",
+  "temperature": 0.0,
+  "n_calls": 11,
+  "windows": 1,
+  "labels": {
+   "1": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "2": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "3": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "4": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "5": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "6": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "7": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "8": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "9": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "10": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "11": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   }
+  },
+  "problems": [],
+  "usage": {
+   "prompt_tokens": 1265,
+   "completion_tokens": 365,
+   "total_tokens": 1630
+  },
+  "seconds": 0.99,
+  "raw_reply": "{\n  \"labels\": [\n    {\n      \"index\": 1,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 2,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"no\"\n    },\n    {\n      \"index\": 3,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"no\"\n    },\n    {\n      \"index\": 4,\n      \"role\": \"TRIGGER\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 5,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"no\"\n    },\n    {\n      \"index\": 6,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 7,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"no\"\n    },\n    {\n      \"index\": 8,\n      \"role\": \"TRIGGER\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 9,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"no\"\n    },\n    {\n      \"index\": 10,\n      \"role\": \"EXTRACTION\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 11,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"no\"\n    }\n  ]\n}",
+  "at": "2026-09-25T08:36:58+00:00"
+ },
+ {
+  "case_id": "C08",
+  "category": "arbitrary_external_call",
+  "split": "test",
+  "condition": "C2",
+  "run": 1,
+  "model": "qwen/qwen3.8-27b",
+  "temperature": 0.0,
+  "n_calls": 38,
+  "windows": 1,
+  "labels": {
+   "1": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "2": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "3": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "4": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "5": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "6": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "7": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "8": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "9": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "10": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "11": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "12": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "13": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "14": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "15": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "16": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "17": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "18": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "19": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "20": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "21": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "22": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "23": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "24": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "25": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "26": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "27": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "28": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "29": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "30": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "31": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "32": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "33": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "34": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "35": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "36": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "37": {
+    "role": "EXTRACTION",
+    "essential": "no"
+   },
+   "38": {
+    "role": "EXTRACTION",
+    "essential": "no"
+   }
+  },
+  "problems": [],
+  "usage": {
+   "prompt_tokens": 3296,
+   "completion_tokens": 868,
+   "total_tokens": 4164
+  },
+  "seconds": 25.26,
+  "raw_reply": "{\n  \"labels\": [\n    {\"index\": 1, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 2, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 3, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 4, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 5, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 6, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 7, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 8, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 9, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 10, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 11, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 12, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 13, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 14, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 15, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 16, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 17, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 18, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 19, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 20, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 21, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 22, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 23, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 24, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 25, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 26, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 27, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 28, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 29, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 30, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 31, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 32, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 33, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 34, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 35, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 36, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 37, \"role\": \"EXTRACTION\", \"essential\": \"no\"},\n    {\"index\": 38, \"role\": \"EXTRACTION\", \"essential\": \"no\"}\n  ]\n}",
+  "at": "2026-09-25T08:37:23+00:00"
+ },
+ {
+  "case_id": "C09",
+  "category": "arithmetic",
+  "split": "dev",
+  "condition": "C2",
+  "run": 1,
+  "model": "qwen/qwen3.8-27b",
+  "temperature": 0.0,
+  "n_calls": 4,
+  "windows": 1,
+  "labels": {
+   "1": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "2": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "3": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "4": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   }
+  },
+  "problems": [],
+  "usage": {
+   "prompt_tokens": 748,
+   "completion_tokens": 59,
+   "total_tokens": 807
+  },
+  "seconds": 48.51,
+  "raw_reply": "{\"labels\":[{\"index\":1,\"role\":\"PREPARATORY\",\"essential\":\"no\"},{\"index\":2,\"role\":\"TRIGGER\",\"essential\":\"yes\"},{\"index\":3,\"role\":\"TRIGGER\",\"essential\":\"yes\"},{\"index\":4,\"role\":\"EXTRACTION\",\"essential\":\"yes\"}]}",
+  "at": "2026-09-25T08:38:12+00:00"
+ },
+ {
+  "case_id": "C10",
+  "category": "arithmetic",
+  "split": "test",
+  "condition": "C2",
+  "run": 1,
+  "model": "qwen/qwen3.8-27b",
+  "temperature": 0.0,
+  "n_calls": 18,
+  "windows": 1,
+  "labels": {
+   "1": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "2": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "3": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "4": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "5": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "6": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "7": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "8": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "9": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "10": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "11": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "12": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "13": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "14": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "15": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "16": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "17": {
+    "role": "EXTRACTION",
+    "essential": "no"
+   },
+   "18": {
+    "role": "EXTRACTION",
+    "essential": "no"
+   }
+  },
+  "problems": [],
+  "usage": {
+   "prompt_tokens": 1714,
+   "completion_tokens": 596,
+   "total_tokens": 2310
+  },
+  "seconds": 12.85,
+  "raw_reply": "{\n  \"labels\": [\n    {\n      \"index\": 1,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 2,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"no\"\n    },\n    {\n      \"index\": 3,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 4,\n      \"role\": \"TRIGGER\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 5,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"no\"\n    },\n    {\n      \"index\": 6,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"no\"\n    },\n    {\n      \"index\": 7,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"no\"\n    },\n    {\n      \"index\": 8,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 9,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"no\"\n    },\n    {\n      \"index\": 10,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"no\"\n    },\n    {\n      \"index\": 11,\n      \"role\": \"TRIGGER\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 12,\n      \"role\": \"EXTRACTION\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 13,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"no\"\n    },\n    {\n      \"index\": 14,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"no\"\n    },\n    {\n      \"index\": 15,\n      \"role\": \"EXTRACTION\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 16,\n      \"role\": \"EXTRACTION\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 17,\n      \"role\": \"EXTRACTION\",\n      \"essential\": \"no\"\n    },\n    {\n      \"index\": 18,\n      \"role\": \"EXTRACTION\",\n      \"essential\": \"no\"\n    }\n  ]\n}",
+  "at": "2026-09-25T08:38:24+00:00"
+ },
+ {
+  "case_id": "C11",
+  "category": "arithmetic",
+  "split": "test",
+  "condition": "C2",
+  "run": 1,
+  "model": "qwen/qwen3.8-27b",
+  "temperature": 0.0,
+  "n_calls": 128,
+  "windows": 4,
+  "labels": {
+   "1": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "2": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "3": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "4": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "5": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "6": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "7": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "8": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "9": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "10": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "11": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "12": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "13": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "14": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "15": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "16": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "17": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "18": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "19": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "20": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "21": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "22": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "23": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "24": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "25": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "26": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "27": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "28": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "29": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "30": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "31": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "32": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "33": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "34": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "35": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "36": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "37": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "38": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "39": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "40": {
+    "role": "TRIGGER",
+    "essential": "no"
+   },
+   "41": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "42": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "43": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "44": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "45": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "46": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "47": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "48": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "49": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "50": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "51": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "52": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "53": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "54": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "55": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "56": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "57": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "58": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "59": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "60": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "61": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "62": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "63": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "64": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "65": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "66": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "67": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "68": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "69": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "70": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "71": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "72": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "73": {
+    "role": "EXTRACTION",
+    "essential": "no"
+   },
+   "74": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "75": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "76": {
+    "role": "EXTRACTION",
+    "essential": "no"
+   },
+   "77": {
+    "role": "EXTRACTION",
+    "essential": "no"
+   },
+   "78": {
+    "role": "EXTRACTION",
+    "essential": "no"
+   },
+   "79": {
+    "role": "EXTRACTION",
+    "essential": "no"
+   },
+   "80": {
+    "role": "EXTRACTION",
+    "essential": "no"
+   },
+   "81": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "82": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "83": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "84": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "85": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "86": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "87": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "88": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "89": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "90": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "91": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "92": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "93": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "94": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "95": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "96": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "97": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "98": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "99": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "100": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "101": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "102": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "103": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "104": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "105": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "106": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "107": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "108": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "109": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "110": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "111": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "112": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "113": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "114": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "115": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "116": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "117": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "118": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "119": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "120": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "121": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "122": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "123": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "124": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "125": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "126": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "127": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "128": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   }
+  },
+  "problems": [],
+  "usage": {
+   "prompt_tokens": 9692,
+   "completion_tokens": 3087,
+   "total_tokens": 12779
+  },
+  "seconds": 200.42,
+  "raw_reply": "{\n  \"labels\": [\n    {\"index\": 1, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 2, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 3, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 4, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 5, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 6, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 7, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 8, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 9, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 10, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 11, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 12, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 13, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 14, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 15, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 16, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 17, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 18, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 19, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 20, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 21, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 22, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 23, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 24, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 25, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 26, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 27, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 28, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 29, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 30, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 31, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 32, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 33, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 34, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 35, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 36, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 37, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 38, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 39, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 40, \"role\": \"TRIGGER\", \"essential\": \"no\"}\n  ]\n}\n---\n{\n  \"labels\": [\n    {\"index\": 41, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 42, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 43, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 44, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 45, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 46, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 47, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 48, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 49, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 50, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 51, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 52, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 53, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 54, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 55, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 56, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 57, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 58, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 59, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 60, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 61, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 62, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 63, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 64, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 65, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 66, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 67, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 68, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 69, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 70, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 71, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 72, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 73, \"role\": \"EXTRACTION\", \"essential\": \"no\"},\n    {\"index\": 74, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 75, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 76, \"role\": \"EXTRACTION\", \"essential\": \"no\"},\n    {\"index\": 77, \"role\": \"EXTRACTION\", \"essential\": \"no\"},\n    {\"index\": 78, \"role\": \"EXTRACTION\", \"essential\": \"no\"},\n    {\"index\": 79, \"role\": \"EXTRACTION\", \"essential\": \"no\"},\n    {\"index\": 80, \"role\": \"EXTRACTION\", \"essential\": \"no\"}\n  ]\n}\n---\n{\n  \"labels\": [\n    {\"index\": 81, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 82, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 83, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 84, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 85, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 86, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 87, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 88, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 89, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 90, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 91, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 92, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 93, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 94, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 95, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 96, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 97, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 98, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 99, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 100, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 101, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 102, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 103, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 104, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 105, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 106, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 107, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 108, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 109, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 110, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 111, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 112, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 113, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 114, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 115, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 116, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 117, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 118, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 119, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 120, \"role\": \"PREPARATORY\", \"essential\": \"no\"}]}\n---\n{\n  \"labels\": [\n    {\n      \"index\": 121,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"no\"\n    },\n    {\n      \"index\": 122,\n      \"role\": \"EXTRACTION\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 123,\n      \"role\": \"EXTRACTION\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 124,\n      \"role\": \"EXTRACTION\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 125,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"no\"\n    },\n    {\n      \"index\": 126,\n      \"role\": \"EXTRACTION\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 127,\n      \"role\": \"EXTRACTION\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 128,\n      \"role\": \"EXTRACTION\",\n      \"essential\": \"yes\"\n    }\n  ]\n}",
+  "at": "2026-09-25T08:41:45+00:00"
+ },
+ {
+  "case_id": "C12",
+  "category": "arithmetic",
+  "split": "test",
+  "condition": "C2",
+  "run": 1,
+  "model": "qwen/qwen3.8-27b",
+  "temperature": 0.0,
+  "n_calls": 140,
+  "windows": 4,
+  "labels": {
+   "1": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "2": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "3": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "4": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "5": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "6": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "7": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "8": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "9": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "10": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "11": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "12": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "13": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "14": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "15": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "16": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "17": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "18": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "19": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "20": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "21": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "22": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "23": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "24": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "25": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "26": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "27": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "28": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "29": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "30": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "31": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "32": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "33": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "34": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "35": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "36": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "37": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "38": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "39": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "40": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "41": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "42": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "43": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "44": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "45": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "46": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "47": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "48": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "49": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "50": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "51": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "52": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "53": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "54": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "55": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "56": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "57": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "58": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "59": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "60": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "61": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "62": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "63": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "64": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "65": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "66": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "67": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "68": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "69": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "70": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "71": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "72": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "73": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "74": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "75": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "76": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "77": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "78": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "79": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "80": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "81": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "82": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "83": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "84": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "85": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "86": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "87": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "88": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "89": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "90": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "91": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "92": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "93": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "94": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "95": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "96": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "97": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "98": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "99": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "100": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "101": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "102": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "103": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "104": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "105": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "106": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "107": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "108": {
+    "role": "EXTRACTION",
+    "essential": "no"
+   },
+   "109": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "110": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "111": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "112": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "113": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "114": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "115": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "116": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "117": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "118": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "119": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "120": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "121": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "122": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "123": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "124": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "125": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "126": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "127": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "128": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "129": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "130": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "131": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "132": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "133": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "134": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "135": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "136": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "137": {
+    "role": "EXTRACTION",
+    "essential": "no"
+   },
+   "138": {
+    "role": "EXTRACTION",
+    "essential": "no"
+   },
+   "139": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "140": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   }
+  },
+  "problems": [],
+  "usage": {
+   "prompt_tokens": 13114,
+   "completion_tokens": 3255,
+   "total_tokens": 16369
+  },
+  "seconds": 177.86,
+  "raw_reply": "[\n{\"index\": 1, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n  {\"index\": 2, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n  {\"index\": 3, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n  {\"index\": 4, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n  {\"index\": 5, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n  {\"index\": 6, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n  {\"index\": 7, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n  {\"index\": 8, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n  {\"index\": 9, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n  {\"index\": 10, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n  {\"index\": 11, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n  {\"index\": 12, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n  {\"index\": 13, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n  {\"index\": 14, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n  {\"index\": 15, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n  {\"index\": 16, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n  {\"index\": 17, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n  {\"index\": 18, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n  {\"index\": 19, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n  {\"index\": 20, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n  {\"index\": 21, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n  {\"index\": 22, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n  {\"index\": 23, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n  {\"index\": 24, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n  {\"index\": 25, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n  {\"index\": 26, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n  {\"index\": 27, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n  {\"index\": 28, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n  {\"index\": 29, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n  {\"index\": 30, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n  {\"index\": 31, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n  {\"index\": 32, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n  {\"index\": 33, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n  {\"index\": 34, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n  {\"index\": 35, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n  {\"index\": 36, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n  {\"index\": 37, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n  {\"index\": 38, \"role\": \"PREPARATORY\", \"essential\": \"no\"}\n]\n---\n{\n  \"labels\": [\n    {\"index\": 39, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 40, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 41, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 42, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 43, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 44, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 45, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 46, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 47, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 48, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 49, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 50, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 51, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 52, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 53, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 54, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 55, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 56, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 57, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 58, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 59, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 60, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 61, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 62, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 63, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 64, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 65, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 66, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 67, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 68, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 69, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 70, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 71, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 72, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 73, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 74, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 75, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 76, \"role\": \"TRIGGER\", \"essential\": \"yes\"}\n  ]\n}\n---\n{\n  \"labels\": [\n    {\"index\": 77, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 78, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 79, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 80, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 81, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 82, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 83, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 84, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 85, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 86, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 87, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 88, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 89, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 90, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 91, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 92, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 93, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 94, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 95, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 96, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 97, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 98, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 99, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 100, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 101, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 102, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 103, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 104, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 105, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 106, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 107, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 108, \"role\": \"EXTRACTION\", \"essential\": \"no\"},\n    {\"index\": 109, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 110, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 111, \"role\": \"EXTRACTION\", \"essential\": \"yes\"}\n  ]\n}\n---\n{\n  \"labels\": [\n    {\"index\": 112, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 113, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 114, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 115, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 116, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 117, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 118, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 119, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 120, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 121, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 122, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 123, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 124, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 125, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 126, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 127, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 128, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 129, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 130, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 131, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 132, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 133, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 134, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 135, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 136, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 137, \"role\": \"EXTRACTION\", \"essential\": \"no\"},\n    {\"index\": 138, \"role\": \"EXTRACTION\", \"essential\": \"no\"},\n    {\"index\": 139, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 140, \"role\": \"EXTRACTION\", \"essential\": \"yes\"}\n  ]\n}",
+  "at": "2026-09-25T08:44:43+00:00"
+ },
+ {
+  "case_id": "C13",
+  "category": "business_logic",
+  "split": "dev",
+  "condition": "C2",
+  "run": 1,
+  "model": "qwen/qwen3.8-27b",
+  "temperature": 0.0,
+  "n_calls": 5,
+  "windows": 1,
+  "labels": {
+   "1": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "2": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "3": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "4": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "5": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   }
+  },
+  "problems": [],
+  "usage": {
+   "prompt_tokens": 717,
+   "completion_tokens": 172,
+   "total_tokens": 889
+  },
+  "seconds": 40.62,
+  "raw_reply": "{\n  \"labels\": [\n    {\n      \"index\": 1,\n      \"role\": \"TRIGGER\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 2,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"no\"\n    },\n    {\n      \"index\": 3,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"no\"\n    },\n    {\n      \"index\": 4,\n      \"role\": \"EXTRACTION\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 5,\n      \"role\": \"EXTRACTION\",\n      \"essential\": \"yes\"\n    }\n  ]\n}",
+  "at": "2026-09-25T08:45:23+00:00"
+ },
+ {
+  "case_id": "C14",
+  "category": "business_logic",
+  "split": "test",
+  "condition": "C2",
+  "run": 1,
+  "model": "qwen/qwen3.8-27b",
+  "temperature": 0.0,
+  "n_calls": 19,
+  "windows": 1,
+  "labels": {
+   "1": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "2": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "3": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "4": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "5": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "6": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "7": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "8": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "9": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "10": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "11": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "12": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "13": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "14": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "15": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "16": {
+    "role": "EXTRACTION",
+    "essential": "no"
+   },
+   "17": {
+    "role": "EXTRACTION",
+    "essential": "no"
+   },
+   "18": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "19": {
+    "role": "EXTRACTION",
+    "essential": "no"
+   }
+  },
+  "problems": [],
+  "usage": {
+   "prompt_tokens": 1906,
+   "completion_tokens": 627,
+   "total_tokens": 2533
+  },
+  "seconds": 13.91,
+  "raw_reply": "{\n  \"labels\": [\n    {\n      \"index\": 1,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 2,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 3,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 4,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 5,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"no\"\n    },\n    {\n      \"index\": 6,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"no\"\n    },\n    {\n      \"index\": 7,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"no\"\n    },\n    {\n      \"index\": 8,\n      \"role\": \"TRIGGER\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 9,\n      \"role\": \"TRIGGER\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 10,\n      \"role\": \"TRIGGER\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 11,\n      \"role\": \"TRIGGER\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 12,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"no\"\n    },\n    {\n      \"index\": 13,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"no\"\n    },\n    {\n      \"index\": 14,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 15,\n      \"role\": \"EXTRACTION\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 16,\n      \"role\": \"EXTRACTION\",\n      \"essential\": \"no\"\n    },\n    {\n      \"index\": 17,\n      \"role\": \"EXTRACTION\",\n      \"essential\": \"no\"\n    },\n    {\n      \"index\": 18,\n      \"role\": \"EXTRACTION\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 19,\n      \"role\": \"EXTRACTION\",\n      \"essential\": \"no\"\n    }\n  ]\n}",
+  "at": "2026-09-25T08:45:37+00:00"
+ },
+ {
+  "case_id": "C15",
+  "category": "business_logic",
+  "split": "test",
+  "condition": "C2",
+  "run": 1,
+  "model": "qwen/qwen3.8-27b",
+  "temperature": 0.0,
+  "n_calls": 46,
+  "windows": 2,
+  "labels": {
+   "1": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "2": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "3": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "4": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "5": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "6": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "7": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "8": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "9": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "10": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "11": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "12": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "13": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "14": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "15": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "16": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "17": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "18": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "19": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "20": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "21": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "22": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "23": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "24": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "25": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "26": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "27": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "28": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "29": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "30": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "31": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "32": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "33": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "34": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "35": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "36": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "37": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "38": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "39": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "40": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "41": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "42": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "43": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "44": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "45": {
+    "role": "EXTRACTION",
+    "essential": "no"
+   },
+   "46": {
+    "role": "EXTRACTION",
+    "essential": "no"
+   }
+  },
+  "problems": [],
+  "usage": {
+   "prompt_tokens": 4843,
+   "completion_tokens": 1055,
+   "total_tokens": 5898
+  },
+  "seconds": 82.11,
+  "raw_reply": "{\n  \"labels\": [\n    {\"index\": 1, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 2, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 3, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 4, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 5, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 6, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 7, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 8, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 9, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 10, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 11, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 12, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 13, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 14, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 15, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 16, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 17, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 18, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 19, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 20, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 21, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 22, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 23, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 24, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 25, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 26, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 27, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 28, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 29, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 30, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 31, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 32, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 33, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 34, \"role\": \"TRIGGER\", \"essential\": \"yes\"}\n  ]\n}\n---\n{\n  \"labels\": [\n    {\"index\": 35, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 36, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 37, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 38, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 39, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 40, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 41, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 42, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 43, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 44, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 45, \"role\": \"EXTRACTION\", \"essential\": \"no\"},\n    {\"index\": 46, \"role\": \"EXTRACTION\", \"essential\": \"no\"}\n  ]\n}",
+  "at": "2026-09-25T08:46:59+00:00"
+ },
+ {
+  "case_id": "C16",
+  "category": "business_logic",
+  "split": "test",
+  "condition": "C2",
+  "run": 1,
+  "model": "qwen/qwen3.8-27b",
+  "temperature": 0.0,
+  "n_calls": 151,
+  "windows": 4,
+  "labels": {
+   "1": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "2": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "3": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "4": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "5": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "6": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "7": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "8": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "9": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "10": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "11": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "12": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "13": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "14": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "15": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "16": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "17": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "18": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "19": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "20": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "21": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "22": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "23": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "24": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "25": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "26": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "27": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "28": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "29": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "30": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "31": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "32": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "33": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "34": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "35": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "36": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "37": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "38": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "39": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "40": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "41": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "42": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "43": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "44": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "45": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "46": {
+    "role": "EXTRACTION",
+    "essential": "no"
+   },
+   "47": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "48": {
+    "role": "EXTRACTION",
+    "essential": "no"
+   },
+   "49": {
+    "role": "EXTRACTION",
+    "essential": "no"
+   },
+   "50": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "51": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "52": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "53": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "54": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "55": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "56": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "57": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "58": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "59": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "60": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "61": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "62": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "63": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "64": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "65": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "66": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "67": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "68": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "69": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "70": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "71": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "72": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "73": {
+    "role": "TRIGGER",
+    "essential": "no"
+   },
+   "74": {
+    "role": "TRIGGER",
+    "essential": "no"
+   },
+   "75": {
+    "role": "TRIGGER",
+    "essential": "no"
+   },
+   "76": {
+    "role": "TRIGGER",
+    "essential": "no"
+   },
+   "77": {
+    "role": "TRIGGER",
+    "essential": "no"
+   },
+   "78": {
+    "role": "TRIGGER",
+    "essential": "no"
+   },
+   "79": {
+    "role": "TRIGGER",
+    "essential": "no"
+   },
+   "80": {
+    "role": "TRIGGER",
+    "essential": "no"
+   },
+   "81": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "82": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "83": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "84": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "85": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "86": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "87": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "88": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "89": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "90": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "91": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "92": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "93": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "94": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "95": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "96": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "97": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "98": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "99": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "100": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "101": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "102": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "103": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "104": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "105": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "106": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "107": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "108": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "109": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "110": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "111": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "112": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "113": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "114": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "115": {
+    "role": "EXTRACTION",
+    "essential": "no"
+   },
+   "116": {
+    "role": "EXTRACTION",
+    "essential": "no"
+   },
+   "117": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "118": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "119": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "120": {
+    "role": "EXTRACTION",
+    "essential": "no"
+   },
+   "121": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "122": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "123": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "124": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "125": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "126": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "127": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "128": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "129": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "130": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "131": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "132": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "133": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "134": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "135": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "136": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "137": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "138": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "139": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "140": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "141": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "142": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "143": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "144": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "145": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "146": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "147": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "148": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "149": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "150": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "151": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   }
+  },
+  "problems": [],
+  "usage": {
+   "prompt_tokens": 12352,
+   "completion_tokens": 3512,
+   "total_tokens": 15864
+  },
+  "seconds": 184.59,
+  "raw_reply": "{\n  \"labels\": [\n    {\"index\": 1, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 2, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 3, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 4, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 5, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 6, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 7, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 8, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 9, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 10, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 11, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 12, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 13, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 14, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 15, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 16, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 17, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 18, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 19, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 20, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 21, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 22, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 23, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 24, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 25, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 26, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 27, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 28, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 29, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 30, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 31, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 32, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 33, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 34, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 35, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 36, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 37, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 38, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 39, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 40, \"role\": \"PREPARATORY\", \"essential\": \"no\"}\n  ]\n}\n---\n{\n  \"labels\": [\n    {\"index\": 41, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 42, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 43, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 44, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 45, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 46, \"role\": \"EXTRACTION\", \"essential\": \"no\"},\n    {\"index\": 47, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 48, \"role\": \"EXTRACTION\", \"essential\": \"no\"},\n    {\"index\": 49, \"role\": \"EXTRACTION\", \"essential\": \"no\"},\n    {\"index\": 50, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 51, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 52, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 53, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 54, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 55, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 56, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 57, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 58, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 59, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 60, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 61, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 62, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 63, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 64, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 65, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 66, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 67, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 68, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 69, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 70, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 71, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 72, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 73, \"role\": \"TRIGGER\", \"essential\": \"no\"},\n    {\"index\": 74, \"role\": \"TRIGGER\", \"essential\": \"no\"},\n    {\"index\": 75, \"role\": \"TRIGGER\", \"essential\": \"no\"},\n    {\"index\": 76, \"role\": \"TRIGGER\", \"essential\": \"no\"},\n    {\"index\": 77, \"role\": \"TRIGGER\", \"essential\": \"no\"},\n    {\"index\": 78, \"role\": \"TRIGGER\", \"essential\": \"no\"},\n    {\"index\": 79, \"role\": \"TRIGGER\", \"essential\": \"no\"},\n    {\"index\": 80, \"role\": \"TRIGGER\", \"essential\": \"no\"}\n  ]\n}\n---\n{\n  \"labels\": [\n    {\"index\": 81, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 82, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 83, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 84, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 85, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 86, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 87, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 88, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 89, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 90, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 91, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 92, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 93, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 94, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 95, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 96, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 97, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 98, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 99, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 100, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 101, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 102, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 103, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 104, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 105, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 106, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 107, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 108, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 109, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 110, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 111, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 112, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 113, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 114, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 115, \"role\": \"EXTRACTION\", \"essential\": \"no\"},\n    {\"index\": 116, \"role\": \"EXTRACTION\", \"essential\": \"no\"},\n    {\"index\": 117, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 118, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 119, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 120, \"role\": \"EXTRACTION\", \"essential\": \"no\"}\n  ]\n}\n---\n{\n  \"labels\": [\n    {\"index\": 121, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 122, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 123, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 124, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 125, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 126, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 127, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 128, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 129, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 130, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 131, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 132, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 133, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 134, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 135, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 136, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 137, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 138, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 139, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 140, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 141, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 142, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 143, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 144, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 145, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 146, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 147, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 148, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 149, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 150, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 151, \"role\": \"EXTRACTION\", \"essential\": \"yes\"}\n  ]\n}",
+  "at": "2026-09-25T08:50:04+00:00"
+ },
+ {
+  "case_id": "C17",
+  "category": "price_oracle_manipulation",
+  "split": "dev",
+  "condition": "C2",
+  "run": 1,
+  "model": "qwen/qwen3.8-27b",
+  "temperature": 0.0,
+  "n_calls": 21,
+  "windows": 1,
+  "labels": {
+   "1": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "2": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "3": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "4": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "5": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "6": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "7": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "8": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "9": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "10": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "11": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "12": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "13": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "14": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "15": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "16": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "17": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "18": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "19": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "20": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "21": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   }
+  },
+  "problems": [],
+  "usage": {
+   "prompt_tokens": 2186,
+   "completion_tokens": 694,
+   "total_tokens": 2880
+  },
+  "seconds": 43.9,
+  "raw_reply": "{\n  \"labels\": [\n    {\n      \"index\": 1,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 2,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 3,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 4,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 5,\n      \"role\": \"TRIGGER\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 6,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 7,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"no\"\n    },\n    {\n      \"index\": 8,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"no\"\n    },\n    {\n      \"index\": 9,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"no\"\n    },\n    {\n      \"index\": 10,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 11,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"no\"\n    },\n    {\n      \"index\": 12,\n      \"role\": \"TRIGGER\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 13,\n      \"role\": \"TRIGGER\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 14,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"no\"\n    },\n    {\n      \"index\": 15,\n      \"role\": \"EXTRACTION\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 16,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"no\"\n    },\n    {\n      \"index\": 17,\n      \"role\": \"EXTRACTION\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 18,\n      \"role\": \"EXTRACTION\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 19,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"no\"\n    },\n    {\n      \"index\": 20,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"no\"\n    },\n    {\n      \"index\": 21,\n      \"role\": \"EXTRACTION\",\n      \"essential\": \"yes\"\n    }\n  ]\n}",
+  "at": "2026-09-25T08:50:48+00:00"
+ },
+ {
+  "case_id": "C18",
+  "category": "price_oracle_manipulation",
+  "split": "test",
+  "condition": "C2",
+  "run": 1,
+  "model": "qwen/qwen3.8-27b",
+  "temperature": 0.0,
+  "n_calls": 32,
+  "windows": 1,
+  "labels": {
+   "1": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "2": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "3": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "4": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "5": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "6": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "7": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "8": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "9": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "10": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "11": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "12": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "13": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "14": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "15": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "16": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "17": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "18": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "19": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "20": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "21": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "22": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "23": {
+    "role": "EXTRACTION",
+    "essential": "no"
+   },
+   "24": {
+    "role": "EXTRACTION",
+    "essential": "no"
+   },
+   "25": {
+    "role": "EXTRACTION",
+    "essential": "no"
+   },
+   "26": {
+    "role": "EXTRACTION",
+    "essential": "no"
+   },
+   "27": {
+    "role": "EXTRACTION",
+    "essential": "no"
+   },
+   "28": {
+    "role": "EXTRACTION",
+    "essential": "no"
+   },
+   "29": {
+    "role": "EXTRACTION",
+    "essential": "no"
+   },
+   "30": {
+    "role": "EXTRACTION",
+    "essential": "no"
+   },
+   "31": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "32": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   }
+  },
+  "problems": [],
+  "usage": {
+   "prompt_tokens": 2963,
+   "completion_tokens": 737,
+   "total_tokens": 3700
+  },
+  "seconds": 42.94,
+  "raw_reply": "{\n  \"labels\": [\n    {\"index\": 1, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 2, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 3, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 4, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 5, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 6, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 7, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 8, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 9, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 10, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 11, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 12, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 13, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 14, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 15, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 16, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 17, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 18, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 19, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 20, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 21, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 22, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 23, \"role\": \"EXTRACTION\", \"essential\": \"no\"},\n    {\"index\": 24, \"role\": \"EXTRACTION\", \"essential\": \"no\"},\n    {\"index\": 25, \"role\": \"EXTRACTION\", \"essential\": \"no\"},\n    {\"index\": 26, \"role\": \"EXTRACTION\", \"essential\": \"no\"},\n    {\"index\": 27, \"role\": \"EXTRACTION\", \"essential\": \"no\"},\n    {\"index\": 28, \"role\": \"EXTRACTION\", \"essential\": \"no\"},\n    {\"index\": 29, \"role\": \"EXTRACTION\", \"essential\": \"no\"},\n    {\"index\": 30, \"role\": \"EXTRACTION\", \"essential\": \"no\"},\n    {\"index\": 31, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 32, \"role\": \"EXTRACTION\", \"essential\": \"yes\"}\n  ]\n}",
+  "at": "2026-09-25T08:51:31+00:00"
+ },
+ {
+  "case_id": "C19",
+  "category": "price_oracle_manipulation",
+  "split": "test",
+  "condition": "C2",
+  "run": 1,
+  "model": "qwen/qwen3.8-27b",
+  "temperature": 0.0,
+  "n_calls": 53,
+  "windows": 2,
+  "labels": {
+   "1": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "2": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "3": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "4": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "5": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "6": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "7": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "8": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "9": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "10": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "11": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "12": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "13": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "14": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "15": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "16": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "17": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "18": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "19": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "20": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "21": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "22": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "23": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "24": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "25": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "26": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "27": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "28": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "29": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "30": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "31": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "32": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "33": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "34": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "35": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "36": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "37": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "38": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "39": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "40": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "41": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "42": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "43": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "44": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "45": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "46": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "47": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "48": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "49": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "50": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "51": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "52": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "53": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   }
+  },
+  "problems": [],
+  "usage": {
+   "prompt_tokens": 4613,
+   "completion_tokens": 1235,
+   "total_tokens": 5848
+  },
+  "seconds": 97.49,
+  "raw_reply": "{\n  \"labels\": [\n    {\"index\": 1, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 2, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 3, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 4, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 5, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 6, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 7, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 8, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 9, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 10, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 11, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 12, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 13, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 14, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 15, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 16, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 17, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 18, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 19, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 20, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 21, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 22, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 23, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 24, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 25, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 26, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 27, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 28, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 29, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 30, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 31, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 32, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 33, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 34, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 35, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 36, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 37, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 38, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 39, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 40, \"role\": \"PREPARATORY\", \"essential\": \"no\"}\n  ]\n}\n---\n{\n  \"labels\": [\n    {\"index\": 41, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 42, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 43, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 44, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 45, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 46, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 47, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 48, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 49, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 50, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 51, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 52, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 53, \"role\": \"PREPARATORY\", \"essential\": \"no\"}\n  ]\n}",
+  "at": "2026-09-25T08:53:08+00:00"
+ },
+ {
+  "case_id": "C20",
+  "category": "price_oracle_manipulation",
+  "split": "test",
+  "condition": "C2",
+  "run": 1,
+  "model": "qwen/qwen3.8-27b",
+  "temperature": 0.0,
+  "n_calls": 80,
+  "windows": 3,
+  "labels": {
+   "1": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "2": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "3": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "4": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "5": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "6": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "7": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "8": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "9": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "10": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "11": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "12": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "13": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "14": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "15": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "16": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "17": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "18": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "19": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "20": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "21": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "22": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "23": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "24": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "25": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "26": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "27": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "28": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "29": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "30": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "31": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "32": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "33": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "34": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "35": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "36": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "37": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "38": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "39": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "40": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "41": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "42": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "43": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "44": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "45": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "46": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "47": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "48": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "49": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "50": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "51": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "52": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "53": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "54": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "55": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "56": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "57": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "58": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "59": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "60": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "61": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "62": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "63": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "64": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "65": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "66": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "67": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "68": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "69": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "70": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "71": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "72": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "73": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "74": {
+    "role": "EXTRACTION",
+    "essential": "no"
+   },
+   "75": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "76": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "77": {
+    "role": "EXTRACTION",
+    "essential": "no"
+   },
+   "78": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "79": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "80": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   }
+  },
+  "problems": [],
+  "usage": {
+   "prompt_tokens": 7378,
+   "completion_tokens": 1832,
+   "total_tokens": 9210
+  },
+  "seconds": 127.12,
+  "raw_reply": "{\n  \"labels\": [\n    {\"index\": 1, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 2, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 3, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 4, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 5, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 6, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 7, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 8, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 9, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 10, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 11, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 12, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 13, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 14, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 15, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 16, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 17, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 18, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 19, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 20, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 21, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 22, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 23, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 24, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 25, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 26, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 27, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 28, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 29, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 30, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 31, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 32, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 33, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 34, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 35, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 36, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 37, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 38, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 39, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 40, \"role\": \"EXTRACTION\", \"essential\": \"yes\"}\n  ]\n}\n---\n{\n  \"labels\": [\n    {\"index\": 41, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 42, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 43, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 44, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 45, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 46, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 47, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 48, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 49, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 50, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 51, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 52, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 53, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 54, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 55, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 56, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 57, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 58, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 59, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 60, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 61, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 62, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 63, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 64, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 65, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 66, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 67, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 68, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 69, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 70, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 71, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 72, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 73, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 74, \"role\": \"EXTRACTION\", \"essential\": \"no\"},\n    {\"index\": 75, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 76, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 77, \"role\": \"EXTRACTION\", \"essential\": \"no\"},\n    {\"index\": 78, \"role\": \"EXTRACTION\", \"essential\": \"yes\"}\n  ]\n}\n---\n{\"labels\":[{\"index\":79,\"role\":\"PREPARATORY\",\"essential\":\"no\"},{\"index\":80,\"role\":\"PREPARATORY\",\"essential\":\"no\"}]}",
+  "at": "2026-09-25T08:55:15+00:00"
+ },
+ {
+  "case_id": "C21",
+  "category": "reentrancy",
+  "split": "dev",
+  "condition": "C2",
+  "run": 1,
+  "model": "qwen/qwen3.8-27b",
+  "temperature": 0.0,
+  "n_calls": 38,
+  "windows": 1,
+  "labels": {
+   "1": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "2": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "3": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "4": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "5": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "6": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "7": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "8": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "9": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "10": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "11": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "12": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "13": {
+    "role": "TRIGGER",
+    "essential": "no"
+   },
+   "14": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "15": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "16": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "17": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "18": {
+    "role": "TRIGGER",
+    "essential": "no"
+   },
+   "19": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "20": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "21": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "22": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "23": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "24": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "25": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "26": {
+    "role": "TRIGGER",
+    "essential": "no"
+   },
+   "27": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "28": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "29": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "30": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "31": {
+    "role": "TRIGGER",
+    "essential": "no"
+   },
+   "32": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "33": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "34": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "35": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "36": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "37": {
+    "role": "EXTRACTION",
+    "essential": "no"
+   },
+   "38": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   }
+  },
+  "problems": [],
+  "usage": {
+   "prompt_tokens": 3200,
+   "completion_tokens": 852,
+   "total_tokens": 4052
+  },
+  "seconds": 4.29,
+  "raw_reply": "{\n  \"labels\": [\n    {\"index\": 1, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 2, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 3, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 4, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 5, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 6, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 7, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 8, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 9, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 10, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 11, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 12, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 13, \"role\": \"TRIGGER\", \"essential\": \"no\"},\n    {\"index\": 14, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 15, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 16, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 17, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 18, \"role\": \"TRIGGER\", \"essential\": \"no\"},\n    {\"index\": 19, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 20, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 21, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 22, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 23, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 24, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 25, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 26, \"role\": \"TRIGGER\", \"essential\": \"no\"},\n    {\"index\": 27, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 28, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 29, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 30, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 31, \"role\": \"TRIGGER\", \"essential\": \"no\"},\n    {\"index\": 32, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 33, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 34, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 35, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 36, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 37, \"role\": \"EXTRACTION\", \"essential\": \"no\"},\n    {\"index\": 38, \"role\": \"EXTRACTION\", \"essential\": \"yes\"}\n  ]\n}",
+  "at": "2026-09-25T08:55:20+00:00"
+ },
+ {
+  "case_id": "C22",
+  "category": "reentrancy",
+  "split": "test",
+  "condition": "C2",
+  "run": 1,
+  "model": "qwen/qwen3.8-27b",
+  "temperature": 0.0,
+  "n_calls": 94,
+  "windows": 3,
+  "labels": {
+   "1": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "2": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "3": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "4": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "5": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "6": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "7": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "8": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "9": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "10": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "11": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "12": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "13": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "14": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "15": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "16": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "17": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "18": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "19": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "20": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "21": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "22": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "23": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "24": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "25": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "26": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "27": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "28": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "29": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "30": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "31": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "32": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "33": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "34": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "35": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "36": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "37": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "38": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "39": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "40": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "41": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "42": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "43": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "44": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "45": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "46": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "47": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "48": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "49": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "50": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "51": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "52": {
+    "role": "TRIGGER",
+    "essential": "no"
+   },
+   "53": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "54": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "55": {
+    "role": "TRIGGER",
+    "essential": "no"
+   },
+   "56": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "57": {
+    "role": "TRIGGER",
+    "essential": "no"
+   },
+   "58": {
+    "role": "TRIGGER",
+    "essential": "no"
+   },
+   "59": {
+    "role": "TRIGGER",
+    "essential": "no"
+   },
+   "60": {
+    "role": "TRIGGER",
+    "essential": "no"
+   },
+   "61": {
+    "role": "TRIGGER",
+    "essential": "no"
+   },
+   "62": {
+    "role": "TRIGGER",
+    "essential": "no"
+   },
+   "63": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "64": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "65": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "66": {
+    "role": "EXTRACTION",
+    "essential": "no"
+   },
+   "67": {
+    "role": "EXTRACTION",
+    "essential": "no"
+   },
+   "68": {
+    "role": "EXTRACTION",
+    "essential": "no"
+   },
+   "69": {
+    "role": "EXTRACTION",
+    "essential": "no"
+   },
+   "70": {
+    "role": "EXTRACTION",
+    "essential": "no"
+   },
+   "71": {
+    "role": "EXTRACTION",
+    "essential": "no"
+   },
+   "72": {
+    "role": "EXTRACTION",
+    "essential": "no"
+   },
+   "73": {
+    "role": "EXTRACTION",
+    "essential": "no"
+   },
+   "74": {
+    "role": "EXTRACTION",
+    "essential": "no"
+   },
+   "75": {
+    "role": "EXTRACTION",
+    "essential": "no"
+   },
+   "76": {
+    "role": "EXTRACTION",
+    "essential": "no"
+   },
+   "77": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "78": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "79": {
+    "role": "EXTRACTION",
+    "essential": "no"
+   },
+   "80": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "81": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "82": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "83": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "84": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "85": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "86": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "87": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "88": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "89": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "90": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "91": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "92": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "93": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "94": {
+    "role": "EXTRACTION",
+    "essential": "no"
+   }
+  },
+  "problems": [],
+  "usage": {
+   "prompt_tokens": 8173,
+   "completion_tokens": 2171,
+   "total_tokens": 10344
+  },
+  "seconds": 158.76,
+  "raw_reply": "{\n  \"labels\": [\n    {\"index\": 1, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 2, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 3, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 4, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 5, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 6, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 7, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 8, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 9, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 10, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 11, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 12, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 13, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 14, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 15, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 16, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 17, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 18, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 19, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 20, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 21, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 22, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 23, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 24, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 25, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 26, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 27, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 28, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 29, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 30, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 31, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 32, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 33, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 34, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 35, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 36, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 37, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 38, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 39, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 40, \"role\": \"PREPARATORY\", \"essential\": \"no\"}\n  ]\n}\n---\n{\n  \"labels\": [\n    {\"index\": 41, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 42, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 43, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 44, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 45, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 46, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 47, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 48, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 49, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 50, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 51, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 52, \"role\": \"TRIGGER\", \"essential\": \"no\"},\n    {\"index\": 53, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 54, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 55, \"role\": \"TRIGGER\", \"essential\": \"no\"},\n    {\"index\": 56, \"role\": \"TRIGGER\", \"essential\": \"yes\"},\n    {\"index\": 57, \"role\": \"TRIGGER\", \"essential\": \"no\"},\n    {\"index\": 58, \"role\": \"TRIGGER\", \"essential\": \"no\"},\n    {\"index\": 59, \"role\": \"TRIGGER\", \"essential\": \"no\"},\n    {\"index\": 60, \"role\": \"TRIGGER\", \"essential\": \"no\"},\n    {\"index\": 61, \"role\": \"TRIGGER\", \"essential\": \"no\"},\n    {\"index\": 62, \"role\": \"TRIGGER\", \"essential\": \"no\"},\n    {\"index\": 63, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 64, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 65, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 66, \"role\": \"EXTRACTION\", \"essential\": \"no\"},\n    {\"index\": 67, \"role\": \"EXTRACTION\", \"essential\": \"no\"},\n    {\"index\": 68, \"role\": \"EXTRACTION\", \"essential\": \"no\"},\n    {\"index\": 69, \"role\": \"EXTRACTION\", \"essential\": \"no\"},\n    {\"index\": 70, \"role\": \"EXTRACTION\", \"essential\": \"no\"},\n    {\"index\": 71, \"role\": \"EXTRACTION\", \"essential\": \"no\"},\n    {\"index\": 72, \"role\": \"EXTRACTION\", \"essential\": \"no\"},\n    {\"index\": 73, \"role\": \"EXTRACTION\", \"essential\": \"no\"},\n    {\"index\": 74, \"role\": \"EXTRACTION\", \"essential\": \"no\"},\n    {\"index\": 75, \"role\": \"EXTRACTION\", \"essential\": \"no\"},\n    {\"index\": 76, \"role\": \"EXTRACTION\", \"essential\": \"no\"},\n    {\"index\": 77, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 78, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 79, \"role\": \"EXTRACTION\", \"essential\": \"no\"},\n    {\"index\": 80, \"role\": \"EXTRACTION\", \"essential\": \"yes\"}\n  ]\n}\n---\n{\n  \"labels\": [\n    {\"index\": 81, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 82, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 83, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 84, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 85, \"role\": \"PREPARATORY\", \"essential\": \"yes\"},\n    {\"index\": 86, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 87, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 88, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 89, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 90, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 91, \"role\": \"EXTRACTION\", \"essential\": \"yes\"},\n    {\"index\": 92, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 93, \"role\": \"PREPARATORY\", \"essential\": \"no\"},\n    {\"index\": 94, \"role\": \"EXTRACTION\", \"essential\": \"no\"}\n  ]\n}",
+  "at": "2026-09-25T08:57:58+00:00"
+ },
+ {
+  "case_id": "C26",
+  "category": "token_specific",
+  "split": "test",
+  "condition": "C2",
+  "run": 1,
+  "model": "qwen/qwen3.8-27b",
+  "temperature": 0.0,
+  "n_calls": 26,
+  "windows": 1,
+  "labels": {
+   "1": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "2": {
+    "role": "PREPARATORY",
+    "essential": "yes"
+   },
+   "3": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "4": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "5": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "6": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "7": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "8": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "9": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "10": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "11": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "12": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "13": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "14": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "15": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "16": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "17": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "18": {
+    "role": "TRIGGER",
+    "essential": "yes"
+   },
+   "19": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "20": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "21": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "22": {
+    "role": "PREPARATORY",
+    "essential": "no"
+   },
+   "23": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "24": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "25": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   },
+   "26": {
+    "role": "EXTRACTION",
+    "essential": "yes"
+   }
+  },
+  "problems": [],
+  "usage": {
+   "prompt_tokens": 2228,
+   "completion_tokens": 850,
+   "total_tokens": 3078
+  },
+  "seconds": 1.96,
+  "raw_reply": "{\n  \"labels\": [\n    {\n      \"index\": 1,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 2,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 3,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"no\"\n    },\n    {\n      \"index\": 4,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"no\"\n    },\n    {\n      \"index\": 5,\n      \"role\": \"TRIGGER\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 6,\n      \"role\": \"TRIGGER\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 7,\n      \"role\": \"TRIGGER\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 8,\n      \"role\": \"TRIGGER\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 9,\n      \"role\": \"TRIGGER\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 10,\n      \"role\": \"TRIGGER\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 11,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"no\"\n    },\n    {\n      \"index\": 12,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"no\"\n    },\n    {\n      \"index\": 13,\n      \"role\": \"TRIGGER\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 14,\n      \"role\": \"TRIGGER\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 15,\n      \"role\": \"TRIGGER\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 16,\n      \"role\": \"TRIGGER\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 17,\n      \"role\": \"TRIGGER\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 18,\n      \"role\": \"TRIGGER\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 19,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"no\"\n    },\n    {\n      \"index\": 20,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"no\"\n    },\n    {\n      \"index\": 21,\n      \"role\": \"EXTRACTION\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 22,\n      \"role\": \"PREPARATORY\",\n      \"essential\": \"no\"\n    },\n    {\n      \"index\": 23,\n      \"role\": \"EXTRACTION\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 24,\n      \"role\": \"EXTRACTION\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 25,\n      \"role\": \"EXTRACTION\",\n      \"essential\": \"yes\"\n    },\n    {\n      \"index\": 26,\n      \"role\": \"EXTRACTION\",\n      \"essential\": \"yes\"\n    }\n  ]\n}",
+  "at": "2026-09-25T09:28:52+00:00"
+ }
+]

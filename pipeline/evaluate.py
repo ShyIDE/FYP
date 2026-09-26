@@ -48,18 +48,39 @@ def load_runs() -> dict[str, dict[int, list[dict]]]:
     return out
 
 
-def load_gold() -> dict[tuple[str, int], dict]:
-    """(case_id, frame_index) -> {role, essential} from the annotation sheet."""
-    sheet = config.DATA_DIR / "annotation" / "sheet.csv"
-    if not sheet.exists():
+def _read_labels(path, require_reviewed: bool) -> dict[tuple[str, int], dict]:
+    if not path.exists():
         return {}
-    gold = {}
-    with open(sheet, encoding="utf-8-sig") as fh:
+    out = {}
+    with open(path, encoding="utf-8-sig") as fh:
         for r in csv.DictReader(fh):
             role, ess = r["role"].strip().upper(), r["essential"].strip().lower()
-            if role and ess:
-                gold[(r["case_id"], int(r["frame_index"]))] = {"role": role, "essential": ess}
+            if not (role and ess):
+                continue
+            if require_reviewed and r.get("reviewed", "").strip().lower() != "yes":
+                continue
+            out[(r["case_id"], int(r["frame_index"]))] = {"role": role, "essential": ess}
+    return out
+
+
+def load_gold() -> dict[tuple[str, int], dict]:
+    """Labels a human stands behind.
+
+    Two sources count: rows a human filled in directly in sheet.csv, and rows
+    in the LLM-drafted sheet that a human has marked reviewed=yes. An
+    unreviewed draft row is never gold, because scoring a model against
+    another model's labels measures agreement, not correctness.
+    """
+    ann = config.DATA_DIR / "annotation"
+    gold = _read_labels(ann / "sheet.csv", require_reviewed=False)
+    gold.update(_read_labels(ann / "sheet_draft.csv", require_reviewed=True))
     return gold
+
+
+def load_draft() -> dict[tuple[str, int], dict]:
+    """All draft labels, reviewed or not. Provisional only, never reported as truth."""
+    return _read_labels(config.DATA_DIR / "annotation" / "sheet_draft.csv",
+                        require_reviewed=False)
 
 
 # ------------------------------------------------- metrics without labels
@@ -241,6 +262,7 @@ def main() -> None:
     if not runs:
         raise SystemExit("No predictions found. Run pipeline/classify.py first.")
     gold = load_gold()
+    draft = load_draft()
 
     if args.verified_only:
         keep = {c for c in cases if fc.load_record(cases[c])["summary"]["replay_faithful"]}
@@ -271,6 +293,18 @@ def main() -> None:
         print(f"{cond:5}{len(runs[cond]):>6}{cov['calls']:>8}{cov['coverage_pct']:>8}"
               f"{hits['hit@1']}/{n:<5}{hits['hit@3']}/{n:<5}{hits['hit@any']}/{n:<6}"
               f"{use['total_tokens']:>10}{acc:>7}{mf1:>9}")
+
+    if draft:
+        print()
+        print("PROVISIONAL, against unreviewed LLM-drafted labels. These are not")
+        print("ground truth and must not be reported as accuracy:")
+        for cond in sorted(runs):
+            first = runs[cond][sorted(runs[cond])[0]]
+            prov = score_against_gold(first, draft)
+            if prov:
+                report["conditions"][cond]["provisional_vs_draft"] = prov
+                print(f"  {cond}: agreement with draft {prov['accuracy']:.3f}, "
+                      f"macro-F1 {prov['macro_f1']:.3f} over {prov['scored_calls']} calls")
 
     kappa = annotator_agreement()
     report["annotator_agreement"] = kappa

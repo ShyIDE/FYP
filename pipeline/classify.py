@@ -492,6 +492,8 @@ def main() -> None:
     ap.add_argument("--runs", type=int, default=1)
     ap.add_argument("--verified-only", action="store_true",
                     help="skip cases whose replay did not match the receipt")
+    ap.add_argument("--only-missing", action="store_true",
+                    help="skip cases already present in the output file")
     args = ap.parse_args()
 
     cases = fc.load_cases()
@@ -508,6 +510,14 @@ def main() -> None:
     if args.verified_only:
         chosen = [c for c in chosen if fc.load_record(c)["summary"]["replay_faithful"]]
         print(f"verified-only: {len(chosen)} cases")
+
+    if args.only_missing:
+        done_path = config.DATA_DIR / "predictions" / f"{args.condition}_run1.json"
+        if done_path.exists():
+            have = {r["case_id"] for r in json.loads(done_path.read_text(encoding="utf-8"))}
+            before = len(chosen)
+            chosen = [c for c in chosen if c["case_id"] not in have]
+            print(f"only-missing: {len(chosen)} of {before} cases still to do")
 
     examples = load_fewshot(args.condition)
     if examples:
@@ -532,9 +542,19 @@ def main() -> None:
                 print(f"  {case['case_id']:4} FAILED: {exc}")
                 failed.append(case["case_id"])
 
+        # Merge with whatever is already on disk, so a partial re-run after a
+        # rate-limit failure tops up the file instead of replacing it.
         path = out_dir / f"{args.condition}_run{run}.json"
-        path.write_text(json.dumps(records, indent=1, ensure_ascii=False), encoding="utf-8")
-        print(f"  -> {path}  ({len(records)} cases, {len(failed)} failed)")
+        merged = {}
+        if path.exists():
+            for old_rec in json.loads(path.read_text(encoding="utf-8")):
+                merged[old_rec["case_id"]] = old_rec
+        for rec in records:
+            merged[rec["case_id"]] = rec
+        ordered = [merged[k] for k in sorted(merged)]
+        path.write_text(json.dumps(ordered, indent=1, ensure_ascii=False), encoding="utf-8")
+        print(f"  -> {path}  ({len(records)} this run, {len(ordered)} in file, "
+              f"{len(failed)} failed)")
         if failed:
             print(f"  FAILED: {failed}")
 
