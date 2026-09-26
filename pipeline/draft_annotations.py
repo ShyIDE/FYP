@@ -55,7 +55,7 @@ import csv
 
 import config
 import frame_context as fc
-from make_annotation_sheet import COLUMNS, build_rows, clip, kappa_subset, write_csv
+from make_annotation_sheet import COLUMNS, build_rows
 
 # ---------------------------------------------------------------------------
 # Trigger sets, established by reading each trace.
