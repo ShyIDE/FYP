@@ -498,6 +498,25 @@ def run_case(case: dict, condition: str, run: int, examples: list[dict]) -> dict
     }
 
 
+def merge_write(path, records: list[dict]) -> list[dict]:
+    """Merge records into the file on disk and write it.
+
+    Called after every case, not only at the end of a run. A run is routinely
+    cut short by the daily token limit, and finishing twenty cases only to lose
+    them because the twenty-first could not start is not acceptable.
+    """
+    merged = {}
+    if path.exists():
+        for old_rec in json.loads(path.read_text(encoding="utf-8")):
+            merged[old_rec["case_id"]] = old_rec
+    for rec in records:
+        merged[rec["case_id"]] = rec
+    ordered = [merged[k] for k in sorted(merged)]
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(ordered, indent=1, ensure_ascii=False), encoding="utf-8")
+    return ordered
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -555,21 +574,13 @@ def main() -> None:
                 for p in rec["problems"][:2]:
                     print(f"       - {p}")
                 records.append(rec)
+                merge_write(out_dir / f"{args.condition}_run{run}.json", records)
             except Exception as exc:
                 print(f"  {case['case_id']:4} FAILED: {exc}")
                 failed.append(case["case_id"])
 
-        # Merge with whatever is already on disk, so a partial re-run after a
-        # rate-limit failure tops up the file instead of replacing it.
         path = out_dir / f"{args.condition}_run{run}.json"
-        merged = {}
-        if path.exists():
-            for old_rec in json.loads(path.read_text(encoding="utf-8")):
-                merged[old_rec["case_id"]] = old_rec
-        for rec in records:
-            merged[rec["case_id"]] = rec
-        ordered = [merged[k] for k in sorted(merged)]
-        path.write_text(json.dumps(ordered, indent=1, ensure_ascii=False), encoding="utf-8")
+        ordered = merge_write(path, records)
         print(f"  -> {path}  ({len(records)} this run, {len(ordered)} in file, "
               f"{len(failed)} failed)")
         if failed:
