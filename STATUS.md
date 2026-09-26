@@ -9,7 +9,7 @@ write it into the report.
 
 | Step | State |
 |------|-------|
-| 1. Rotate keys, clean old folders | **incomplete**: the Alchemy key in `.env` is still the one exposed in git history |
+| 1. Rotate keys, clean old folders | Groq rotated; Alchemy deliberately not rotated (see security note) |
 | 2. Install Foundry | done: `cast 1.8.3`, attestation-verified |
 | 3. Checkpoint C01 + C16 against real `cast` output | done, passed |
 | 4. Overleaf citation fixes (`latex/CHAPTER_FIXES.md`) | still open, done in Overleaf |
@@ -55,7 +55,7 @@ statement is the docstring of `pipeline/draft_annotations.py`.
   structural rules, so C0 agrees with the draft more than it deserves. Any C0
   number against draft labels is partly circular and is not C0's accuracy.
 
-## The original blank sheet
+### The original blank sheet, kept for reference
 
 `data/annotation/sheet.csv` has one row per call frame, 1,335 rows across 28
 cases, with `role` and `essential` deliberately empty. `GUIDELINES.md` beside
@@ -279,21 +279,19 @@ in the test split. Few-shot prompting from dev cases is therefore unaffected.
 
 ## Security note
 
-**The Alchemy key currently in `.env` is already public.** It is committed in
-this repo's own history at `fd912b4`, in `faultseeker/faultseeker.py`, as a
-commented-out URL. Deleting that file did not remove it: the blob is still
-reachable on GitHub. The key is byte-identical to the one in `.env` today,
-confirmed by hashing both. It must be rotated at Alchemy, not just removed
-from the file. The Groq key in that same commit is also public, but the
-current `.env` Groq key is different, so that one was already rotated.
+The Alchemy key in `.env` is also present in this repository's public history,
+at commit `fd912b4` in `faultseeker/faultseeker.py`, as a commented-out URL.
+Deleting the file did not remove the blob. The two were confirmed identical by
+hashing.
 
-Separately, an RPC provider returned 429 during the batch fetch and the error
-message contained the full Alchemy URL, printing the key to the terminal. The
-code now redacts URLs from every error message and retries 429/5xx with
-backoff.
+**The author has decided not to rotate it**, having judged the exposure
+acceptable for a free-tier archive-RPC key. Recorded here so the decision is
+visible rather than looking like an oversight. The Groq key in that same commit
+is also public, but the current one differs, so it was already replaced.
 
-`.env` itself is gitignored and no key has been committed by the current
-pipeline. The exposure is entirely historical, and rotation is the only fix.
+The pipeline itself commits no keys: `.env` is gitignored, and `rpc_call`
+redacts URLs from every error message after a 429 printed one to the terminal
+during the batch fetch. The exposure is historical, not ongoing.
 
 ## Where to read the detail
 
