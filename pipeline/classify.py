@@ -66,6 +66,9 @@ CHARS_PER_TOKEN = 2.0
 # explicitly rather than left to the provider's own estimate.
 MAX_CALLS_PER_WINDOW = 40
 MAX_OUTPUT_TOKENS = 950
+# Few-shot examples are capped, and the smallest dev cases are chosen, because
+# each one is added to every request and the daily token budget is 200,000.
+FEWSHOT_CASES = 2
 
 # C0 baseline lexicons. Deliberately shallow: this is the floor that the
 # prompting conditions have to beat, not a serious classifier.
@@ -383,17 +386,30 @@ def load_fewshot(condition: str) -> list[dict]:
     """Few-shot examples from annotated dev cases. Fails loudly if unavailable."""
     if condition not in ("C4", "C5"):
         return []
-    sheet = config.DATA_DIR / "annotation" / "sheet.csv"
-    if not sheet.exists():
-        sys.exit(f"{condition} needs annotated dev cases but {sheet} does not exist. "
-                 f"Run pipeline/make_annotation_sheet.py and annotate the dev split.")
-    with open(sheet, encoding="utf-8-sig") as fh:
-        rows = [r for r in csv.DictReader(fh)
-                if r["split"] == "dev" and r["role"].strip() and r["essential"].strip()]
+    ann = config.DATA_DIR / "annotation"
+    rows, source = [], None
+    # Prefer labels a human stands behind. Fall back to the drafted sheet, but
+    # record which was used: a run prompted with drafted labels must be
+    # described that way in the report.
+    for name, need_reviewed in (("sheet.csv", False), ("sheet_draft.csv", True),
+                                ("sheet_draft.csv", False)):
+        path = ann / name
+        if not path.exists():
+            continue
+        with open(path, encoding="utf-8-sig") as fh:
+            found = [r for r in csv.DictReader(fh)
+                     if r["split"] == "dev" and r["role"].strip() and r["essential"].strip()
+                     and (not need_reviewed
+                          or r.get("reviewed", "").strip().lower() == "yes")]
+        if found:
+            rows = found
+            source = f"{name}{' (reviewed only)' if need_reviewed else ''}"
+            break
     if not rows:
-        sys.exit(f"{condition} needs annotated dev cases, but no dev row in {sheet} "
-                 f"has a role and an essential value filled in. Annotate the dev "
-                 f"split first; no example may be invented.")
+        sys.exit(f"{condition} needs labelled dev cases for its examples. Run "
+                 f"pipeline/draft_annotations.py, or fill in {ann / 'sheet.csv'}. "
+                 f"No example may be invented.")
+    print(f"few-shot label source: {source}")
 
     by_case: dict[str, list[dict]] = {}
     for r in rows:
@@ -417,9 +433,10 @@ def load_fewshot(condition: str) -> list[dict]:
                        for f in frames],
         })
     if not examples:
-        sys.exit(f"{condition} found annotated dev rows but no dev case is fully "
-                 f"annotated. Complete at least one dev case.")
-    return examples
+        sys.exit(f"{condition} found labelled dev rows but no dev case is fully "
+                 f"labelled. Complete at least one dev case.")
+    examples.sort(key=lambda e: len(e["labels"]))
+    return examples[:FEWSHOT_CASES]
 
 
 def load_victim_sources(record: dict, condition: str) -> dict[str, str]:

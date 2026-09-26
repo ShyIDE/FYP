@@ -84,15 +84,23 @@ def load_draft() -> dict[tuple[str, int], dict]:
 
 
 # ------------------------------------------------- metrics without labels
-def trigger_hits(records: list[dict], cases: dict) -> dict:
-    """Does the model's TRIGGER prediction find the benchmark's function?
+def trigger_metrics(records: list[dict], cases: dict) -> dict:
+    """How well TRIGGER predictions match the benchmark's vulnerable function.
 
-    The benchmark names one vulnerable function per case. Predicted TRIGGER
-    calls are ranked by execution order, and hit@k asks whether any of the
-    first k of them is a call to that function. Execution order is used
-    because the model returns labels, not scores, so no better ranking exists.
+    This is the only role the benchmark grounds externally, so it is the one
+    role that can be scored without any human annotation.
+
+    hit@k alone is not enough and must never be reported alone. A model that
+    calls half the transaction a TRIGGER will score well on hit@k by volume,
+    so precision and the trigger rate are reported beside it: trigger_rate is
+    the share of all calls the model labelled TRIGGER, and a rate far above
+    the share the benchmark marks is over-prediction, not skill.
     """
     hit1 = hit3 = hitany = considered = 0
+    tp = fp = fn = 0
+    total_calls = total_pred = total_gt = 0
+    first_hit_ranks = []
+
     for rec in records:
         case = cases[rec["case_id"]]
         record = fc.load_record(case)
@@ -100,15 +108,41 @@ def trigger_hits(records: list[dict], cases: dict) -> dict:
         if not gt_idx:
             continue
         considered += 1
-        predicted = [int(i) for i, v in sorted(rec["labels"].items(), key=lambda kv: int(kv[0]))
-                     if v["role"] == "TRIGGER"]
-        if predicted[:1] and set(predicted[:1]) & gt_idx:
+        ordered = [int(i) for i, v in sorted(rec["labels"].items(), key=lambda kv: int(kv[0]))
+                   if v["role"] == "TRIGGER"]
+        pred = set(ordered)
+
+        total_calls += rec["n_calls"]
+        total_pred += len(pred)
+        total_gt += len(gt_idx)
+        tp += len(pred & gt_idx)
+        fp += len(pred - gt_idx)
+        fn += len(gt_idx - pred)
+
+        if ordered[:1] and set(ordered[:1]) & gt_idx:
             hit1 += 1
-        if set(predicted[:3]) & gt_idx:
+        if set(ordered[:3]) & gt_idx:
             hit3 += 1
-        if set(predicted) & gt_idx:
+        if pred & gt_idx:
             hitany += 1
-    return {"cases": considered, "hit@1": hit1, "hit@3": hit3, "hit@any": hitany}
+        for rank, idx in enumerate(ordered, 1):
+            if idx in gt_idx:
+                first_hit_ranks.append(rank)
+                break
+
+    p, r, f = prf(tp, fp, fn)
+    return {
+        "cases": considered,
+        "hit@1": hit1, "hit@3": hit3, "hit@any": hitany,
+        "precision": round(p, 3), "recall": round(r, 3), "f1": round(f, 3),
+        "predicted_triggers": total_pred,
+        "benchmark_triggers": total_gt,
+        "calls": total_calls,
+        "trigger_rate_pct": round(100 * total_pred / total_calls, 1) if total_calls else None,
+        "benchmark_rate_pct": round(100 * total_gt / total_calls, 1) if total_calls else None,
+        "median_rank_of_first_hit": (sorted(first_hit_ranks)[len(first_hit_ranks) // 2]
+                                    if first_hit_ranks else None),
+    }
 
 
 def run_agreement(runs: dict[int, list[dict]]) -> dict:
@@ -273,12 +307,16 @@ def main() -> None:
 
     report = {"conditions": {}, "gold_labels_available": len(gold)}
 
-    print(f"{'cond':5}{'runs':>6}{'calls':>8}{'cover%':>8}{'hit@1':>7}{'hit@3':>7}"
-          f"{'hitAny':>8}{'tokens':>10}{'acc':>7}{'macroF1':>9}")
+    print("TRIGGER identification, scored against the benchmark's vulnerable function.")
+    print("trig% is the share of calls the model called TRIGGER; the benchmark marks")
+    print("only a few per transaction, so a high rate with low precision is")
+    print("over-prediction rather than skill.\n")
+    print(f"{'cond':5}{'cases':>6}{'hit@1':>7}{'hit@3':>7}{'P':>7}{'R':>7}{'F1':>7}"
+          f"{'trig%':>7}{'bench%':>8}{'tokens':>9}")
     for cond in sorted(runs):
         first = runs[cond][sorted(runs[cond])[0]]
         cov = coverage(first)
-        hits = trigger_hits(first, cases)
+        hits = trigger_metrics(first, cases)
         use = usage_totals(first)
         scored = score_against_gold(first, gold) if gold else None
         agree = run_agreement(runs[cond])
@@ -287,12 +325,11 @@ def main() -> None:
             "coverage": cov, "trigger": hits, "usage": use,
             "run_agreement": agree, "scored": scored,
         }
-        acc = f"{scored['accuracy']:.3f}" if scored else "-"
-        mf1 = f"{scored['macro_f1']:.3f}" if scored else "-"
         n = hits["cases"] or 1
-        print(f"{cond:5}{len(runs[cond]):>6}{cov['calls']:>8}{cov['coverage_pct']:>8}"
-              f"{hits['hit@1']}/{n:<5}{hits['hit@3']}/{n:<5}{hits['hit@any']}/{n:<6}"
-              f"{use['total_tokens']:>10}{acc:>7}{mf1:>9}")
+        print(f"{cond:5}{n:>6}{hits['hit@1']:>4}/{n:<2}{hits['hit@3']:>4}/{n:<2}"
+              f"{hits['precision']:>7}{hits['recall']:>7}{hits['f1']:>7}"
+              f"{hits['trigger_rate_pct']:>7}{hits['benchmark_rate_pct']:>8}"
+              f"{use['total_tokens']:>9}")
 
     if draft:
         print()
@@ -305,6 +342,15 @@ def main() -> None:
                 report["conditions"][cond]["provisional_vs_draft"] = prov
                 print(f"  {cond}: agreement with draft {prov['accuracy']:.3f}, "
                       f"macro-F1 {prov['macro_f1']:.3f} over {prov['scored_calls']} calls")
+
+    if gold:
+        print()
+        print("Three-role classification, against human-reviewed labels:")
+        for cond in sorted(runs):
+            sc = report["conditions"][cond].get("scored")
+            if sc:
+                print(f"  {cond}: accuracy {sc['accuracy']:.3f}, macro-F1 {sc['macro_f1']:.3f} "
+                      f"over {sc['scored_calls']} reviewed calls")
 
     kappa = annotator_agreement()
     report["annotator_agreement"] = kappa
