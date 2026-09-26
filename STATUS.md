@@ -14,14 +14,48 @@ write it into the report.
 | 3. Checkpoint C01 + C16 against real `cast` output | done, passed |
 | 4. Overleaf citation fixes (`latex/CHAPTER_FIXES.md`) | still open, done in Overleaf |
 | 5. Fetch all 28 traces | done |
-| 6. Annotation sheet (role + essential) | **sheet built, labels not filled in** |
-| 7. Classifier and `evaluate.py`, conditions C0-C5 | built; C0 done, C1-C3 running, C4/C5 blocked |
+| 6. Annotation sheet (role + essential) | **LLM-drafted, awaiting human review** |
+| 7. Classifier and `evaluate.py`, conditions C0-C5 | C0, C1 done; C2 23/28; C3-C5 pending token budget |
 | 8. Chapters 5 and 6 from results | blocked on 6 and 7 |
 
 The experiment now runs, but **no role accuracy figure exists yet and none can
 exist until the annotation sheet is filled in by hand**. See "What is blocked".
 
-## Step 6: the annotation sheet exists, the labels do not
+## Step 6: the annotation is LLM-drafted and NOT yet reviewed
+
+**This changes how the annotation must be described in the report.** Labelling
+1,335 calls from a blank sheet was judged too slow, so the labels were drafted
+automatically and will be corrected by the author rather than written from
+scratch.
+
+`data/annotation/sheet_draft.csv` holds a draft role and essential flag for
+every one of the 1,335 calls, each row marked `annotator=llm-draft` and
+`reviewed=no`. Distribution: 831 PREPARATORY, 262 TRIGGER, 242 EXTRACTION.
+76 rows carry a `CHECK:` note where the drafting rules are least reliable.
+
+How the draft was made, which is what the methodology section has to say:
+the trigger calls were identified by reading all 28 traces; for 26 cases the
+benchmark's own ground-truth function matched the trace, and two needed an
+addition (C17's price-manipulating deposit, C18's setAuthorizationWithSig).
+Every other call was then labelled by four written structural rules. The full
+statement is the docstring of `pipeline/draft_annotations.py`.
+
+**Consequences that must be disclosed, not hidden:**
+
+- The annotation is **LLM-drafted, author-reviewed**, not independent human
+  annotation. Say so plainly.
+- **Cohen's kappa is not available.** There is no second independent human
+  annotator. Report its absence as a limitation. Do not compute agreement
+  between two model passes and call it inter-annotator reliability.
+- `evaluate.py` treats a draft row as gold only once it is marked
+  `reviewed=yes`. Unreviewed rows are scored separately and printed as
+  "PROVISIONAL", because scoring a model against another model's labels
+  measures agreement, not correctness.
+- **A confound:** the draft's structural rules overlap with the C0 baseline's
+  structural rules, so C0 agrees with the draft more than it deserves. Any C0
+  number against draft labels is partly circular and is not C0's accuracy.
+
+## The original blank sheet
 
 `data/annotation/sheet.csv` has one row per call frame, 1,335 rows across 28
 cases, with `role` and `essential` deliberately empty. `GUIDELINES.md` beside
@@ -57,11 +91,39 @@ must be reported as method, not hidden:
 - Argument and event text is clipped to the same width for every case, so a
   large transaction is not described more thinly than a small one.
 
-### First measured result
+### The binding constraint: 200,000 tokens per day
 
-The C0 rule baseline, over all 28 cases: **trigger hit@1 = 0/28, hit@3 =
-13/28, hit@any = 14/28**. Its first TRIGGER guess is never the benchmark's
-vulnerable function. This is the floor the prompting conditions must beat.
+Measured, not assumed. The free Groq tier allows **200,000 tokens per day**,
+alongside 7,000 input tokens/minute and 1,000 output tokens/minute.
+
+One condition-run over 28 cases costs roughly 75,000-115,000 tokens. C1 used
+72,647 and C2 used 112,426, which together exhausted the daily budget and is
+why C2 stopped at 23 of 28 cases. **Roughly two condition-runs fit in a day.**
+
+The full grid as planned, C1 to C5 at three runs each, is fifteen
+condition-runs, so about 1.5 million tokens, or **eight days on the free
+tier**. That is a real constraint on the experiment and the report should
+either narrow the design or note that a paid tier was needed. Options, in the
+order they cost least: drop to one run per condition and lose the run-agreement
+metric; run fewer conditions; spread the work over days; or upgrade the tier.
+
+### First measured results
+
+Trigger hit rates, the metric that needs no annotation:
+
+| Condition | Cases | hit@1 | hit@3 | hit@any | Tokens |
+|-----------|-------|-------|-------|---------|--------|
+| C0 rules  | 28 | 0/28 | 13/28 | 14/28 | 0 |
+| C1 masked | 28 | 8/28 | 11/28 | 21/28 | 72,647 |
+| C2 named  | 23 | 6/23 | 12/23 | 15/23 | 112,426 |
+
+C0's first TRIGGER guess is never the benchmark's function, but it reaches
+13/28 within three. C1, which sees only call-graph structure with every name
+masked, gets 8/28 at rank 1 and finds the function somewhere in 21/28.
+
+**C2 is not comparable to the others yet**: it covers 23 of 28 cases because
+the daily token budget ran out mid-run. Do not put C1 and C2 side by side in a
+table until C2 covers all 28.
 
 `hit@k` is defined as: predicted TRIGGER calls ranked by execution order, and
 hit@k asks whether any of the first k is a call to the benchmark's function.
@@ -72,10 +134,10 @@ this definition in the report**; it is not the same as a ranked retrieval.
 
 | Blocked | Needs |
 |---------|-------|
-| Accuracy, macro-F1, per-role P/R, confusion matrix, essential P/R | the annotation sheet filled in |
-| Cohen's kappa | a second annotator to label `second_annotator.csv` |
-| Condition C4 | the dev split annotated, to build few-shot examples |
-| Condition C5 | `ETHERSCAN_API_KEY` in `.env`, for verified victim source |
+| Accuracy, macro-F1, per-role P/R, confusion matrix, essential P/R | the drafted rows reviewed and marked reviewed=yes |
+| Cohen's kappa | **dropped**: no second independent human annotator |
+| Condition C4 | the 7 dev cases reviewed, to build few-shot examples |
+| Condition C5 | now unblocked: the Etherscan key is set |
 
 `evaluate.py` reports each of these as unavailable rather than estimating it.
 Chapter 6 cannot present role accuracy until the annotation exists. Chapter 5
