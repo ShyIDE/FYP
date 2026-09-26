@@ -421,6 +421,41 @@ def main() -> None:
         cells = "".join(f"{by_cat[c]['f1'] if c in by_cat else '-':>13}" for c in cats)
         print(f"  {cond:10}{cells}")
 
+    print()
+    print("How each rung of the ladder changes the model's behaviour.")
+    print("Needs no ground truth: it is what the model chose to say.")
+    print("Only cases labelled under every condition are counted, so the")
+    print("columns are comparable.")
+    print()
+    common = None
+    for cond in runs:
+        ids = {r["case_id"] for r in runs[cond][sorted(runs[cond])[0]]}
+        common = ids if common is None else (common & ids)
+    print(f"  {len(common)} cases labelled under all {len(runs)} conditions\n")
+    print(f"  {'condition':10}{'calls':>7}{'PREP':>8}{'TRIGGER':>9}{'EXTRACT':>9}"
+          f"{'essential':>11}")
+    dist = {}
+    for cond in sorted(runs):
+        first = [r for r in runs[cond][sorted(runs[cond])[0]] if r["case_id"] in common]
+        counts = Counter()
+        ess = 0
+        total = 0
+        for rec in first:
+            for v in rec["labels"].values():
+                counts[v["role"]] += 1
+                ess += v["essential"] == "yes"
+                total += 1
+        dist[cond] = {"calls": total,
+                      **{r: counts[r] for r in ROLES},
+                      "essential_yes": ess}
+        if total:
+            print(f"  {cond:10}{total:>7}"
+                  f"{100 * counts['PREPARATORY'] / total:>7.1f}%"
+                  f"{100 * counts['TRIGGER'] / total:>8.1f}%"
+                  f"{100 * counts['EXTRACTION'] / total:>8.1f}%"
+                  f"{100 * ess / total:>10.1f}%")
+    report["role_distribution"] = dist
+
     kappa = annotator_agreement()
     report["annotator_agreement"] = kappa
 

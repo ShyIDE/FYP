@@ -146,6 +146,27 @@ rate a labeller would achieve by marking calls at random. 1.0 is chance.
 No trend with size in any condition. The story is a flat, modest edge over
 chance everywhere, not a size-dependent failure.
 
+### The ablation effect: names make the model selective
+
+What each rung does to the model's own behaviour, over the 28 cases labelled
+under every condition. This needs no ground truth: it is what the model chose
+to say.
+
+| Condition | PREPARATORY | TRIGGER | EXTRACTION | essential=yes |
+|-----------|-------------|---------|------------|---------------|
+| C0 rules  | 53.3% | 23.3% | 23.4% | 61.7% |
+| C1 masked | 44.4% | **40.7%** | 14.9% | 61.5% |
+| C2 named  | 57.4% | **25.6%** | 17.0% | 53.8% |
+
+**Revealing contract and function names makes the model 15 points more
+selective about TRIGGER**, from 40.7% to 25.6%. With structure alone it
+over-fires badly; given names it becomes markedly more conservative and closer
+to the benchmark's 7.0%, though still three to four times above it.
+
+This is the ablation working as designed: one variable changed, one effect
+attributable to it. It is the clearest positive result in the study so far and
+should be reported alongside the negative one.
+
 ### What to write in Chapter 6
 
 Three claims, all measured, all defensible:
