@@ -121,3 +121,65 @@ frame 64.
 - `hit@k` means: predicted TRIGGER calls ranked by execution order, and hit@k
   asks whether any of the first k is a call to the benchmark's function.
   Execution order is used because the model returns labels, not scores.
+
+## E. Added 2026-09-26. The results chapter, and a metric that was wrong
+
+### E1. Never report hit@k on its own
+
+An earlier note gave `hit@any` figures without saying how many calls the model
+labelled TRIGGER. That flatters every condition: a model that calls 40% of a
+transaction the exploit will hit the right call often by volume alone. Any
+hit@k number in the report must appear beside precision and the trigger rate.
+
+### E2. The central result of the project
+
+Trigger identification against the benchmark's own vulnerable function, which
+is the one role that needs no human annotation:
+
+| Condition | Cases | hit@1 | hit@3 | Precision | Recall | F1 | Called TRIGGER | Benchmark marks |
+|-----------|-------|-------|-------|-----------|--------|-----|----------------|-----------------|
+| C0 rules  | 28 | 0/28 | 13/28 | 0.209 | 0.699 | 0.322 | 23.3% | 7.0% |
+| C1 masked | 28 | 8/28 | 11/28 | 0.144 | 0.839 | 0.245 | 40.7% | 7.0% |
+| C2 named  | 23 | 6/23 | 12/23 | 0.117 | 0.622 | 0.196 | 24.5% | 4.6% |
+
+Build Chapter 6 around this: **every condition over-labels TRIGGER by three to
+six times.** The benchmark marks 7.0% of calls; the models mark 23% to 41%.
+High recall with precision near 0.15 is a wide net, not discrimination — the
+model finds the flawed call but cannot separate it from the setup that enabled
+it or the drain it caused.
+
+Report plainly that the rule baseline C0 has the best F1, ahead of both model
+conditions. Do not bury it. A negative, mechanistic result honestly reported is
+a stronger contribution than an accuracy figure with no diagnosis.
+
+Check `STATUS.md` for the final numbers before writing: C2 was still completing
+and the later conditions C3 to C5 were still running when this note was
+written. **Do not tabulate conditions against each other until every one covers
+all 28 cases.**
+
+### E3. Chapter 5 material is generated, not written by hand
+
+`data/case_studies/` holds one markdown file per selected case, produced by
+`pipeline/case_studies.py` from the traces and the predictions. Each has the
+transaction facts, the labelled call tree, and which benchmark function the
+model found or missed. The interpretation sections are left blank deliberately;
+that is the author's to write.
+
+The four cases were chosen for what they expose, and the report should say so:
+C16 the largest trace at 151 calls, C24 the deepest at 82 levels with the
+exploit repeated 42 times, C06 a three-call single-delegatecall exploit, and
+C27 a case whose replay could not be verified.
+
+Useful contrast for Chapter 5: on C06, condition C1 labels exactly one call
+TRIGGER and matches the benchmark exactly, while C0 labels two of three. The
+aggregate over-labelling is not uniform — it is a large-trace failure.
+
+### E4. The tool exists and should be described as a deliverable
+
+`pipeline/analyse.py` takes any transaction hash on a supported chain, replays
+it, verifies the replay against the receipt, parses the call tree, labels every
+call, and prints the attack as a narrative. It is not limited to the 28
+benchmark cases. Chapter 4 or 7 should describe it as the artefact the study
+produced, and should repeat its own caveat: because the model over-labels
+TRIGGER, the tool presents that role as a shortlist to read rather than a
+verdict.
