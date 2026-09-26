@@ -38,31 +38,35 @@ No model is trained. The prompting condition is the experimental variable.
 
 ## The finding so far
 
-Measured against the benchmark's own ground-truth vulnerable function, the one
-role that can be scored without human annotation:
+`data/predictions/RESULTS.md` is generated from the measurements and is the
+authoritative version. As of this commit:
 
 | Condition | hit@1 | Precision | Recall | F1 | Called TRIGGER | Benchmark | Lift over chance |
 |-----------|-------|-----------|--------|-----|----------------|-----------|------------------|
-| C0 rules  | 0/28  | 0.209 | 0.699 | **0.322** | 23.3% | 7.0% | **3.00** |
-| C1 masked | 8/28  | 0.144 | 0.839 | 0.245 | 40.7% | 7.0% | 2.06 |
-| C2 named  | 6/23  | 0.117 | 0.622 | 0.196 | 24.5% | 4.6% | 2.54 |
+| C0 rules  | 0/28 | 0.209 | 0.699 | 0.322 | 23.3% | 7.0% | 3.00 |
+| C1 masked | 8/28 | 0.144 | 0.839 | 0.245 | 40.7% | 7.0% | 2.06 |
+| C2 named  | 8/28 | 0.219 | 0.806 | **0.345** | 25.6% | 7.0% | **3.15** |
 
-**Every condition over-labels `TRIGGER` by three to six times.** The models
-locate the flawed call — recall is high — but cannot separate it from the setup
-that enabled it or the drain it caused. High recall with precision near 0.15 is
-a wide net, not discrimination. The rule baseline currently has the best F1 and
-the best lift: **no model condition beats it yet.**
+**Names are what make the model selective.** With every identifier masked it
+calls 40.7% of a transaction the exploit and loses to a lexical rule baseline.
+Given decoded names it calls 25.6% and overtakes the baseline. One variable
+changed, one effect attributable to it.
 
-Two reporting rules this project follows as a result:
+**But every condition over-labels `TRIGGER` by three to six times.** The
+benchmark marks 7.0% of calls; the best condition marks 25.6%. Recall is high
+and precision never exceeds 0.22: the model finds the flawed call but cannot
+separate it from the setup that enabled it or the drain it caused. And the
+margin over the free rule baseline is 0.02 F1, for 148,471 tokens.
 
-- `hit@k` is never given on its own. A model that calls half a transaction a
-  `TRIGGER` scores well on `hit@any` by volume alone.
-- Precision is never compared across groups of different size without **lift
-  over chance** (precision divided by the rate random marking would achieve).
-  An earlier version of this analysis appeared to show performance collapsing on
-  large traces; once the base rate was divided out the effect vanished, because
-  the benchmark marks 23.1% of calls in a ten-call transaction and 2.8% in a
-  hundred-call one. Lift is flat across sizes, at roughly 1.4x to 4.3x.
+Two measurement rules this project follows, both learned by getting them wrong
+first:
+
+- `hit@k` is never reported alone. A model that calls half a transaction a
+  `TRIGGER` scores well on `hit@any` by volume.
+- Precision is never compared across transactions of different size without
+  **lift over chance**, because the benchmark marks 23.1% of calls in a ten-call
+  transaction and 2.8% in a hundred-call one. An earlier analysis appeared to
+  show a collapse on large traces; lift showed it was the base rate moving.
 
 ## Using the tool
 
