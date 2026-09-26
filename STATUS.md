@@ -15,8 +15,8 @@ write it into the report.
 | 4. Overleaf citation fixes (`latex/CHAPTER_FIXES.md`) | still open, done in Overleaf |
 | 5. Fetch all 28 traces | done |
 | 6. Annotation sheet (role + essential) | **LLM-drafted, awaiting human review** |
-| 7. Classifier and `evaluate.py`, conditions C0-C5 | C0, C1 done; C2 23/28; C3-C5 pending token budget |
-| 8. Chapters 5 and 6 from results | blocked on 6 and 7 |
+| 7. Classifier and `evaluate.py`, conditions C0-C5 | C0, C1 done; C2-C5 running |
+| 8. Chapters 5 and 6 from results | Chapter 5 material generated; Chapter 6 has its finding |
 
 The experiment now runs, but **no role accuracy figure exists yet and none can
 exist until the annotation sheet is filled in by hand**. See "What is blocked".
@@ -107,28 +107,46 @@ either narrow the design or note that a paid tier was needed. Options, in the
 order they cost least: drop to one run per condition and lose the run-agreement
 metric; run fewer conditions; spread the work over days; or upgrade the tier.
 
-### First measured results
+### The central finding, and a metric correction
 
-Trigger hit rates, the metric that needs no annotation:
+**An earlier version of this file reported `hit@any` on its own. That was
+misleading and has been corrected.** A model that calls half a transaction a
+TRIGGER scores well on hit@any by volume, not by skill. Precision and the
+trigger rate must be reported beside it. Do not write a hit@k number into the
+report without them.
 
-| Condition | Cases | hit@1 | hit@3 | hit@any | Tokens |
-|-----------|-------|-------|-------|---------|--------|
-| C0 rules  | 28 | 0/28 | 13/28 | 14/28 | 0 |
-| C1 masked | 28 | 8/28 | 11/28 | 21/28 | 72,647 |
-| C2 named  | 23 | 6/23 | 12/23 | 15/23 | 112,426 |
+Trigger identification, scored against the benchmark's own vulnerable function
+(the one role that needs no human annotation):
 
-C0's first TRIGGER guess is never the benchmark's function, but it reaches
-13/28 within three. C1, which sees only call-graph structure with every name
-masked, gets 8/28 at rank 1 and finds the function somewhere in 21/28.
+| Condition | Cases | hit@1 | hit@3 | Precision | Recall | F1 | Called TRIGGER | Benchmark marks |
+|-----------|-------|-------|-------|-----------|--------|-----|----------------|-----------------|
+| C0 rules  | 28 | 0/28 | 13/28 | 0.209 | 0.699 | **0.322** | 23.3% | 7.0% |
+| C1 masked | 28 | 8/28 | 11/28 | 0.144 | 0.839 | 0.245 | 40.7% | 7.0% |
+| C2 named  | 23 | 6/23 | 12/23 | 0.117 | 0.622 | 0.196 | 24.5% | 4.6% |
 
-**C2 is not comparable to the others yet**: it covers 23 of 28 cases because
-the daily token budget ran out mid-run. Do not put C1 and C2 side by side in a
-table until C2 covers all 28.
+**The finding: every condition over-labels TRIGGER by three to six times.** The
+benchmark marks 7.0% of calls as the vulnerable function. The models mark 23% to
+41%. Recall is high (0.62-0.84) and precision is low (0.12-0.21), which is the
+signature of a wide net rather than discrimination: the model finds the flawed
+call but cannot separate it from the setup that enabled it or the drain it
+caused.
 
-`hit@k` is defined as: predicted TRIGGER calls ranked by execution order, and
-hit@k asks whether any of the first k is a call to the benchmark's function.
-Execution order is used because the model returns labels, not scores. **State
-this definition in the report**; it is not the same as a ranked retrieval.
+The rule baseline C0 currently has the **best** F1, ahead of both model
+conditions. That is a real result and should be reported as one, not buried.
+
+This is the project's strongest claim and it is a negative one. It is also
+mechanistic rather than a bare number: the models conflate an exploit with its
+consequences. Chapter 6 should be built around it.
+
+C2 still covers 23 of 28 cases at the time of writing; **do not tabulate C1
+against C2 until C2 is complete.**
+
+### A contrast worth using in Chapter 5
+
+Case C06 (Seneca, 3 calls) shows C1 labelling exactly one call TRIGGER, matching
+the benchmark precisely, while C0 labels two of three. Aggregate over-labelling
+does not mean the model is always indiscriminate; it fails on large traces and
+succeeds on small ones. `data/case_studies/` has the generated material.
 
 ## What is blocked, and on what
 
