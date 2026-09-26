@@ -139,3 +139,7 @@ that was actually run, and a failure must be visible rather than smoothed over.
 - Three of the 28 replays are unverified, all on BSC, cause undetermined.
 - The three-role classification has no fully human-annotated ground truth, so
   the headline metric is restricted to the one role the benchmark grounds.
+- The committed traces were fetched without an Etherscan key, so they carry bare
+  addresses rather than verified contract names. All recorded results come from
+  those traces. Re-fetching with a key set would change the model's input and
+  would require re-running every condition. See `data/CHECKPOINT.md`.

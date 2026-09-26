@@ -185,6 +185,28 @@ ground-truth function matches 42 separate frames. C16 (Euler) is the widest at
 | C27 | FDP | token_specific | test | bsc | 38 | 5 | **MISMATCH** | `deliver` @ 21 |
 | C28 | NUM | token_specific | test | eth | 58 | 7 | verified | `anySwapOutUnderlyingWithPermit` @ 8 |
 
+## A reproducibility caveat about contract names
+
+`cast` labels a call with a verified contract's *name* when `ETHERSCAN_API_KEY`
+is set, and with its bare address when it is not. That changes the text the
+model sees, and condition C2 is defined as the rung where names become
+available, so it changes an experimental variable.
+
+**The 28 traces in `data/traces/` were fetched before the key was added.** They
+carry bare addresses throughout. Every condition reported so far was therefore
+run against address-only traces, and C2's contribution over C1 is decoded
+*function* names and arguments, not contract names.
+
+Re-fetching the corpus with the key set would produce different trace text and
+would invalidate comparison against the numbers already recorded. If the corpus
+is ever re-fetched, every condition must be re-run and the results re-reported
+together. The traces are committed to the repository for exactly this reason:
+so the input the numbers came from is fixed and inspectable.
+
+`pipeline/analyse.py` run today does resolve names, because the key is now
+present. That is correct behaviour for the tool and does not affect the study's
+recorded results.
+
 ## Reproduce
 
     python pipeline/trace_parser.py --selftest
