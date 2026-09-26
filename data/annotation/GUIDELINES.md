@@ -89,9 +89,35 @@ names as the vulnerability. **It is a hint, not the answer**: the vulnerable
 function is usually a TRIGGER, but the benchmark records one function per case
 while a transaction often has several trigger calls.
 
-## Agreement
+## How the labels were actually produced
 
-The second annotator labels the transactions in `second_annotator.csv`
-independently, without seeing the first annotator's labels, using only these
-guidelines. Cohen's kappa is then computed over the overlapping rows, for role
-and for essential separately.
+This section records what happened, not what was planned, because the report
+has to describe the annotation honestly.
+
+The labels were **drafted automatically and reviewed by the author**, not
+written from scratch by a human. `pipeline/draft_annotations.py` produced a
+draft role and essential flag for all 1,335 calls: the trigger calls were
+identified by reading each of the 28 traces, and every other call was labelled
+by the structural rules above. Each drafted row is marked
+`annotator=llm-draft` and `reviewed=no`, and becomes ground truth only when a
+human marks it `reviewed=yes`. `pipeline/evaluate.py` scores unreviewed rows
+separately and labels them provisional.
+
+**Cohen's kappa is not available.** It measures agreement between two
+independent human annotators, and there is only one annotator on this project.
+Agreement between two model passes would measure the model's self-consistency,
+which is a different quantity already reported as run agreement, so it is not
+substituted here. The absence of an inter-annotator reliability figure is a
+stated limitation of the study.
+
+One consequence to keep in mind when reading any agreement number: the drafting
+rules in this document are structural, and so is the C0 baseline in
+`classify.py`. They share assumptions, so C0 agrees with the draft more than it
+deserves, and that comparison is not a measure of C0's accuracy.
+
+## If a second annotator does become available
+
+`second_annotator.csv` holds the subset to use: one whole transaction per
+category, 7 cases and 390 rows. They should label it from these guidelines
+alone, without seeing the drafted labels, after which kappa can be computed
+over the overlapping rows for role and for essential separately.
