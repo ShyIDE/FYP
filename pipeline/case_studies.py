@@ -37,6 +37,18 @@ DEFAULT_SELECTION = {
 }
 
 
+def brief(indices: list[int], limit: int = 8) -> str:
+    """Render a frame-index list without flooding the page.
+
+    A reentrancy case can match the same function forty times, and printing
+    every index makes the study unreadable.
+    """
+    if len(indices) <= limit:
+        return str(indices)
+    head = ", ".join(str(i) for i in indices[:limit])
+    return f"[{head}, ... {len(indices) - limit} more]"
+
+
 def load_predictions() -> dict[str, dict[str, dict]]:
     """condition -> case_id -> record."""
     out: dict[str, dict[str, dict]] = {}
@@ -87,7 +99,7 @@ def build(case_id: str, case: dict, preds: dict[str, dict], why: str) -> str:
                f"({summary['fidelity_note']})")
     out.append(f"- Calls: {len(rows)}, max depth {max(r['depth'] for r in rows)}")
     out.append(f"- Benchmark's vulnerable function: `{case['gt_vuln_functions']}`, "
-               f"matching {len(gt)} call(s) at {sorted(gt)}")
+               f"matching {len(gt)} call(s) at {brief(sorted(gt))}")
     out.append("")
 
     if not summary["replay_faithful"]:
@@ -124,9 +136,9 @@ def build(case_id: str, case: dict, preds: dict[str, dict], why: str) -> str:
         out.append(f"- Called {len(predicted)} calls TRIGGER ({rate:.1f}% of the "
                    f"transaction); the benchmark marks {len(gt)} ({bench:.1f}%)")
         if found:
-            out.append(f"- **Found** the benchmark's function at {found}")
+            out.append(f"- **Found** the benchmark's function at {brief(found)}")
         if missed:
-            out.append(f"- **Missed** the benchmark's function at {missed}")
+            out.append(f"- **Missed** the benchmark's function at {brief(missed)}")
         if len(predicted) > len(gt) * 3 and gt:
             out.append(f"- Over-labelled TRIGGER by roughly "
                        f"{len(predicted) / len(gt):.0f}x, the central weakness this "
