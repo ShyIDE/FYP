@@ -38,35 +38,38 @@ No model is trained. The prompting condition is the experimental variable.
 
 ## The finding so far
 
-`data/predictions/RESULTS.md` is generated from the measurements and is the
-authoritative version. As of this commit:
+`data/predictions/RESULTS.md` is generated from the measurements and is
+authoritative. As of this commit:
 
-| Condition | hit@1 | Precision | Recall | F1 | Called TRIGGER | Benchmark | Lift over chance |
-|-----------|-------|-----------|--------|-----|----------------|-----------|------------------|
-| C0 rules  | 0/28 | 0.209 | 0.699 | 0.322 | 23.3% | 7.0% | 3.00 |
-| C1 masked | 8/28 | 0.144 | 0.839 | 0.245 | 40.7% | 7.0% | 2.06 |
-| C2 named  | 8/28 | 0.219 | 0.806 | **0.345** | 25.6% | 7.0% | **3.15** |
+| Condition | hit@1 | Precision | Recall | F1 | 95% CI | Called TRIGGER | Benchmark | Lift |
+|-----------|-------|-----------|--------|-----|--------|----------------|-----------|------|
+| C0 rules  | 0/28 | 0.209 | 0.699 | 0.322 | [0.109, 0.496] | 23.3% | 7.0% | 3.00 |
+| C1 masked | 8/28 | 0.144 | 0.839 | 0.245 | [0.123, 0.359] | 40.7% | 7.0% | 2.06 |
+| C2 named  | 8/28 | 0.219 | 0.806 | 0.345 | [0.149, 0.545] | 25.6% | 7.0% | 3.15 |
 
-**Names are what make the model selective.** With every identifier masked it
-calls 40.7% of a transaction the exploit and loses to a lexical rule baseline.
-Given decoded names it calls 25.6% and overtakes the baseline. One variable
-changed, one effect attributable to it.
+**The conditions cannot be told apart on F1.** With 28 cases the bootstrap
+intervals overlap heavily, so no condition is shown to beat another.
 
-**But every condition over-labels `TRIGGER` by three to six times.** The
-benchmark marks 7.0% of calls; the best condition marks 25.6%. Recall is high
-and precision never exceeds 0.22: the model finds the flawed call but cannot
-separate it from the setup that enabled it or the drain it caused. And the
-margin over the free rule baseline is 0.02 F1, for 148,471 tokens.
+What the data does support:
 
-Two measurement rules this project follows, both learned by getting them wrong
-first:
+- **Every condition over-labels `TRIGGER` by three to six times.** The benchmark
+  marks 7.0% of calls; conditions mark 23% to 41%. Recall is high, precision
+  never exceeds 0.22. The model finds the flawed call but cannot separate it
+  from the setup that enabled it or the drain it caused.
+- **Masking identifiers changes behaviour substantially**: 40.7% of calls called
+  TRIGGER with everything masked, 25.6% with names. Measured over 1,335 calls,
+  this is a behavioural effect worth reporting — but not a significant accuracy
+  gain.
+- **No condition clearly beats a lexical rule baseline that costs nothing.**
 
-- `hit@k` is never reported alone. A model that calls half a transaction a
-  `TRIGGER` scores well on `hit@any` by volume.
-- Precision is never compared across transactions of different size without
-  **lift over chance**, because the benchmark marks 23.1% of calls in a ten-call
-  transaction and 2.8% in a hundred-call one. An earlier analysis appeared to
-  show a collapse on large traces; lift showed it was the base rate moving.
+Three measurement rules, each learned by getting it wrong first and each
+recorded in `STATUS.md`:
+
+- `hit@k` is never reported alone; a wide net scores well on it by volume.
+- Precision is never compared across transaction sizes without **lift over
+  chance**, because the benchmark's own rate falls from 23.1% to 2.8% with size.
+- Conditions are never compared on point estimates alone; the bootstrap
+  intervals decide whether a difference exists.
 
 ## Using the tool
 

@@ -151,6 +151,31 @@ def trigger_metrics(records: list[dict], cases: dict) -> dict:
     }
 
 
+def bootstrap_f1(records, cases, iterations: int = 2000, seed: int = 20260926):
+    """A 95% interval for trigger F1, resampling whole cases.
+
+    With 28 cases a difference of a couple of hundredths of F1 is well inside
+    sampling noise. Reporting a point estimate alone would invite a claim the
+    data cannot support, so the interval is computed and reported beside it.
+
+    Cases are the resampling unit, not calls: calls within one transaction are
+    not independent of each other.
+    """
+    import random
+    if len(records) < 2:
+        return None
+    rng = random.Random(seed)
+    scores = []
+    for _ in range(iterations):
+        sample = [records[rng.randrange(len(records))] for _ in range(len(records))]
+        scores.append(trigger_metrics(sample, cases)["f1"])
+    scores.sort()
+    lo = scores[int(0.025 * len(scores))]
+    hi = scores[int(0.975 * len(scores)) - 1]
+    return {"f1_ci_low": round(lo, 3), "f1_ci_high": round(hi, 3),
+            "iterations": iterations}
+
+
 def breakdown(records: list[dict], cases: dict, key) -> dict:
     """Trigger metrics split by some property of the case.
 
@@ -456,6 +481,19 @@ def main() -> None:
                   f"{100 * ess / total:>10.1f}%")
     report["role_distribution"] = dist
 
+    print()
+    print("95% intervals for trigger F1, resampling whole cases 2000 times.")
+    print("With 28 cases, overlapping intervals mean a difference is not")
+    print("established by this data.")
+    print()
+    for cond in sorted(runs):
+        first = runs[cond][sorted(runs[cond])[0]]
+        ci = bootstrap_f1(first, cases)
+        if ci:
+            report["conditions"][cond]["f1_ci"] = ci
+            f1 = report["conditions"][cond]["trigger"]["f1"]
+            print(f"  {cond}: F1 {f1:.3f}  95% CI [{ci['f1_ci_low']}, {ci['f1_ci_high']}]")
+
     kappa = annotator_agreement()
     report["annotator_agreement"] = kappa
 
@@ -516,6 +554,18 @@ def write_markdown(report, cases):
                  % (cond, t["cases"], t["hit@1"], t["cases"], t["hit@3"], t["cases"],
                     t["precision"], t["recall"], t["f1"], t["trigger_rate_pct"],
                     t["benchmark_rate_pct"], t["lift_over_chance"], u["total_tokens"]))
+
+    L += ["", "### Is the difference between conditions real?", "",
+          "95% intervals for trigger F1, resampling whole cases 2000 times. Cases are",
+          "the unit because calls inside one transaction are not independent. With 28",
+          "cases, **overlapping intervals mean the difference is not established**.", "",
+          "| Condition | F1 | 95% CI |", "|---|---|---|"]
+    for cond in sorted(conds):
+        ci = conds[cond].get("f1_ci")
+        if ci:
+            L.append("| %s | %s | [%s, %s] |"
+                     % (cond, conds[cond]["trigger"]["f1"],
+                        ci["f1_ci_low"], ci["f1_ci_high"]))
 
     if "role_distribution" in report:
         L += ["", "## What each condition chose to say", "",

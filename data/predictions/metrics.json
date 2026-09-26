@@ -198,6 +198,11 @@
      "lift_over_chance": 4.47,
      "hit@1": 0
     }
+   },
+   "f1_ci": {
+    "f1_ci_low": 0.109,
+    "f1_ci_high": 0.496,
+    "iterations": 2000
    }
   },
   "C1": {
@@ -398,6 +403,11 @@
      "lift_over_chance": 1.33,
      "hit@1": 0
     }
+   },
+   "f1_ci": {
+    "f1_ci_low": 0.123,
+    "f1_ci_high": 0.359,
+    "iterations": 2000
    }
   },
   "C2": {
@@ -598,6 +608,11 @@
      "lift_over_chance": 4.47,
      "hit@1": 1
     }
+   },
+   "f1_ci": {
+    "f1_ci_low": 0.149,
+    "f1_ci_high": 0.545,
+    "iterations": 2000
    }
   }
  },

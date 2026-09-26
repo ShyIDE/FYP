@@ -18,6 +18,18 @@ precision and trigger-rate columns beside it.
 | C1 | 28 | 8/28 | 11/28 | 0.144 | 0.839 | 0.245 | 40.7% | 7.0% | 2.06 | 72647 |
 | C2 | 28 | 8/28 | 15/28 | 0.219 | 0.806 | 0.345 | 25.6% | 7.0% | 3.15 | 148471 |
 
+### Is the difference between conditions real?
+
+95% intervals for trigger F1, resampling whole cases 2000 times. Cases are
+the unit because calls inside one transaction are not independent. With 28
+cases, **overlapping intervals mean the difference is not established**.
+
+| Condition | F1 | 95% CI |
+|---|---|---|
+| C0 | 0.322 | [0.109, 0.496] |
+| C1 | 0.245 | [0.123, 0.359] |
+| C2 | 0.345 | [0.149, 0.545] |
+
 ## What each condition chose to say
 
 Role distribution over the cases labelled under every condition.
