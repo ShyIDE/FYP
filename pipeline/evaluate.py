@@ -142,7 +142,48 @@ def trigger_metrics(records: list[dict], cases: dict) -> dict:
         "benchmark_rate_pct": round(100 * total_gt / total_calls, 1) if total_calls else None,
         "median_rank_of_first_hit": (sorted(first_hit_ranks)[len(first_hit_ranks) // 2]
                                     if first_hit_ranks else None),
+        # Precision falls automatically when the benchmark marks a smaller share
+        # of the calls, so precision alone cannot be compared across groups of
+        # different size. Lift divides precision by the share a labeller would
+        # get by marking calls at random: 1.0 is chance, higher is skill.
+        "lift_over_chance": (round(p / (total_gt / total_calls), 2)
+                             if total_calls and total_gt else None),
     }
+
+
+def breakdown(records: list[dict], cases: dict, key) -> dict:
+    """Trigger metrics split by some property of the case.
+
+    Used to test whether the over-labelling is uniform or concentrated. If it
+    is a large-trace failure, that is a different and more useful claim than a
+    flat average.
+    """
+    groups: dict[str, list[dict]] = defaultdict(list)
+    for rec in records:
+        groups[key(rec, cases[rec["case_id"]])].append(rec)
+    out = {}
+    for name, recs in groups.items():
+        m = trigger_metrics(recs, cases)
+        out[name] = {
+            "cases": m["cases"], "calls": m["calls"],
+            "precision": m["precision"], "recall": m["recall"], "f1": m["f1"],
+            "trigger_rate_pct": m["trigger_rate_pct"],
+            "benchmark_rate_pct": m["benchmark_rate_pct"],
+            "lift_over_chance": m["lift_over_chance"],
+            "hit@1": m["hit@1"],
+        }
+    return out
+
+
+def size_bucket(rec: dict, case: dict) -> str:
+    n = rec["n_calls"]
+    if n <= 10:
+        return "1 tiny (<=10 calls)"
+    if n <= 40:
+        return "2 small (11-40)"
+    if n <= 100:
+        return "3 medium (41-100)"
+    return "4 large (>100)"
 
 
 def run_agreement(runs: dict[int, list[dict]]) -> dict:
@@ -312,7 +353,7 @@ def main() -> None:
     print("only a few per transaction, so a high rate with low precision is")
     print("over-prediction rather than skill.\n")
     print(f"{'cond':5}{'cases':>6}{'hit@1':>7}{'hit@3':>7}{'P':>7}{'R':>7}{'F1':>7}"
-          f"{'trig%':>7}{'bench%':>8}{'tokens':>9}")
+          f"{'trig%':>7}{'bench%':>8}{'lift':>6}{'tokens':>9}")
     for cond in sorted(runs):
         first = runs[cond][sorted(runs[cond])[0]]
         cov = coverage(first)
@@ -329,7 +370,7 @@ def main() -> None:
         print(f"{cond:5}{n:>6}{hits['hit@1']:>4}/{n:<2}{hits['hit@3']:>4}/{n:<2}"
               f"{hits['precision']:>7}{hits['recall']:>7}{hits['f1']:>7}"
               f"{hits['trigger_rate_pct']:>7}{hits['benchmark_rate_pct']:>8}"
-              f"{use['total_tokens']:>9}")
+              f"{hits['lift_over_chance']:>6}{use['total_tokens']:>9}")
 
     if draft:
         print()
@@ -351,6 +392,34 @@ def main() -> None:
             if sc:
                 print(f"  {cond}: accuracy {sc['accuracy']:.3f}, macro-F1 {sc['macro_f1']:.3f} "
                       f"over {sc['scored_calls']} reviewed calls")
+
+    print()
+    print("Is the over-labelling uniform, or a large-trace failure?")
+    print("Trigger rate against the benchmark's rate, split by transaction size:\n")
+    print("  lift = precision divided by the rate a random labeller would achieve;")
+    print("  1.0 is chance. It is the only column comparable across sizes.\n")
+    print(f"  {'condition':10}{'size':22}{'cases':>6}{'P':>7}{'R':>7}{'F1':>7}"
+          f"{'trig%':>7}{'bench%':>8}{'lift':>6}")
+    for cond in sorted(runs):
+        first = runs[cond][sorted(runs[cond])[0]]
+        by_size = breakdown(first, cases, size_bucket)
+        report["conditions"][cond]["by_size"] = by_size
+        for name in sorted(by_size):
+            b = by_size[name]
+            print(f"  {cond:10}{name:22}{b['cases']:>6}{b['precision']:>7}"
+                  f"{b['recall']:>7}{b['f1']:>7}{b['trigger_rate_pct']:>7}"
+                  f"{b['benchmark_rate_pct']:>8}{b['lift_over_chance']:>6}")
+
+    print()
+    print("By vulnerability category (F1 on trigger identification):\n")
+    cats = sorted({c["category"] for c in cases.values()})
+    print(f"  {'condition':10}" + "".join(f"{c[:11]:>13}" for c in cats))
+    for cond in sorted(runs):
+        first = runs[cond][sorted(runs[cond])[0]]
+        by_cat = breakdown(first, cases, lambda r, c: c["category"])
+        report["conditions"][cond]["by_category"] = by_cat
+        cells = "".join(f"{by_cat[c]['f1'] if c in by_cat else '-':>13}" for c in cats)
+        print(f"  {cond:10}{cells}")
 
     kappa = annotator_agreement()
     report["annotator_agreement"] = kappa

@@ -107,46 +107,71 @@ either narrow the design or note that a paid tier was needed. Options, in the
 order they cost least: drop to one run per condition and lose the run-agreement
 metric; run fewer conditions; spread the work over days; or upgrade the tier.
 
-### The central finding, and a metric correction
+### The central finding, and two metric corrections
 
-**An earlier version of this file reported `hit@any` on its own. That was
-misleading and has been corrected.** A model that calls half a transaction a
-TRIGGER scores well on hit@any by volume, not by skill. Precision and the
-trigger rate must be reported beside it. Do not write a hit@k number into the
-report without them.
+Two things were reported wrongly earlier in this file and are corrected here.
+Both corrections matter more than the numbers they replaced.
 
-Trigger identification, scored against the benchmark's own vulnerable function
-(the one role that needs no human annotation):
+**Correction 1: `hit@any` was reported alone.** That flatters every condition,
+because a model that calls half a transaction a TRIGGER hits the right call by
+volume. Never write a hit@k number without precision and the trigger rate
+beside it.
 
-| Condition | Cases | hit@1 | hit@3 | Precision | Recall | F1 | Called TRIGGER | Benchmark marks |
-|-----------|-------|-------|-------|-----------|--------|-----|----------------|-----------------|
-| C0 rules  | 28 | 0/28 | 13/28 | 0.209 | 0.699 | **0.322** | 23.3% | 7.0% |
-| C1 masked | 28 | 8/28 | 11/28 | 0.144 | 0.839 | 0.245 | 40.7% | 7.0% |
-| C2 named  | 23 | 6/23 | 12/23 | 0.117 | 0.622 | 0.196 | 24.5% | 4.6% |
+**Correction 2: an apparent "collapse on large traces" was a base-rate
+artefact.** Precision and F1 do fall as transactions get bigger, but so does
+the share of calls the benchmark marks as the vulnerable function: 23.1% in
+transactions of 10 calls or fewer, 2.8% in those of 41 to 100. Precision falls
+automatically when the target gets rarer. Once that is divided out, the
+degradation disappears. **Do not claim the model gets worse on large traces.**
 
-**The finding: every condition over-labels TRIGGER by three to six times.** The
-benchmark marks 7.0% of calls as the vulnerable function. The models mark 23% to
-41%. Recall is high (0.62-0.84) and precision is low (0.12-0.21), which is the
-signature of a wide net rather than discrimination: the model finds the flawed
-call but cannot separate it from the setup that enabled it or the drain it
-caused.
+The metric that survives this is **lift over chance**: precision divided by the
+rate a labeller would achieve by marking calls at random. 1.0 is chance.
 
-The rule baseline C0 currently has the **best** F1, ahead of both model
-conditions. That is a real result and should be reported as one, not buried.
+### Trigger identification, all 28 cases
 
-This is the project's strongest claim and it is a negative one. It is also
-mechanistic rather than a bare number: the models conflate an exploit with its
-consequences. Chapter 6 should be built around it.
+| Condition | hit@1 | hit@3 | Precision | Recall | F1 | Called TRIGGER | Benchmark marks | **Lift** |
+|-----------|-------|-------|-----------|--------|-----|----------------|-----------------|----------|
+| C0 rules  | 0/28 | 13/28 | 0.209 | 0.699 | **0.322** | 23.3% | 7.0% | **3.00** |
+| C1 masked | 8/28 | 11/28 | 0.144 | 0.839 | 0.245 | 40.7% | 7.0% | 2.06 |
+| C2 named  | 6/23 | 12/23 | 0.117 | 0.622 | 0.196 | 24.5% | 4.6% | 2.54 |
 
-C2 still covers 23 of 28 cases at the time of writing; **do not tabulate C1
-against C2 until C2 is complete.**
+### Lift by transaction size: flat, not degrading
 
-### A contrast worth using in Chapter 5
+| Condition | tiny (<=10) | small (11-40) | medium (41-100) | large (>100) |
+|-----------|-------------|---------------|-----------------|--------------|
+| C0 rules  | 1.62 | 2.48 | 4.27 | 2.59 |
+| C1 masked | 3.25 | 1.43 | 2.17 | 2.21 |
+| C2 named  | 2.17 | 2.50 | 2.71 | 2.03 |
 
-Case C06 (Seneca, 3 calls) shows C1 labelling exactly one call TRIGGER, matching
-the benchmark precisely, while C0 labels two of three. Aggregate over-labelling
-does not mean the model is always indiscriminate; it fails on large traces and
-succeeds on small ones. `data/case_studies/` has the generated material.
+No trend with size in any condition. The story is a flat, modest edge over
+chance everywhere, not a size-dependent failure.
+
+### What to write in Chapter 6
+
+Three claims, all measured, all defensible:
+
+1. **Every condition over-labels TRIGGER by three to six times.** The benchmark
+   marks 7.0% of calls; the models mark 23% to 41%. Recall is high (0.62-0.84),
+   precision is low (0.12-0.21). That is a wide net, not discrimination: the
+   model finds the flawed call but cannot separate it from the setup that
+   enabled it or the drain it caused.
+2. **Performance is only modestly above chance**, 2.1x to 3.0x lift overall,
+   and flat across transaction sizes.
+3. **The rule baseline is not beaten.** C0 has the best F1 (0.322) and the best
+   lift (3.00) of the three conditions measured so far. Report this plainly.
+
+That is a negative result. Report it as the finding, with the mechanism, rather
+than hunting for a positive one. A study that measures carefully enough to
+catch its own base-rate artefact and to find that its baseline wins is a
+stronger piece of work than one that reports an unexamined accuracy figure.
+
+### A contrast for Chapter 5
+
+On C06 (Seneca, 3 calls) condition C1 labels exactly one call TRIGGER and
+matches the benchmark exactly, while C0 labels two of three. Use it to show what
+success looks like, but do not generalise from it: the lift table shows tiny
+transactions are not systematically easier once the base rate is accounted for.
+`data/case_studies/` holds the generated material.
 
 ## What is blocked, and on what
 

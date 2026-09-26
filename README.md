@@ -38,22 +38,31 @@ No model is trained. The prompting condition is the experimental variable.
 
 ## The finding so far
 
-Measured against the benchmark's own ground-truth vulnerable function, which is
-the one role that can be scored without human annotation:
+Measured against the benchmark's own ground-truth vulnerable function, the one
+role that can be scored without human annotation:
 
-| Condition | hit@1 | Precision | Recall | F1 | Called TRIGGER | Benchmark |
-|-----------|-------|-----------|--------|-----|----------------|-----------|
-| C0 rules  | 0/28  | 0.209 | 0.699 | **0.322** | 23.3% | 7.0% |
-| C1 masked | 8/28  | 0.144 | 0.839 | 0.245 | 40.7% | 7.0% |
-| C2 named  | 6/23  | 0.117 | 0.622 | 0.196 | 24.5% | 4.6% |
+| Condition | hit@1 | Precision | Recall | F1 | Called TRIGGER | Benchmark | Lift over chance |
+|-----------|-------|-----------|--------|-----|----------------|-----------|------------------|
+| C0 rules  | 0/28  | 0.209 | 0.699 | **0.322** | 23.3% | 7.0% | **3.00** |
+| C1 masked | 8/28  | 0.144 | 0.839 | 0.245 | 40.7% | 7.0% | 2.06 |
+| C2 named  | 6/23  | 0.117 | 0.622 | 0.196 | 24.5% | 4.6% | 2.54 |
 
 **Every condition over-labels `TRIGGER` by three to six times.** The models
 locate the flawed call — recall is high — but cannot separate it from the setup
 that enabled it or the drain it caused. High recall with precision near 0.15 is
-a wide net, not discrimination. The rule baseline currently has the best F1.
+a wide net, not discrimination. The rule baseline currently has the best F1 and
+the best lift: **no model condition beats it yet.**
 
-This is why `hit@k` is never reported on its own here: a model that calls half a
-transaction a `TRIGGER` scores well on `hit@any` by volume alone.
+Two reporting rules this project follows as a result:
+
+- `hit@k` is never given on its own. A model that calls half a transaction a
+  `TRIGGER` scores well on `hit@any` by volume alone.
+- Precision is never compared across groups of different size without **lift
+  over chance** (precision divided by the rate random marking would achieve).
+  An earlier version of this analysis appeared to show performance collapsing on
+  large traces; once the base rate was divided out the effect vanished, because
+  the benchmark marks 23.1% of calls in a ten-call transaction and 2.8% in a
+  hundred-call one. Lift is flat across sizes, at roughly 1.4x to 4.3x.
 
 ## Using the tool
 
