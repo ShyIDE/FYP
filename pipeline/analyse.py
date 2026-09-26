@@ -10,7 +10,12 @@ cases, so it can be pointed at a fresh incident.
 
     python pipeline/analyse.py 0xc310a0af...b6111d
     python pipeline/analyse.py 0x24a68d2a...acdb --chain bsc
-    python pipeline/analyse.py 0x... --json out.json
+    python pipeline/analyse.py 0xaaa... 0xbbb... 0xccc...
+    python pipeline/analyse.py incidents.txt --json out.json
+
+Several transactions can be given at once, or a file with one hash per line
+(blank lines and lines starting with # are skipped). A transaction that fails
+is reported and the rest still run.
 
 What it does NOT do: tell you the transaction is an attack. It assumes you
 already believe that and are asking what happened inside it. Nor does it
@@ -40,7 +45,10 @@ def analyse_transaction(tx_hash: str, chain: str, condition: str) -> dict:
     """Replay, parse and label one transaction. Raises rather than guessing."""
     tx_hash = tx_hash.strip().lower()
     if not (tx_hash.startswith("0x") and len(tx_hash) == 66):
-        sys.exit(f"{tx_hash!r} is not a transaction hash (expected 0x + 64 hex digits)")
+        # Raised, not exited: in a batch one malformed hash must not discard
+        # the analyses that already succeeded.
+        raise ValueError(
+            f"{tx_hash!r} is not a transaction hash (expected 0x + 64 hex digits)")
 
     url = config.rpc_url(chain)
     cast = find_cast()
@@ -153,23 +161,55 @@ def print_report(result: dict) -> None:
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("tx_hash", help="the attack transaction to analyse")
+    ap.add_argument("tx_hash", nargs="+",
+                    help="one or more transactions, or a single file with one "
+                         "hash per line")
     ap.add_argument("--chain", default="eth", choices=sorted(config.RPC_ENV_BY_CHAIN),
-                    help="which chain the transaction is on (default eth)")
+                    help="which chain the transactions are on (default eth)")
     ap.add_argument("--condition", default="C3", choices=classify.CONDITIONS,
                     help="prompting condition (default C3, the best-informed one "
                          "that needs no ground truth about the victim)")
     ap.add_argument("--json", metavar="PATH", help="also write the full result as JSON")
     args = ap.parse_args()
 
-    result = analyse_transaction(args.tx_hash, args.chain, args.condition)
-    print_report(result)
+    from pathlib import Path
+
+    # A single argument naming a readable file is treated as a list of hashes,
+    # so a batch of incidents can be handed over in one go.
+    only = Path(args.tx_hash[0]) if len(args.tx_hash) == 1 else None
+    if only is not None and only.is_file():
+        hashes = [ln.strip() for ln in only.read_text(encoding="utf-8").splitlines()
+                  if ln.strip() and not ln.strip().startswith("#")]
+    else:
+        hashes = list(args.tx_hash)
+
+    results, failed = [], []
+    for i, tx in enumerate(hashes, 1):
+        if len(hashes) > 1:
+            print('\n========================================================================\n' + f"[{i}/{len(hashes)}] {tx}" + '\n========================================================================')
+        try:
+            result = analyse_transaction(tx, args.chain, args.condition)
+        except SystemExit:
+            raise
+        except Exception as exc:
+            # One bad transaction must not discard the analyses already done.
+            print(f"  FAILED: {exc}")
+            failed.append(tx)
+            continue
+        print_report(result)
+        results.append(result)
+
+    if len(hashes) > 1:
+        print('\n' + f"{len(results)} analysed, {len(failed)} failed "
+              + (str(failed) if failed else ""))
 
     if args.json:
-        from pathlib import Path
-        Path(args.json).write_text(json.dumps(result, indent=1, ensure_ascii=False),
+        payload = results[0] if len(results) == 1 else results
+        Path(args.json).write_text(json.dumps(payload, indent=1, ensure_ascii=False),
                                    encoding="utf-8")
-        print(f"\n  written: {args.json}")
+        print('\n  written: ' + args.json)
+    if failed:
+        sys.exit(1)
 
 
 if __name__ == "__main__":
