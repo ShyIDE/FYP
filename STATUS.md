@@ -165,6 +165,31 @@ success looks like, but do not generalise from it: the lift table shows tiny
 transactions are not systematically easier once the base rate is accounted for.
 `data/case_studies/` holds the generated material.
 
+## Finishing the condition ladder
+
+The ladder is run one condition at a time and each run is resumable, because
+the daily token limit will usually interrupt it.
+
+```bash
+python pipeline/classify.py --condition C3 --all --only-missing
+python pipeline/classify.py --condition C4 --all --only-missing
+python pipeline/classify.py --condition C5 --all --only-missing
+python pipeline/evaluate.py          # rewrites metrics.json and RESULTS.md
+python pipeline/case_studies.py      # rewrites the Chapter 5 material
+```
+
+`--only-missing` skips cases already in the output file, and results are merged
+into it rather than overwriting, so running the same command again the next day
+picks up exactly where the budget ran out. Nothing is lost by being cut off.
+
+Budget arithmetic, measured: a condition-run over 28 cases costs 75,000 to
+150,000 tokens against a 200,000 daily limit, so **roughly one and a half
+conditions fit in a day**. C4 and C5 carry few-shot examples and victim source
+in every request, so they cost more than C1 to C3.
+
+After any run, re-run `evaluate.py`. It marks which conditions cover all 28
+cases, and nothing incomplete should be compared against anything complete.
+
 ## What is blocked, and on what
 
 | Blocked | Needs |
