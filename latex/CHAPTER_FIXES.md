@@ -201,8 +201,11 @@ exploit repeated 42 times, C06 a three-call single-delegatecall exploit, and
 C27 a case whose replay could not be verified.
 
 Useful contrast for Chapter 5: on C06, condition C1 labels exactly one call
-TRIGGER and matches the benchmark exactly, while C0 labels two of three. The
-aggregate over-labelling is not uniform — it is a large-trace failure.
+TRIGGER and matches the benchmark exactly, while C0 labels two of three. **Do
+not** call this a large-trace failure: section E2's lift-over-chance analysis
+found no size trend once the benchmark's own falling base rate is divided out.
+Present C06 as one small case where a condition happened to match exactly, not
+as evidence that small traces are systematically easier.
 
 ### E4. The tool exists and should be described as a deliverable
 
@@ -213,3 +216,82 @@ benchmark cases. Chapter 4 or 7 should describe it as the artefact the study
 produced, and should repeat its own caveat: because the model over-labels
 TRIGGER, the tool presents that role as a shortlist to read rather than a
 verdict.
+
+## F. Added 2026-09-28. Three-role accuracy, and the Chapter 1 story
+
+### F1. Three-role accuracy now exists, for a reviewed subset only
+
+The author reviewed and confirmed all 76 calls that `draft_annotations.py`
+flagged as uncertain (see `data/annotation/review/check_rows_review.csv`).
+Each was classified with a written reason — 11 directly by the author, 65
+first classified by Claude from the full trace and then confirmed or corrected
+by the author — before being written into `sheet_draft.csv` as `reviewed=yes`.
+44 of the 76 differ from the original automatic draft.
+
+**Describe this annotation method plainly: AI-classified, author-reviewed.**
+It is not independent human annotation, and Cohen's kappa is still
+unavailable — there is one annotator, not two — so its absence stays a stated
+limitation. Do not describe the 76-row review as closing that gap.
+
+`data/predictions/RESULTS.md` has the numbers: accuracy with a 95% interval,
+macro-F1, essential-F1, per-role precision/recall and a confusion matrix per
+condition, all scored against these 76 rows. Two rules for using them:
+
+- **They are accuracy on the flagged subset, not overall accuracy.** These are
+  the 76 hardest calls in the corpus, drawn from only 9 transactions. Never
+  write "the classifier achieves N% accuracy" from these rows alone.
+- **Compare conditions only on the "Compared on the same calls" table** (63
+  calls every condition covers). On it: C0 0.25, C1 0.38, C2 0.29, C3 0.41, C4
+  0.37, C5 0.52. The ordering is not monotonic and the intervals overlap
+  heavily, so no ranking of conditions on three-role accuracy is established.
+  The one defensible observation: C5, given the victim's source, scores
+  highest on the calls the rules found hardest — consistent with, but not
+  proof of, the main ranking finding in section E2.
+
+### F2. The Chapter 1 story: what this project is actually an evolution of
+
+Chapter 1 currently has no framing connecting this project to FaultSeeker
+beyond citing it. Use this instead.
+
+**The motivating problem.** An analyst investigating a DeFi exploit manually
+traces the attack transaction call by call to work out what happened: what set
+the attack up, which call broke the protocol, and where the money went. This
+is slow, and it is the actual task FaultSeeker and this project both address.
+
+**What FaultSeeker does.** Given an attack transaction, it ranks which
+*function* was probably vulnerable — a single answer, not an account of the
+attack.
+
+**What this project does differently, not just more of the same.** It labels
+every call in the transaction with the job it did (PREPARATORY, TRIGGER,
+EXTRACTION) plus whether the attack needed it. That is a call-by-call
+narrative reconstruction, closer to what a human analyst actually produces,
+and a strictly harder problem than ranking one function.
+
+**The honest positioning, which must appear somewhere in Chapter 1 or the
+conclusion.** This is not a claim that manual analysis has been replaced.
+Measured precision on TRIGGER never exceeds 0.223 in any condition (section
+E2), so the tool's TRIGGER output is a shortlist an analyst still has to check,
+not an unattended verdict — `analyse.py` prints exactly that caveat next to its
+own output. Frame the contribution as: **information demonstrably improves
+where the AI ranks the true vulnerable call (hit@1 rises from 0% to 50%,
+section E2), but does not make it more selective (F1 stays flat, precision
+stays low, and the TRIGGER rate rises rather than falls with more context).**
+That is a specific, evidenced claim about what execution-trace context does and
+does not buy an LLM — a genuine research contribution distinct from "we built
+a tool" and defensible against "why not just use FaultSeeker."
+
+### F3. Suggested Future Work paragraph
+
+Something like this belongs in the conclusion, to turn the precision ceiling
+into forward motion rather than leave it as a bare limitation:
+
+Closing the gap between ranking and discrimination is the natural next step.
+Candidates worth naming: training or fine-tuning specifically to distinguish a
+TRIGGER call from its immediate PREPARATORY and EXTRACTION neighbours, rather
+than prompting a general model; a second pass that re-examines only the calls
+an initial pass marked TRIGGER, rather than judging the whole transaction at
+once; or combining the model's ranked shortlist with the kind of static
+analysis FaultSeeker already performs, using each to filter the other's false
+positives. None of these were tested here; they are proposed on the strength of
+where this study's own numbers say the difficulty actually sits.

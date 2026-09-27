@@ -16,8 +16,14 @@ files before writing anything:
    this message.** It states which conditions cover all 28 cases; never
    tabulate an incomplete condition against a complete one.
 2. **`STATUS.md`** — what may and may not be claimed, and why.
-3. **`latex/CHAPTER_FIXES.md`** — sections A to E, the corrections to apply in
+3. **`latex/CHAPTER_FIXES.md`** — sections A to F, the corrections to apply in
    Overleaf. **Sections A to C were never applied and are still outstanding.**
+   Section F is new: three-role accuracy, and the Chapter 1 story connecting
+   this project to FaultSeeker — read it before drafting Chapter 1.
+
+**Nothing further is running.** All six conditions are complete, the trace
+corpus is finished and verified, and the flagged-row review is done. What
+remains is entirely report writing.
 
 ## What the study found
 
@@ -51,6 +57,24 @@ Secondary points worth a paragraph each:
   PREPARATORY holds near 55%; the model reallocates into `TRIGGER` as it learns
   more.
 - **Agreement with the drafted labels plateaus at C3** (0.67, 0.70, 0.70, 0.69).
+
+## Three-role accuracy, on a reviewed subset
+
+The author reviewed and confirmed the 76 calls the drafting rules flagged as
+uncertain (11 answered directly, 65 first classified by Claude and then
+confirmed or corrected by the author; 44 differ from the original draft).
+`RESULTS.md` now has accuracy, macro-F1, per-role precision/recall and a
+confusion matrix scored against these rows.
+
+**Describe the method as AI-classified, author-reviewed — not independent
+human annotation.** Cohen's kappa is still unavailable.
+
+**These are accuracies on the 76 hardest calls from 9 transactions, not
+overall accuracy.** Compare conditions only on the "Compared on the same
+calls" table (63 shared calls): C0 0.25, C1 0.38, C2 0.29, C3 0.41, C4 0.37,
+C5 0.52. The ordering is not monotonic and the intervals overlap, so no
+ranking is established — the one defensible read is that C5 scores highest on
+the hardest calls, consistent with (not proof of) the main finding below.
 
 ## Three metric errors, which belong in the methodology
 
@@ -102,12 +126,18 @@ Each changed a conclusion. Reporting them is a strength, not an admission:
   because it comes from the ground truth. C3 reveals only the attacker and the
   attack contract, both readable from the transaction itself.
 
-## Still outstanding
+## Still outstanding — everything below is report writing, not experiments
 
 - Sections A to C of `latex/CHAPTER_FIXES.md` have never been applied.
 - C5 covers 26 of 28 cases. Two victim contracts have no verified source on
   Etherscan, so C5 is reported over 26 and the two exclusions are named. Do not
   compare C5's counts against the other conditions without saying so.
 - Chapter 1 still over-promises (multi-agent consensus, fine-tuning, a released
-  dataset) and still uses the name FAULTSEEKER and a "first system" claim. It
-  is rewritten last, against what was actually delivered.
+  dataset) and still uses the name FAULTSEEKER and a "first system" claim. Use
+  section F2 of `latex/CHAPTER_FIXES.md` for what to say instead: how this
+  project relates to FaultSeeker, and the honest scope of what was delivered
+  (a triage shortlist, not an unattended replacement for manual analysis).
+  Rewrite Chapter 1 last, once the results chapters are drafted.
+- A Future Work paragraph is suggested in section F3, turning the precision
+  ceiling into a forward-looking research direction rather than a bare
+  limitation.
