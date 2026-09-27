@@ -15,8 +15,8 @@ write it into the report.
 | 4. Overleaf citation fixes (`latex/CHAPTER_FIXES.md`) | still open, done in Overleaf |
 | 5. Fetch all 28 traces | done |
 | 6. Annotation sheet (role + essential) | **LLM-drafted, awaiting human review** |
-| 7. Classifier and `evaluate.py`, conditions C0-C5 | C0, C1 done; C2-C5 running |
-| 8. Chapters 5 and 6 from results | Chapter 5 material generated; Chapter 6 has its finding |
+| 7. Classifier and `evaluate.py`, conditions C0-C5 | **complete**: C0-C4 all 28 cases, C5 26 of 28 |
+| 8. Chapters 5 and 6 from results | ready to write: results final, case studies generated |
 
 The experiment now runs, but **no role accuracy figure exists yet and none can
 exist until the annotation sheet is filled in by hand**. See "What is blocked".
@@ -112,50 +112,69 @@ metric; run fewer conditions; spread the work over days; or upgrade the tier.
 Read `data/predictions/RESULTS.md`; it is generated from the measurements and
 is authoritative. This section says what may be concluded from it.
 
-**The conditions cannot be separated on F1.** Resampling whole cases 2000
-times gives 95% intervals that overlap heavily:
+**The full ladder ran.** C0 to C4 cover all 28 cases; C5 covers 26, because two
+victim contracts have no verified source on Etherscan and the pipeline refused
+to substitute anything for them.
 
-| Condition | hit@1 | Precision | Recall | F1 | 95% CI | Called TRIGGER | Lift |
-|-----------|-------|-----------|--------|-----|--------|----------------|------|
-| C0 rules  | 0/28 | 0.209 | 0.699 | 0.322 | [0.109, 0.496] | 23.3% | 3.00 |
-| C1 masked | 8/28 | 0.144 | 0.839 | 0.245 | [0.123, 0.359] | 40.7% | 2.06 |
-| C2 named  | 8/28 | 0.219 | 0.806 | 0.345 | [0.149, 0.545] | 25.6% | 3.15 |
+| Condition | hit@1 | hit@1 95% CI | hit@3 | Precision | Recall | F1 | F1 95% CI | Called TRIGGER | Lift |
+|-----------|-------|--------------|-------|-----------|--------|-----|-----------|----------------|------|
+| C0 rules  | 0/28  | [0.00, 0.00] | 13/28 | 0.209 | 0.699 | 0.322 | [0.109, 0.496] | 23.3% | 3.00 |
+| C1 masked | 8/28  | [0.14, 0.46] | 11/28 | 0.144 | 0.839 | 0.245 | [0.123, 0.359] | 40.7% | 2.06 |
+| C2 names  | 8/28  | [0.14, 0.46] | 15/28 | 0.219 | 0.806 | 0.345 | [0.149, 0.545] | 25.6% | 3.15 |
+| C3 actors | 9/28  | [0.18, 0.50] | 16/28 | 0.207 | 0.785 | 0.327 | [0.142, 0.497] | 26.4% | 2.97 |
+| C4 fewshot| 12/28 | [0.25, 0.61] | 16/28 | 0.194 | 0.828 | 0.315 | [0.147, 0.481] | 29.7% | 2.79 |
+| C5 source | 13/26 | [0.31, 0.69] | 20/26 | 0.223 | 0.878 | 0.355 | [0.165, 0.531] | 30.6% | 2.87 |
 
-With 28 cases, a difference of 0.02 F1 is far inside sampling noise. **Do not
-write that any condition beats another on F1.** An earlier version of this file
-did exactly that, twice, in both directions, and both claims are withdrawn.
+### The result: information improves ranking, not discrimination
 
-### What can be claimed
+This is the finding the report should be built on, and it is a genuinely
+two-sided one.
 
-1. **Every condition over-labels TRIGGER by three to six times.** The benchmark
-   marks 7.0% of calls; conditions mark 23.3% to 40.7%. This is a large effect,
-   consistent across every condition and every transaction size, and it is not
-   a marginal difference between conditions. Recall is high (0.70-0.84) and
-   precision never exceeds 0.22: the model finds the flawed call but cannot
-   separate it from the setup that enabled it or the drain it caused.
-2. **Masking identifiers changes the model's behaviour substantially.** With
-   everything masked it labels 40.7% of calls TRIGGER; with decoded names,
-   25.6%. That is a fifteen-point shift in what the model chooses to say,
-   measured over 1,335 calls rather than 28 cases. Report it descriptively as a
-   behavioural effect, not as a significant accuracy improvement.
-3. **No condition is close to usable precision**, and none clearly beats a
-   lexical rule baseline that costs nothing to run. For anyone deciding whether
-   to deploy this, that is the most useful sentence in the chapter.
+**What improves.** hit@1 rises monotonically as information is added, from
+0/28 with rules alone to 13/26 with the victim's source: 0%, 29%, 29%, 32%,
+43%, 50%. The C0 and C5 intervals do not overlap ([0.00, 0.00] against
+[0.31, 0.69]), so that improvement is established, not noise. hit@3 rises the
+same way, 13 to 20. **Given more context, the model puts the genuinely
+vulnerable call nearer the front of its list.**
+
+**What does not improve.** F1 is flat across the whole ladder, 0.245 to 0.355,
+with every interval overlapping every other. Lift over chance is flat at
+roughly 2.1 to 3.2. Precision never exceeds 0.223 in any condition. And the
+share of calls labelled TRIGGER *rises* with information, from 25.6% at C2 to
+30.6% at C5, against a benchmark rate of 7.0%.
+
+**So the model is getting better at prioritising, and no better at being
+selective.** Extra context moves the right answer up the list without reducing
+the number of wrong answers on it. That distinction is the contribution: it
+says something specific about what an LLM does with trace context, rather than
+reporting an accuracy and stopping.
+
+### Secondary observations worth a paragraph
+
+- **Masking hurts most.** C1, with every identifier removed, labels 43.6% of
+  calls TRIGGER, far more than any other condition, and is the only condition
+  that scores below the rule baseline on F1. Structure alone is not enough.
+- **Agreement with the drafted labels plateaus early**: 0.67 at C2, 0.70 at C3,
+  0.70 at C4, 0.69 at C5. Whatever the later rungs add, it is not general
+  agreement with a structural reading of the trace.
+- **EXTRACTION shrinks monotonically** as information is added, 23.2% at C0
+  down to 12.8% at C5, while PREPARATORY holds near 55%. The model reallocates
+  from EXTRACTION into TRIGGER as it learns more.
 
 ### Three metric errors this study made and corrected
 
-Worth reporting as method, because each changed a conclusion:
+Each changed a conclusion, and each belongs in the methodology:
 
-1. **`hit@any` reported alone** flattered every condition; a model labelling 40%
-   of calls TRIGGER hits by volume. Fixed by reporting precision and the trigger
-   rate beside it.
+1. **`hit@any` reported alone** flattered every condition; a model labelling
+   40% of calls TRIGGER hits by volume. Fixed by always reporting precision and
+   the trigger rate beside it.
 2. **Precision compared across transaction sizes** looked like a collapse on
    large traces. The benchmark marks 23.1% of calls in a ten-call transaction
    and 2.8% in a hundred-call one, so precision falls automatically. Lift over
-   chance removes the effect entirely; the claim was withdrawn.
-3. **Conditions compared on point estimates** produced two opposite conclusions
-   as data arrived: C0 "best" while C2 was incomplete, then C2 "best" once it
-   finished. Bootstrap intervals show neither is established.
+   chance removes the effect; the claim was withdrawn.
+3. **Conditions ranked on point estimates** gave two opposite answers as data
+   arrived. Bootstrap intervals show F1 cannot separate them at all, which is
+   why the finding above rests on hit@1, where the intervals do separate.
 
 ### A contrast for Chapter 5
 

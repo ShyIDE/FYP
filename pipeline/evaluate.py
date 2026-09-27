@@ -165,14 +165,21 @@ def bootstrap_f1(records, cases, iterations: int = 2000, seed: int = 20260926):
     if len(records) < 2:
         return None
     rng = random.Random(seed)
-    scores = []
+    scores, hits = [], []
     for _ in range(iterations):
         sample = [records[rng.randrange(len(records))] for _ in range(len(records))]
-        scores.append(trigger_metrics(sample, cases)["f1"])
+        m = trigger_metrics(sample, cases)
+        scores.append(m["f1"])
+        hits.append(m["hit@1"] / m["cases"] if m["cases"] else 0.0)
     scores.sort()
     lo = scores[int(0.025 * len(scores))]
     hi = scores[int(0.975 * len(scores)) - 1]
+    hits.sort()
+    hlo = hits[int(0.025 * len(hits))]
+    hhi = hits[int(0.975 * len(hits)) - 1]
     return {"f1_ci_low": round(lo, 3), "f1_ci_high": round(hi, 3),
+            "hit1_rate": round(sum(hits) / len(hits), 3),
+            "hit1_ci_low": round(hlo, 3), "hit1_ci_high": round(hhi, 3),
             "iterations": iterations}
 
 
@@ -492,7 +499,10 @@ def main() -> None:
         if ci:
             report["conditions"][cond]["f1_ci"] = ci
             f1 = report["conditions"][cond]["trigger"]["f1"]
-            print(f"  {cond}: F1 {f1:.3f}  95% CI [{ci['f1_ci_low']}, {ci['f1_ci_high']}]")
+            t = report["conditions"][cond]["trigger"]
+            print(f"  {cond}: F1 {f1:.3f} CI [{ci['f1_ci_low']}, {ci['f1_ci_high']}]   "
+                  f"hit@1 {t['hit@1']}/{t['cases']} = {ci['hit1_rate']:.3f} "
+                  f"CI [{ci['hit1_ci_low']}, {ci['hit1_ci_high']}]")
 
     kappa = annotator_agreement()
     report["annotator_agreement"] = kappa
@@ -584,13 +594,15 @@ def write_markdown(report, cases):
           "95% intervals for trigger F1, resampling whole cases 2000 times. Cases are",
           "the unit because calls inside one transaction are not independent. With 28",
           "cases, **overlapping intervals mean the difference is not established**.", "",
-          "| Condition | F1 | 95% CI |", "|---|---|---|"]
+          "| Condition | F1 | F1 95% CI | hit@1 rate | hit@1 95% CI |",
+          "|---|---|---|---|---|"]
     for cond in sorted(conds):
         ci = conds[cond].get("f1_ci")
         if ci:
-            L.append("| %s | %s | [%s, %s] |"
+            L.append("| %s | %s | [%s, %s] | %s | [%s, %s] |"
                      % (cond, conds[cond]["trigger"]["f1"],
-                        ci["f1_ci_low"], ci["f1_ci_high"]))
+                        ci["f1_ci_low"], ci["f1_ci_high"], ci["hit1_rate"],
+                        ci["hit1_ci_low"], ci["hit1_ci_high"]))
 
     if "role_distribution" in report:
         L += ["", "## What each condition chose to say", "",

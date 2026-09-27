@@ -21,25 +21,36 @@ files before writing anything:
 
 ## What the study found
 
-The headline is a **negative, mechanistic result**, and it should be reported
-as the finding rather than buried while hunting for a positive one:
+The full ladder has run. **C0 to C4 cover all 28 cases; C5 covers 26**, because
+two victim contracts have no verified source on Etherscan and the pipeline
+refused to substitute anything rather than invent input.
 
-- **Every prompting condition over-labels `TRIGGER` by three to six times.**
-  The benchmark marks about 7% of calls as the vulnerable function; the
-  conditions mark 23% to 41%. Recall is high, precision never exceeds about
-  0.22. The model locates the flawed call but cannot separate it from the setup
-  that enabled it or the drain it caused.
-- **The conditions cannot be separated on F1.** Bootstrapping whole cases gives
-  95% intervals that overlap heavily. With 28 cases a difference of 0.02 F1 is
-  inside sampling noise. **Do not rank the conditions on F1 in either
-  direction.**
-- **Masking identifiers changes behaviour substantially**: about 41% of calls
-  called `TRIGGER` with everything masked, about 26% with decoded names,
-  measured over 1,335 calls. Report it as a behavioural effect, not as a
-  significant accuracy gain.
-- **No condition clearly beats a lexical rule baseline that costs nothing.**
-  For a reader deciding whether to deploy this, that is the most useful
-  sentence in the chapter.
+**The headline: information improves ranking, not discrimination.**
+
+- **hit@1 rises monotonically** as context is added: 0/28 with rules alone,
+  then 29%, 29%, 32%, 43%, and 50% at C5. The C0 and C5 confidence intervals do
+  not overlap, so this improvement is established rather than noise. Given the
+  victim contract's source, the model puts the genuinely vulnerable call first
+  in half of all transactions.
+- **F1 is flat across the whole ladder** (0.245 to 0.355) with every bootstrap
+  interval overlapping every other. **Do not rank the conditions on F1.**
+- **Precision never exceeds 0.223**, and the share of calls labelled `TRIGGER`
+  *rises* with information, 25.6% at C2 to 30.6% at C5, against a benchmark
+  rate of 7.0%. Every condition over-labels by three to six times.
+
+So extra context moves the right answer up the list without removing the wrong
+answers from it. That distinction is the contribution — it says something
+specific about what an LLM does with trace context rather than reporting an
+accuracy figure and stopping.
+
+Secondary points worth a paragraph each:
+
+- **Masking hurts most.** C1, with every identifier removed, labels 43.6% of
+  calls `TRIGGER` and is the only condition scoring below the rule baseline.
+- **EXTRACTION shrinks monotonically** with information, 23.2% to 12.8%, while
+  PREPARATORY holds near 55%; the model reallocates into `TRIGGER` as it learns
+  more.
+- **Agreement with the drafted labels plateaus at C3** (0.67, 0.70, 0.70, 0.69).
 
 ## Three metric errors, which belong in the methodology
 

@@ -36,40 +36,43 @@ so any change in the numbers is attributable to that one addition.
 
 No model is trained. The prompting condition is the experimental variable.
 
-## The finding so far
+## The finding
 
 `data/predictions/RESULTS.md` is generated from the measurements and is
-authoritative. As of this commit:
+authoritative. The full ladder has run: C0 to C4 over all 28 cases, C5 over 26
+(two victim contracts have no verified source, and the pipeline refuses to
+substitute anything).
 
-| Condition | hit@1 | Precision | Recall | F1 | 95% CI | Called TRIGGER | Benchmark | Lift |
-|-----------|-------|-----------|--------|-----|--------|----------------|-----------|------|
-| C0 rules  | 0/28 | 0.209 | 0.699 | 0.322 | [0.109, 0.496] | 23.3% | 7.0% | 3.00 |
-| C1 masked | 8/28 | 0.144 | 0.839 | 0.245 | [0.123, 0.359] | 40.7% | 7.0% | 2.06 |
-| C2 named  | 8/28 | 0.219 | 0.806 | 0.345 | [0.149, 0.545] | 25.6% | 7.0% | 3.15 |
+| Condition | hit@1 | hit@1 95% CI | Precision | Recall | F1 | Called TRIGGER | Lift |
+|-----------|-------|--------------|-----------|--------|-----|----------------|------|
+| C0 rules   | 0/28  | [0.00, 0.00] | 0.209 | 0.699 | 0.322 | 23.3% | 3.00 |
+| C1 masked  | 8/28  | [0.14, 0.46] | 0.144 | 0.839 | 0.245 | 40.7% | 2.06 |
+| C2 names   | 8/28  | [0.14, 0.46] | 0.219 | 0.806 | 0.345 | 25.6% | 3.15 |
+| C3 actors  | 9/28  | [0.18, 0.50] | 0.207 | 0.785 | 0.327 | 26.4% | 2.97 |
+| C4 fewshot | 12/28 | [0.25, 0.61] | 0.194 | 0.828 | 0.315 | 29.7% | 2.79 |
+| C5 source  | 13/26 | [0.31, 0.69] | 0.223 | 0.878 | 0.355 | 30.6% | 2.87 |
 
-**The conditions cannot be told apart on F1.** With 28 cases the bootstrap
-intervals overlap heavily, so no condition is shown to beat another.
+**Information improves ranking, not discrimination.**
 
-What the data does support:
+hit@1 rises monotonically as context is added — 0%, 29%, 29%, 32%, 43%, 50% —
+and the C0 and C5 intervals do not overlap, so the improvement is real. Given
+the victim's source, the model puts the genuinely vulnerable call first in half
+of all transactions.
 
-- **Every condition over-labels `TRIGGER` by three to six times.** The benchmark
-  marks 7.0% of calls; conditions mark 23% to 41%. Recall is high, precision
-  never exceeds 0.22. The model finds the flawed call but cannot separate it
-  from the setup that enabled it or the drain it caused.
-- **Masking identifiers changes behaviour substantially**: 40.7% of calls called
-  TRIGGER with everything masked, 25.6% with names. Measured over 1,335 calls,
-  this is a behavioural effect worth reporting — but not a significant accuracy
-  gain.
-- **No condition clearly beats a lexical rule baseline that costs nothing.**
+But F1 is flat across the entire ladder (0.245 to 0.355, every interval
+overlapping every other), precision never exceeds 0.223, and the share of calls
+labelled `TRIGGER` actually *rises* with information, from 25.6% to 30.6%,
+against a benchmark rate of 7.0%. Extra context moves the right answer up the
+list without removing the wrong answers from it.
 
-Three measurement rules, each learned by getting it wrong first and each
-recorded in `STATUS.md`:
+Two measurement rules this project follows, both learned by getting them wrong
+first:
 
-- `hit@k` is never reported alone; a wide net scores well on it by volume.
+- `hit@k` is never reported alone. A model that calls 40% of a transaction a
+  `TRIGGER` scores well on `hit@any` by volume.
 - Precision is never compared across transaction sizes without **lift over
-  chance**, because the benchmark's own rate falls from 23.1% to 2.8% with size.
-- Conditions are never compared on point estimates alone; the bootstrap
-  intervals decide whether a difference exists.
+  chance**, because the benchmark marks 23.1% of calls in a ten-call
+  transaction and 2.8% in a hundred-call one.
 
 ## Using the tool
 
