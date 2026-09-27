@@ -32,46 +32,90 @@
     "seconds": 0.0
    },
    "run_agreement": {},
-   "scored": null,
-   "provisional_vs_draft": {
-    "scored_calls": 1335,
-    "accuracy": 0.666,
-    "macro_f1": 0.585,
+   "scored": {
+    "scored_calls": 76,
+    "accuracy": 0.329,
+    "macro_f1": 0.279,
     "per_role": {
      "PREPARATORY": {
-      "support": 831,
-      "precision": 0.873,
-      "recall": 0.747,
-      "f1": 0.805
+      "support": 39,
+      "precision": 0.423,
+      "recall": 0.282,
+      "f1": 0.338
      },
      "TRIGGER": {
-      "support": 262,
-      "precision": 0.469,
-      "recall": 0.557,
-      "f1": 0.51
+      "support": 18,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
      },
      "EXTRACTION": {
-      "support": 242,
-      "precision": 0.39,
-      "recall": 0.504,
-      "f1": 0.44
+      "support": 19,
+      "precision": 0.378,
+      "recall": 0.737,
+      "f1": 0.5
      }
     },
     "confusion": {
-     "EXTRACTION->EXTRACTION": 122,
-     "EXTRACTION->PREPARATORY": 51,
-     "EXTRACTION->TRIGGER": 69,
-     "PREPARATORY->EXTRACTION": 114,
-     "PREPARATORY->PREPARATORY": 621,
-     "PREPARATORY->TRIGGER": 96,
-     "TRIGGER->EXTRACTION": 77,
-     "TRIGGER->PREPARATORY": 39,
+     "EXTRACTION->EXTRACTION": 14,
+     "EXTRACTION->PREPARATORY": 1,
+     "EXTRACTION->TRIGGER": 4,
+     "PREPARATORY->EXTRACTION": 19,
+     "PREPARATORY->PREPARATORY": 11,
+     "PREPARATORY->TRIGGER": 9,
+     "TRIGGER->EXTRACTION": 4,
+     "TRIGGER->PREPARATORY": 14
+    },
+    "essential": {
+     "precision": 0.879,
+     "recall": 0.785,
+     "f1": 0.829
+    },
+    "accuracy_ci": {
+     "low": 0.071,
+     "high": 0.496
+    },
+    "cases": 9
+   },
+   "provisional_vs_draft": {
+    "scored_calls": 1335,
+    "accuracy": 0.665,
+    "macro_f1": 0.591,
+    "per_role": {
+     "PREPARATORY": {
+      "support": 794,
+      "precision": 0.852,
+      "recall": 0.763,
+      "f1": 0.805
+     },
+     "TRIGGER": {
+      "support": 280,
+      "precision": 0.469,
+      "recall": 0.521,
+      "f1": 0.494
+     },
+     "EXTRACTION": {
+      "support": 261,
+      "precision": 0.435,
+      "recall": 0.521,
+      "f1": 0.474
+     }
+    },
+    "confusion": {
+     "EXTRACTION->EXTRACTION": 136,
+     "EXTRACTION->PREPARATORY": 52,
+     "EXTRACTION->TRIGGER": 73,
+     "PREPARATORY->EXTRACTION": 96,
+     "PREPARATORY->PREPARATORY": 606,
+     "PREPARATORY->TRIGGER": 92,
+     "TRIGGER->EXTRACTION": 81,
+     "TRIGGER->PREPARATORY": 53,
      "TRIGGER->TRIGGER": 146
     },
     "essential": {
-     "precision": 1.0,
-     "recall": 1.0,
-     "f1": 1.0
+     "precision": 0.992,
+     "recall": 0.983,
+     "f1": 0.987
     }
    },
    "by_size": {
@@ -240,46 +284,91 @@
     "seconds": 1812.6
    },
    "run_agreement": {},
-   "scored": null,
-   "provisional_vs_draft": {
-    "scored_calls": 1335,
-    "accuracy": 0.578,
-    "macro_f1": 0.535,
+   "scored": {
+    "scored_calls": 76,
+    "accuracy": 0.329,
+    "macro_f1": 0.294,
     "per_role": {
      "PREPARATORY": {
-      "support": 831,
-      "precision": 0.818,
-      "recall": 0.584,
-      "f1": 0.681
+      "support": 39,
+      "precision": 0.542,
+      "recall": 0.333,
+      "f1": 0.413
      },
      "TRIGGER": {
-      "support": 262,
-      "precision": 0.339,
-      "recall": 0.702,
-      "f1": 0.457
+      "support": 18,
+      "precision": 0.233,
+      "recall": 0.556,
+      "f1": 0.328
      },
      "EXTRACTION": {
-      "support": 242,
-      "precision": 0.518,
-      "recall": 0.426,
-      "f1": 0.467
+      "support": 19,
+      "precision": 0.222,
+      "recall": 0.105,
+      "f1": 0.143
      }
     },
     "confusion": {
-     "EXTRACTION->EXTRACTION": 103,
-     "EXTRACTION->PREPARATORY": 66,
-     "EXTRACTION->TRIGGER": 73,
-     "PREPARATORY->EXTRACTION": 60,
-     "PREPARATORY->PREPARATORY": 485,
-     "PREPARATORY->TRIGGER": 286,
-     "TRIGGER->EXTRACTION": 36,
-     "TRIGGER->PREPARATORY": 42,
-     "TRIGGER->TRIGGER": 184
+     "EXTRACTION->EXTRACTION": 2,
+     "EXTRACTION->PREPARATORY": 9,
+     "EXTRACTION->TRIGGER": 8,
+     "PREPARATORY->EXTRACTION": 1,
+     "PREPARATORY->PREPARATORY": 13,
+     "PREPARATORY->TRIGGER": 25,
+     "TRIGGER->EXTRACTION": 6,
+     "TRIGGER->PREPARATORY": 2,
+     "TRIGGER->TRIGGER": 10
     },
     "essential": {
-     "precision": 0.831,
+     "precision": 0.962,
+     "recall": 0.785,
+     "f1": 0.864
+    },
+    "accuracy_ci": {
+     "low": 0.145,
+     "high": 0.633
+    },
+    "cases": 9
+   },
+   "provisional_vs_draft": {
+    "scored_calls": 1335,
+    "accuracy": 0.579,
+    "macro_f1": 0.537,
+    "per_role": {
+     "PREPARATORY": {
+      "support": 794,
+      "precision": 0.799,
+      "recall": 0.597,
+      "f1": 0.683
+     },
+     "TRIGGER": {
+      "support": 280,
+      "precision": 0.357,
+      "recall": 0.693,
+      "f1": 0.471
+     },
+     "EXTRACTION": {
+      "support": 261,
+      "precision": 0.528,
+      "recall": 0.402,
+      "f1": 0.457
+     }
+    },
+    "confusion": {
+     "EXTRACTION->EXTRACTION": 105,
+     "EXTRACTION->PREPARATORY": 75,
+     "EXTRACTION->TRIGGER": 81,
+     "PREPARATORY->EXTRACTION": 52,
+     "PREPARATORY->PREPARATORY": 474,
+     "PREPARATORY->TRIGGER": 268,
+     "TRIGGER->EXTRACTION": 42,
+     "TRIGGER->PREPARATORY": 44,
+     "TRIGGER->TRIGGER": 194
+    },
+    "essential": {
+     "precision": 0.838,
      "recall": 0.828,
-     "f1": 0.829
+     "f1": 0.833
     }
    },
    "by_size": {
@@ -448,46 +537,90 @@
     "seconds": 1840.1
    },
    "run_agreement": {},
-   "scored": null,
-   "provisional_vs_draft": {
-    "scored_calls": 1335,
-    "accuracy": 0.67,
-    "macro_f1": 0.595,
+   "scored": {
+    "scored_calls": 76,
+    "accuracy": 0.329,
+    "macro_f1": 0.252,
     "per_role": {
      "PREPARATORY": {
-      "support": 831,
-      "precision": 0.82,
-      "recall": 0.756,
-      "f1": 0.786
+      "support": 39,
+      "precision": 0.583,
+      "recall": 0.538,
+      "f1": 0.56
      },
      "TRIGGER": {
-      "support": 262,
-      "precision": 0.415,
-      "recall": 0.542,
-      "f1": 0.47
+      "support": 18,
+      "precision": 0.091,
+      "recall": 0.167,
+      "f1": 0.118
      },
      "EXTRACTION": {
-      "support": 242,
-      "precision": 0.546,
-      "recall": 0.512,
-      "f1": 0.529
+      "support": 19,
+      "precision": 0.143,
+      "recall": 0.053,
+      "f1": 0.077
      }
     },
     "confusion": {
-     "EXTRACTION->EXTRACTION": 124,
-     "EXTRACTION->PREPARATORY": 67,
-     "EXTRACTION->TRIGGER": 51,
-     "PREPARATORY->EXTRACTION": 54,
-     "PREPARATORY->PREPARATORY": 628,
-     "PREPARATORY->TRIGGER": 149,
-     "TRIGGER->EXTRACTION": 49,
-     "TRIGGER->PREPARATORY": 71,
-     "TRIGGER->TRIGGER": 142
+     "EXTRACTION->EXTRACTION": 1,
+     "EXTRACTION->PREPARATORY": 6,
+     "EXTRACTION->TRIGGER": 12,
+     "PREPARATORY->PREPARATORY": 21,
+     "PREPARATORY->TRIGGER": 18,
+     "TRIGGER->EXTRACTION": 6,
+     "TRIGGER->PREPARATORY": 9,
+     "TRIGGER->TRIGGER": 3
     },
     "essential": {
-     "precision": 0.93,
-     "recall": 0.811,
-     "f1": 0.866
+     "precision": 0.898,
+     "recall": 0.677,
+     "f1": 0.772
+    },
+    "accuracy_ci": {
+     "low": 0.147,
+     "high": 0.512
+    },
+    "cases": 9
+   },
+   "provisional_vs_draft": {
+    "scored_calls": 1335,
+    "accuracy": 0.661,
+    "macro_f1": 0.588,
+    "per_role": {
+     "PREPARATORY": {
+      "support": 794,
+      "precision": 0.8,
+      "recall": 0.772,
+      "f1": 0.786
+     },
+     "TRIGGER": {
+      "support": 280,
+      "precision": 0.424,
+      "recall": 0.518,
+      "f1": 0.466
+     },
+     "EXTRACTION": {
+      "support": 261,
+      "precision": 0.551,
+      "recall": 0.479,
+      "f1": 0.512
+     }
+    },
+    "confusion": {
+     "EXTRACTION->EXTRACTION": 125,
+     "EXTRACTION->PREPARATORY": 73,
+     "EXTRACTION->TRIGGER": 63,
+     "PREPARATORY->EXTRACTION": 47,
+     "PREPARATORY->PREPARATORY": 613,
+     "PREPARATORY->TRIGGER": 134,
+     "TRIGGER->EXTRACTION": 55,
+     "TRIGGER->PREPARATORY": 80,
+     "TRIGGER->TRIGGER": 145
+    },
+    "essential": {
+     "precision": 0.925,
+     "recall": 0.799,
+     "f1": 0.857
     }
    },
    "by_size": {
@@ -656,46 +789,90 @@
     "seconds": 1419.2
    },
    "run_agreement": {},
-   "scored": null,
-   "provisional_vs_draft": {
-    "scored_calls": 1335,
-    "accuracy": 0.695,
-    "macro_f1": 0.629,
+   "scored": {
+    "scored_calls": 76,
+    "accuracy": 0.421,
+    "macro_f1": 0.345,
     "per_role": {
      "PREPARATORY": {
-      "support": 831,
-      "precision": 0.818,
-      "recall": 0.771,
-      "f1": 0.794
+      "support": 39,
+      "precision": 0.575,
+      "recall": 0.59,
+      "f1": 0.582
      },
      "TRIGGER": {
-      "support": 262,
-      "precision": 0.462,
-      "recall": 0.622,
-      "f1": 0.53
+      "support": 18,
+      "precision": 0.219,
+      "recall": 0.389,
+      "f1": 0.28
      },
      "EXTRACTION": {
-      "support": 242,
-      "precision": 0.626,
-      "recall": 0.512,
-      "f1": 0.564
+      "support": 19,
+      "precision": 0.5,
+      "recall": 0.105,
+      "f1": 0.174
      }
     },
     "confusion": {
-     "EXTRACTION->EXTRACTION": 124,
-     "EXTRACTION->PREPARATORY": 71,
-     "EXTRACTION->TRIGGER": 47,
-     "PREPARATORY->EXTRACTION": 47,
-     "PREPARATORY->PREPARATORY": 641,
-     "PREPARATORY->TRIGGER": 143,
-     "TRIGGER->EXTRACTION": 27,
-     "TRIGGER->PREPARATORY": 72,
-     "TRIGGER->TRIGGER": 163
+     "EXTRACTION->EXTRACTION": 2,
+     "EXTRACTION->PREPARATORY": 6,
+     "EXTRACTION->TRIGGER": 11,
+     "PREPARATORY->EXTRACTION": 2,
+     "PREPARATORY->PREPARATORY": 23,
+     "PREPARATORY->TRIGGER": 14,
+     "TRIGGER->PREPARATORY": 11,
+     "TRIGGER->TRIGGER": 7
     },
     "essential": {
-     "precision": 0.927,
-     "recall": 0.816,
-     "f1": 0.868
+     "precision": 0.926,
+     "recall": 0.769,
+     "f1": 0.84
+    },
+    "accuracy_ci": {
+     "low": 0.227,
+     "high": 0.681
+    },
+    "cases": 9
+   },
+   "provisional_vs_draft": {
+    "scored_calls": 1335,
+    "accuracy": 0.689,
+    "macro_f1": 0.626,
+    "per_role": {
+     "PREPARATORY": {
+      "support": 794,
+      "precision": 0.796,
+      "recall": 0.786,
+      "f1": 0.791
+     },
+     "TRIGGER": {
+      "support": 280,
+      "precision": 0.482,
+      "recall": 0.607,
+      "f1": 0.537
+     },
+     "EXTRACTION": {
+      "support": 261,
+      "precision": 0.636,
+      "recall": 0.483,
+      "f1": 0.549
+     }
+    },
+    "confusion": {
+     "EXTRACTION->EXTRACTION": 126,
+     "EXTRACTION->PREPARATORY": 77,
+     "EXTRACTION->TRIGGER": 58,
+     "PREPARATORY->EXTRACTION": 45,
+     "PREPARATORY->PREPARATORY": 624,
+     "PREPARATORY->TRIGGER": 125,
+     "TRIGGER->EXTRACTION": 27,
+     "TRIGGER->PREPARATORY": 83,
+     "TRIGGER->TRIGGER": 170
+    },
+    "essential": {
+     "precision": 0.93,
+     "recall": 0.811,
+     "f1": 0.866
     }
    },
    "by_size": {
@@ -864,46 +1041,89 @@
     "seconds": 77.5
    },
    "run_agreement": {},
-   "scored": null,
-   "provisional_vs_draft": {
-    "scored_calls": 1335,
-    "accuracy": 0.696,
-    "macro_f1": 0.647,
+   "scored": {
+    "scored_calls": 76,
+    "accuracy": 0.447,
+    "macro_f1": 0.414,
     "per_role": {
      "PREPARATORY": {
-      "support": 831,
-      "precision": 0.82,
-      "recall": 0.741,
-      "f1": 0.779
+      "support": 39,
+      "precision": 0.583,
+      "recall": 0.538,
+      "f1": 0.56
      },
      "TRIGGER": {
-      "support": 262,
-      "precision": 0.462,
-      "recall": 0.698,
-      "f1": 0.556
+      "support": 18,
+      "precision": 0.25,
+      "recall": 0.5,
+      "f1": 0.333
      },
      "EXTRACTION": {
-      "support": 242,
-      "precision": 0.691,
-      "recall": 0.537,
-      "f1": 0.605
+      "support": 19,
+      "precision": 1.0,
+      "recall": 0.211,
+      "f1": 0.348
      }
     },
     "confusion": {
-     "EXTRACTION->EXTRACTION": 130,
-     "EXTRACTION->PREPARATORY": 74,
-     "EXTRACTION->TRIGGER": 38,
-     "PREPARATORY->EXTRACTION": 40,
-     "PREPARATORY->PREPARATORY": 616,
-     "PREPARATORY->TRIGGER": 175,
-     "TRIGGER->EXTRACTION": 18,
-     "TRIGGER->PREPARATORY": 61,
-     "TRIGGER->TRIGGER": 183
+     "EXTRACTION->EXTRACTION": 4,
+     "EXTRACTION->PREPARATORY": 6,
+     "EXTRACTION->TRIGGER": 9,
+     "PREPARATORY->PREPARATORY": 21,
+     "PREPARATORY->TRIGGER": 18,
+     "TRIGGER->PREPARATORY": 9,
+     "TRIGGER->TRIGGER": 9
     },
     "essential": {
-     "precision": 0.95,
-     "recall": 0.826,
-     "f1": 0.884
+     "precision": 0.926,
+     "recall": 0.769,
+     "f1": 0.84
+    },
+    "accuracy_ci": {
+     "low": 0.214,
+     "high": 0.755
+    },
+    "cases": 9
+   },
+   "provisional_vs_draft": {
+    "scored_calls": 1335,
+    "accuracy": 0.694,
+    "macro_f1": 0.648,
+    "per_role": {
+     "PREPARATORY": {
+      "support": 794,
+      "precision": 0.8,
+      "recall": 0.757,
+      "f1": 0.778
+     },
+     "TRIGGER": {
+      "support": 280,
+      "precision": 0.485,
+      "recall": 0.686,
+      "f1": 0.568
+     },
+     "EXTRACTION": {
+      "support": 261,
+      "precision": 0.713,
+      "recall": 0.513,
+      "f1": 0.597
+     }
+    },
+    "confusion": {
+     "EXTRACTION->EXTRACTION": 134,
+     "EXTRACTION->PREPARATORY": 80,
+     "EXTRACTION->TRIGGER": 47,
+     "PREPARATORY->EXTRACTION": 36,
+     "PREPARATORY->PREPARATORY": 601,
+     "PREPARATORY->TRIGGER": 157,
+     "TRIGGER->EXTRACTION": 18,
+     "TRIGGER->PREPARATORY": 70,
+     "TRIGGER->TRIGGER": 192
+    },
+    "essential": {
+     "precision": 0.953,
+     "recall": 0.822,
+     "f1": 0.882
     }
    },
    "by_size": {
@@ -1072,46 +1292,90 @@
     "seconds": 71.2
    },
    "run_agreement": {},
-   "scored": null,
-   "provisional_vs_draft": {
-    "scored_calls": 1161,
-    "accuracy": 0.694,
-    "macro_f1": 0.644,
+   "scored": {
+    "scored_calls": 63,
+    "accuracy": 0.524,
+    "macro_f1": 0.446,
     "per_role": {
      "PREPARATORY": {
-      "support": 701,
-      "precision": 0.807,
-      "recall": 0.756,
-      "f1": 0.781
+      "support": 32,
+      "precision": 0.677,
+      "recall": 0.656,
+      "f1": 0.667
      },
      "TRIGGER": {
-      "support": 253,
-      "precision": 0.482,
-      "recall": 0.676,
-      "f1": 0.563
+      "support": 18,
+      "precision": 0.357,
+      "recall": 0.556,
+      "f1": 0.435
      },
      "EXTRACTION": {
-      "support": 207,
-      "precision": 0.705,
-      "recall": 0.507,
-      "f1": 0.59
+      "support": 13,
+      "precision": 0.5,
+      "recall": 0.154,
+      "f1": 0.235
      }
     },
     "confusion": {
-     "EXTRACTION->EXTRACTION": 105,
-     "EXTRACTION->PREPARATORY": 64,
-     "EXTRACTION->TRIGGER": 38,
-     "PREPARATORY->EXTRACTION": 25,
-     "PREPARATORY->PREPARATORY": 530,
-     "PREPARATORY->TRIGGER": 146,
-     "TRIGGER->EXTRACTION": 19,
-     "TRIGGER->PREPARATORY": 63,
-     "TRIGGER->TRIGGER": 171
+     "EXTRACTION->EXTRACTION": 2,
+     "EXTRACTION->PREPARATORY": 2,
+     "EXTRACTION->TRIGGER": 9,
+     "PREPARATORY->EXTRACTION": 2,
+     "PREPARATORY->PREPARATORY": 21,
+     "PREPARATORY->TRIGGER": 9,
+     "TRIGGER->PREPARATORY": 8,
+     "TRIGGER->TRIGGER": 10
     },
     "essential": {
-     "precision": 0.942,
-     "recall": 0.826,
-     "f1": 0.88
+     "precision": 0.95,
+     "recall": 0.717,
+     "f1": 0.817
+    },
+    "accuracy_ci": {
+     "low": 0.319,
+     "high": 0.833
+    },
+    "cases": 8
+   },
+   "provisional_vs_draft": {
+    "scored_calls": 1161,
+    "accuracy": 0.696,
+    "macro_f1": 0.647,
+    "per_role": {
+     "PREPARATORY": {
+      "support": 670,
+      "precision": 0.791,
+      "recall": 0.776,
+      "f1": 0.784
+     },
+     "TRIGGER": {
+      "support": 271,
+      "precision": 0.51,
+      "recall": 0.668,
+      "f1": 0.578
+     },
+     "EXTRACTION": {
+      "support": 220,
+      "precision": 0.718,
+      "recall": 0.486,
+      "f1": 0.58
+     }
+    },
+    "confusion": {
+     "EXTRACTION->EXTRACTION": 107,
+     "EXTRACTION->PREPARATORY": 66,
+     "EXTRACTION->TRIGGER": 47,
+     "PREPARATORY->EXTRACTION": 23,
+     "PREPARATORY->PREPARATORY": 520,
+     "PREPARATORY->TRIGGER": 127,
+     "TRIGGER->EXTRACTION": 19,
+     "TRIGGER->PREPARATORY": 71,
+     "TRIGGER->TRIGGER": 181
+    },
+    "essential": {
+     "precision": 0.948,
+     "recall": 0.822,
+     "f1": 0.881
     }
    },
    "by_size": {
@@ -1249,7 +1513,250 @@
    }
   }
  },
- "gold_labels_available": 0,
+ "gold_labels_available": 76,
+ "gold_common": {
+  "calls": 63,
+  "scores": {
+   "C0": {
+    "scored_calls": 63,
+    "accuracy": 0.254,
+    "macro_f1": 0.226,
+    "per_role": {
+     "PREPARATORY": {
+      "support": 32,
+      "precision": 0.318,
+      "recall": 0.219,
+      "f1": 0.259
+     },
+     "TRIGGER": {
+      "support": 18,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+     },
+     "EXTRACTION": {
+      "support": 13,
+      "precision": 0.3,
+      "recall": 0.692,
+      "f1": 0.419
+     }
+    },
+    "confusion": {
+     "EXTRACTION->EXTRACTION": 9,
+     "EXTRACTION->PREPARATORY": 1,
+     "EXTRACTION->TRIGGER": 3,
+     "PREPARATORY->EXTRACTION": 17,
+     "PREPARATORY->PREPARATORY": 7,
+     "PREPARATORY->TRIGGER": 8,
+     "TRIGGER->EXTRACTION": 4,
+     "TRIGGER->PREPARATORY": 14
+    },
+    "essential": {
+     "precision": 0.867,
+     "recall": 0.736,
+     "f1": 0.796
+    }
+   },
+   "C1": {
+    "scored_calls": 63,
+    "accuracy": 0.381,
+    "macro_f1": 0.345,
+    "per_role": {
+     "PREPARATORY": {
+      "support": 32,
+      "precision": 0.706,
+      "recall": 0.375,
+      "f1": 0.49
+     },
+     "TRIGGER": {
+      "support": 18,
+      "precision": 0.27,
+      "recall": 0.556,
+      "f1": 0.364
+     },
+     "EXTRACTION": {
+      "support": 13,
+      "precision": 0.222,
+      "recall": 0.154,
+      "f1": 0.182
+     }
+    },
+    "confusion": {
+     "EXTRACTION->EXTRACTION": 2,
+     "EXTRACTION->PREPARATORY": 3,
+     "EXTRACTION->TRIGGER": 8,
+     "PREPARATORY->EXTRACTION": 1,
+     "PREPARATORY->PREPARATORY": 12,
+     "PREPARATORY->TRIGGER": 19,
+     "TRIGGER->EXTRACTION": 6,
+     "TRIGGER->PREPARATORY": 2,
+     "TRIGGER->TRIGGER": 10
+    },
+    "essential": {
+     "precision": 0.951,
+     "recall": 0.736,
+     "f1": 0.83
+    }
+   },
+   "C2": {
+    "scored_calls": 63,
+    "accuracy": 0.286,
+    "macro_f1": 0.206,
+    "per_role": {
+     "PREPARATORY": {
+      "support": 32,
+      "precision": 0.5,
+      "recall": 0.469,
+      "f1": 0.484
+     },
+     "TRIGGER": {
+      "support": 18,
+      "precision": 0.111,
+      "recall": 0.167,
+      "f1": 0.133
+     },
+     "EXTRACTION": {
+      "support": 13,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+     }
+    },
+    "confusion": {
+     "EXTRACTION->PREPARATORY": 6,
+     "EXTRACTION->TRIGGER": 7,
+     "PREPARATORY->PREPARATORY": 15,
+     "PREPARATORY->TRIGGER": 17,
+     "TRIGGER->EXTRACTION": 6,
+     "TRIGGER->PREPARATORY": 9,
+     "TRIGGER->TRIGGER": 3
+    },
+    "essential": {
+     "precision": 0.865,
+     "recall": 0.604,
+     "f1": 0.711
+    }
+   },
+   "C3": {
+    "scored_calls": 63,
+    "accuracy": 0.413,
+    "macro_f1": 0.359,
+    "per_role": {
+     "PREPARATORY": {
+      "support": 32,
+      "precision": 0.5,
+      "recall": 0.531,
+      "f1": 0.515
+     },
+     "TRIGGER": {
+      "support": 18,
+      "precision": 0.28,
+      "recall": 0.389,
+      "f1": 0.326
+     },
+     "EXTRACTION": {
+      "support": 13,
+      "precision": 0.5,
+      "recall": 0.154,
+      "f1": 0.235
+     }
+    },
+    "confusion": {
+     "EXTRACTION->EXTRACTION": 2,
+     "EXTRACTION->PREPARATORY": 6,
+     "EXTRACTION->TRIGGER": 5,
+     "PREPARATORY->EXTRACTION": 2,
+     "PREPARATORY->PREPARATORY": 17,
+     "PREPARATORY->TRIGGER": 13,
+     "TRIGGER->PREPARATORY": 11,
+     "TRIGGER->TRIGGER": 7
+    },
+    "essential": {
+     "precision": 0.905,
+     "recall": 0.717,
+     "f1": 0.8
+    }
+   },
+   "C4": {
+    "scored_calls": 63,
+    "accuracy": 0.365,
+    "macro_f1": 0.268,
+    "per_role": {
+     "PREPARATORY": {
+      "support": 32,
+      "precision": 0.483,
+      "recall": 0.438,
+      "f1": 0.459
+     },
+     "TRIGGER": {
+      "support": 18,
+      "precision": 0.265,
+      "recall": 0.5,
+      "f1": 0.346
+     },
+     "EXTRACTION": {
+      "support": 13,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+     }
+    },
+    "confusion": {
+     "EXTRACTION->PREPARATORY": 6,
+     "EXTRACTION->TRIGGER": 7,
+     "PREPARATORY->PREPARATORY": 14,
+     "PREPARATORY->TRIGGER": 18,
+     "TRIGGER->PREPARATORY": 9,
+     "TRIGGER->TRIGGER": 9
+    },
+    "essential": {
+     "precision": 0.905,
+     "recall": 0.717,
+     "f1": 0.8
+    }
+   },
+   "C5": {
+    "scored_calls": 63,
+    "accuracy": 0.524,
+    "macro_f1": 0.446,
+    "per_role": {
+     "PREPARATORY": {
+      "support": 32,
+      "precision": 0.677,
+      "recall": 0.656,
+      "f1": 0.667
+     },
+     "TRIGGER": {
+      "support": 18,
+      "precision": 0.357,
+      "recall": 0.556,
+      "f1": 0.435
+     },
+     "EXTRACTION": {
+      "support": 13,
+      "precision": 0.5,
+      "recall": 0.154,
+      "f1": 0.235
+     }
+    },
+    "confusion": {
+     "EXTRACTION->EXTRACTION": 2,
+     "EXTRACTION->PREPARATORY": 2,
+     "EXTRACTION->TRIGGER": 9,
+     "PREPARATORY->EXTRACTION": 2,
+     "PREPARATORY->PREPARATORY": 21,
+     "PREPARATORY->TRIGGER": 9,
+     "TRIGGER->PREPARATORY": 8,
+     "TRIGGER->TRIGGER": 10
+    },
+    "essential": {
+     "precision": 0.95,
+     "recall": 0.717,
+     "f1": 0.817
+    }
+   }
+  }
+ },
  "role_distribution": {
   "C0": {
    "calls": 1161,

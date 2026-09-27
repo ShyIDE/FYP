@@ -276,6 +276,34 @@ def prf(tp: int, fp: int, fn: int) -> tuple[float, float, float]:
     return p, r, f
 
 
+def accuracy_ci(records: list[dict], gold: dict, iterations: int = 2000,
+                seed: int = 20260928) -> dict | None:
+    """95% interval for three-role accuracy, resampling whole cases.
+
+    The reviewed calls are clustered in a handful of transactions, and calls
+    within one transaction are not independent, so resampling individual calls
+    would understate the uncertainty badly.
+    """
+    import random
+    by_case: dict[str, list[tuple[str, str]]] = defaultdict(list)
+    for rec in records:
+        for idx, v in rec["labels"].items():
+            key = (rec["case_id"], int(idx))
+            if key in gold:
+                by_case[rec["case_id"]].append((gold[key]["role"], v["role"]))
+    ids = sorted(by_case)
+    if len(ids) < 2:
+        return None
+    rng = random.Random(seed)
+    scores = []
+    for _ in range(iterations):
+        pairs = [p for _ in ids for p in by_case[ids[rng.randrange(len(ids))]]]
+        scores.append(sum(g == p for g, p in pairs) / len(pairs))
+    scores.sort()
+    return {"low": round(scores[int(0.025 * iterations)], 3),
+            "high": round(scores[int(0.975 * iterations) - 1], 3)}
+
+
 def score_against_gold(records: list[dict], gold: dict) -> dict | None:
     pairs = []
     ess_pairs = []
@@ -392,6 +420,10 @@ def main() -> None:
         hits = trigger_metrics(first, cases)
         use = usage_totals(first)
         scored = score_against_gold(first, gold) if gold else None
+        if scored:
+            scored["accuracy_ci"] = accuracy_ci(first, gold)
+            scored["cases"] = len({k[0] for k in gold
+                                   if any(r["case_id"] == k[0] for r in first)})
         agree = run_agreement(runs[cond])
 
         report["conditions"][cond] = {
@@ -403,6 +435,18 @@ def main() -> None:
               f"{hits['precision']:>7}{hits['recall']:>7}{hits['f1']:>7}"
               f"{hits['trigger_rate_pct']:>7}{hits['benchmark_rate_pct']:>8}"
               f"{hits['lift_over_chance']:>6}{use['total_tokens']:>9}")
+
+    if gold:
+        # Score every condition on the reviewed calls they all cover, so a
+        # condition with missing cases is not compared on a different subset.
+        firsts = {c: runs[c][sorted(runs[c])[0]] for c in runs}
+        shared = set.intersection(*[{r["case_id"] for r in recs} for recs in firsts.values()])
+        g_common = {k: v for k, v in gold.items() if k[0] in shared}
+        if g_common:
+            report["gold_common"] = {
+                "calls": len(g_common),
+                "scores": {c: score_against_gold(recs, g_common) for c, recs in firsts.items()},
+            }
 
     if draft:
         print()
@@ -639,13 +683,66 @@ def write_markdown(report, cases):
                      % (cond, name, b["cases"], b["precision"], b["recall"],
                         b["f1"], b["lift_over_chance"]))
 
+    scored_conds = [c for c in sorted(conds) if conds[c].get("scored")]
+    if scored_conds:
+        L += ["", "## Three-role classification, on the reviewed subset", "",
+              "Scored against the %d author-reviewed labels." % report["gold_labels_available"],
+              "",
+              "**These are not overall accuracies.** The reviewed calls are the ones the",
+              "drafting rules flagged as least certain, so they are the hardest calls in",
+              "the corpus, and they come from only a few transactions. Report every",
+              "number below as accuracy *on the flagged subset*. The interval resamples",
+              "whole cases, because calls inside one transaction are not independent.",
+              "",
+              "| Condition | Calls | Cases | Accuracy | Accuracy 95% CI | Macro-F1 | Essential F1 |",
+              "|---|---|---|---|---|---|---|"]
+        for cond in scored_conds:
+            s = conds[cond]["scored"]
+            ci = s.get("accuracy_ci") or {}
+            L.append("| %s | %d | %s | %s | [%s, %s] | %s | %s |"
+                     % (cond, s["scored_calls"], s.get("cases", "?"), s["accuracy"],
+                        ci.get("low", "-"), ci.get("high", "-"), s["macro_f1"],
+                        s["essential"]["f1"]))
+
+        common = report.get("gold_common")
+        if common:
+            L += ["", "### Compared on the same calls", "",
+                  "Not every condition covers every reviewed call (C5 lacks two cases),",
+                  "so the table above mixes subsets. **Compare conditions only on this",
+                  "table**, which scores all of them on the %d reviewed calls they share."
+                  % common["calls"], "",
+                  "| Condition | Accuracy | Macro-F1 |", "|---|---|---|"]
+            for cond, s in sorted(common["scores"].items()):
+                L.append("| %s | %s | %s |" % (cond, s["accuracy"], s["macro_f1"]))
+            L += ["", "The ordering is not monotonic, and with the reviewed calls drawn",
+                  "from so few cases the intervals above overlap heavily, so no ranking",
+                  "of conditions on three-role accuracy is established."]
+
+        L += ["", "### Per-role precision and recall", "",
+              "| Condition | Role | Support | Precision | Recall | F1 |",
+              "|---|---|---|---|---|---|"]
+        for cond in scored_conds:
+            for role, r in conds[cond]["scored"]["per_role"].items():
+                L.append("| %s | %s | %d | %s | %s | %s |"
+                         % (cond, role, r["support"], r["precision"], r["recall"], r["f1"]))
+
+        L += ["", "### Confusion matrices", "",
+              "Rows are the reviewed label, columns the model's label.", ""]
+        for cond in scored_conds:
+            conf = conds[cond]["scored"]["confusion"]
+            L += ["**%s**" % cond, "",
+                  "| reviewed \\ model | " + " | ".join(ROLES) + " |",
+                  "|---" * (len(ROLES) + 1) + "|"]
+            for g in ROLES:
+                cells = [str(conf.get("%s->%s" % (g, p), 0)) for p in ROLES]
+                L.append("| %s | %s |" % (g, " | ".join(cells)))
+            L.append("")
+
     L += ["", "## Not measured", "",
-          "- **Three-role accuracy, macro-F1, per-role precision and recall, the",
-          "  confusion matrix.** These need reviewed human labels. %d reviewed labels"
+          "- **Three-role accuracy over the whole corpus.** Only the %d flagged calls"
           % report["gold_labels_available"],
-          "  exist.",
-          "- **The `essential` flag.** Nothing external grounds it, so it is reported",
-          "  as a distribution only and never as an accuracy.",
+          "  were reviewed; the other calls keep unreviewed drafted labels, which",
+          "  are never scored as ground truth.",
           "- **Cohen's kappa.** There is one annotator, so inter-annotator reliability",
           "  cannot be computed. Its absence is a stated limitation.",
           ""]

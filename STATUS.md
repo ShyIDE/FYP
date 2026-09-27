@@ -14,12 +14,32 @@ write it into the report.
 | 3. Checkpoint C01 + C16 against real `cast` output | done, passed |
 | 4. Overleaf citation fixes (`latex/CHAPTER_FIXES.md`) | still open, done in Overleaf |
 | 5. Fetch all 28 traces | done |
-| 6. Annotation sheet (role + essential) | **LLM-drafted, awaiting human review** |
+| 6. Annotation sheet (role + essential) | drafted; **76 flagged rows reviewed by the author** |
 | 7. Classifier and `evaluate.py`, conditions C0-C5 | **complete**: C0-C4 all 28 cases, C5 26 of 28 |
 | 8. Chapters 5 and 6 from results | ready to write: results final, case studies generated |
 
-The experiment now runs, but **no role accuracy figure exists yet and none can
-exist until the annotation sheet is filled in by hand**. See "What is blocked".
+All experiments are finished. Three-role accuracy now exists **for the 76 reviewed
+calls only**. See "Three-role accuracy on the reviewed subset" below and
+`data/predictions/RESULTS.md`.
+
+### Three-role accuracy on the reviewed subset
+
+The author reviewed and confirmed all 76 flagged rows. Accuracy on them, with
+every condition scored on the 63 reviewed calls they all cover (C5 has no run
+for C15), is 0.25 (C0), 0.38 (C1), 0.29 (C2), 0.41 (C3), 0.37 (C4) and
+0.52 (C5).
+
+How to write this up:
+
+- **Report it as accuracy on the flagged subset, never as overall accuracy.**
+  These are the 76 hardest calls, drawn from only 9 transactions.
+- **Do not rank conditions on it.** The ordering is not monotonic, and 95%
+  intervals resampled by case are wide (roughly ±0.2) and overlap heavily.
+- The one safe observation is that C5, with the victim's source, scores highest
+  on the calls the rules found hardest. That fits the main finding that context
+  helps, but it is not established on its own.
+- Do not put C5's all-reviewed figure (0.524 on 63 calls) in a table next to the
+  others' 76-call figures. Use the shared-subset table in `RESULTS.md`.
 
 ## Step 6: the annotation is LLM-drafted and NOT yet reviewed
 
@@ -229,14 +249,10 @@ cases, and nothing incomplete should be compared against anything complete.
 
 | Blocked | Needs |
 |---------|-------|
-| Accuracy, macro-F1, per-role P/R, confusion matrix, essential P/R | the drafted rows reviewed and marked reviewed=yes |
+| Three-role accuracy over the whole corpus | reviewing the remaining 1,259 drafted rows; only the 76 flagged ones were reviewed |
 | Cohen's kappa | **dropped**: no second independent human annotator |
-| Condition C4 | the 7 dev cases reviewed, to build few-shot examples |
-| Condition C5 | now unblocked: the Etherscan key is set |
 
-`evaluate.py` reports each of these as unavailable rather than estimating it.
-Chapter 6 cannot present role accuracy until the annotation exists. Chapter 5
-case studies can be written now from the traces and the predictions.
+Everything else is done. Chapters 5 and 6 can be written now.
 
 ## The trace corpus: what you may cite
 
