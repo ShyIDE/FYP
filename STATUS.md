@@ -33,6 +33,22 @@ every one of the 1,335 calls, each row marked `annotator=llm-draft` and
 `reviewed=no`. Distribution: 831 PREPARATORY, 262 TRIGGER, 242 EXTRACTION.
 76 rows carry a `CHECK:` note where the drafting rules are least reliable.
 
+**Review of the 76 flagged rows.** Each was classified a second time with a
+written one-line reason, in `data/annotation/review/check_rows_review.csv`:
+11 answered by the author directly, 65 classified by Claude from the full
+trace for the author to check. 44 of the 76 differ from the original draft,
+which is itself worth reporting: the rows flagged as uncertain really were the
+unreliable ones. A row becomes ground truth only when the author writes `yes`
+in its `confirm` column and runs `python pipeline/apply_review.py`, which is
+the only place `reviewed=yes` is ever set. Rows applied this way are tagged
+`annotator=claude-then-author` or `annotator=author`.
+
+**If three-role accuracy is reported from these rows, say what they are.** They
+are the 76 *hardest* calls in the corpus, chosen because the drafting rules
+were least sure of them. Accuracy measured on them is not representative of the
+1,335 calls as a whole and will understate performance. Report it as accuracy
+on the flagged subset, never as overall accuracy.
+
 How the draft was made, which is what the methodology section has to say:
 the trigger calls were identified by reading all 28 traces; for 26 cases the
 benchmark's own ground-truth function matched the trace, and two needed an
