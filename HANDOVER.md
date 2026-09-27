@@ -94,9 +94,10 @@ Each changed a conclusion. Reporting them is a strength, not an admission:
 - **The traces were fetched without an Etherscan key**, so contract names appear
   as bare addresses. Condition C2's contribution is decoded function names and
   arguments, not contract names.
-- **One run per condition.** The provider allows 200,000 tokens per day and a
-  condition-run costs 75,000 to 150,000, so repeat runs were not affordable.
-  Run-to-run agreement is therefore not reported.
+- **One run per condition.** The provider tier was upgraded partway through, so
+  the daily cap is no longer the constraint; a single run per condition was kept
+  because repeat runs buy only a self-consistency figure, which is the least
+  important number in the study. Run-to-run agreement is therefore not reported.
 - **The victim contract's identity is withheld from the model until C5**,
   because it comes from the ground truth. C3 reveals only the attacker and the
   attack contract, both readable from the transaction itself.
@@ -104,8 +105,9 @@ Each changed a conclusion. Reporting them is a strength, not an admission:
 ## Still outstanding
 
 - Sections A to C of `latex/CHAPTER_FIXES.md` have never been applied.
-- Conditions C4 and C5 may not have finished; `RESULTS.md` says which
-  conditions cover all 28 cases. Do not write them up until they do.
+- C5 covers 26 of 28 cases. Two victim contracts have no verified source on
+  Etherscan, so C5 is reported over 26 and the two exclusions are named. Do not
+  compare C5's counts against the other conditions without saying so.
 - Chapter 1 still over-promises (multi-agent consensus, fine-tuning, a released
   dataset) and still uses the name FAULTSEEKER and a "first system" claim. It
   is rewritten last, against what was actually delivered.
