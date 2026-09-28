@@ -224,7 +224,7 @@ verdict.
 The author reviewed and confirmed all 76 calls that `draft_annotations.py`
 flagged as uncertain (see `data/annotation/review/check_rows_review.csv`).
 Each was classified with a written reason — 11 directly by the author, 65
-first classified by Claude from the full trace and then confirmed or corrected
+first classified by an LLM from the full trace and then confirmed or corrected
 by the author — before being written into `sheet_draft.csv` as `reviewed=yes`.
 44 of the 76 differ from the original automatic draft.
 

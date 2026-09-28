@@ -579,7 +579,7 @@ def main() -> None:
 def write_markdown(report, cases):
     """Write RESULTS.md from the same dict the console output came from.
 
-    The report chat reads this file, so it must not be maintained by hand and
+    The report cites this file, so it must not be maintained by hand and
     must not be able to drift from metrics.json.
     """
     conds = report["conditions"]

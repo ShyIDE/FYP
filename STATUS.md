@@ -1,6 +1,7 @@
-# Project status for the report-writing chat
+# Project status
 
-Last updated: 2026-09-25. Written for the chat drafting the Overleaf report.
+Last updated: 2026-09-28. The current state of the pipeline, and what the
+measured results do and do not support.
 Everything here was measured from real runs in this repo. If a number is not
 in this file or in `data/CHECKPOINT.md`, it has not been measured yet — do not
 write it into the report.
@@ -55,13 +56,13 @@ every one of the 1,335 calls, each row marked `annotator=llm-draft` and
 
 **Review of the 76 flagged rows.** Each was classified a second time with a
 written one-line reason, in `data/annotation/review/check_rows_review.csv`:
-11 answered by the author directly, 65 classified by Claude from the full
+11 answered by the author directly, 65 classified by an LLM from the full
 trace for the author to check. 44 of the 76 differ from the original draft,
 which is itself worth reporting: the rows flagged as uncertain really were the
 unreliable ones. A row becomes ground truth only when the author writes `yes`
 in its `confirm` column and runs `python pipeline/apply_review.py`, which is
 the only place `reviewed=yes` is ever set. Rows applied this way are tagged
-`annotator=claude-then-author` or `annotator=author`.
+`annotator=llm-then-author` or `annotator=author`.
 
 **If three-role accuracy is reported from these rows, say what they are.** They
 are the 76 *hardest* calls in the corpus, chosen because the drafting rules

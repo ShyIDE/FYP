@@ -136,7 +136,7 @@ that was actually run, and a failure must be visible rather than smoothed over.
 | `data/predictions/` | one file per condition per run, with the raw model replies |
 | `data/case_studies/` | generated Chapter 5 material |
 | `data/CHECKPOINT.md` | replay fidelity and the parser audit |
-| `STATUS.md` | current state, written for the report-writing chat |
+| `STATUS.md` | current state, and what the results do and do not support |
 | `pipeline/` | the code; see each module's docstring |
 
 ## Limitations

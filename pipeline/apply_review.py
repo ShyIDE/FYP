@@ -71,7 +71,7 @@ def main() -> None:
             changed += 1
         r["role"], r["essential"], r["reviewed"] = role, ess, "yes"
         # Records how the label was reached, so the report can describe it.
-        r["annotator"] = "author" if who == "human" else "claude-then-author"
+        r["annotator"] = "author" if who == "human" else "llm-then-author"
         applied += 1
 
     print(f"confirmed and applied : {applied}")
